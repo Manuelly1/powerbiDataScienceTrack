@@ -108,8 +108,176 @@
   
     O **gráfico de barras empilhadas** é apropriado quando se deseja **analisar três informações simultaneamente**, permitindo visualizar **como cada parte contribui para o total** dentro de diferentes categorias (por exemplo, **vendas por país e prioridade de entrega**).
 
---
+---
 
 ## Unidade 3: Modelagem, Relacionamentos e DAX
 
-- 
+### O que é Modelagem de Dados?
+
+- É o processo de criar uma **representação visual**, ou esquema, que define os sistemas de coleta e gerenciamento de informações de qualquer organização;
+
+- Esse "blueprint" ou modelo de dados ajuda diferentes partes interessadas, como Analistas de Dados, Cientistas de Dados, Arquitetos e Engenheiros de Dados, a criar uma visão unificada dos dados da organização;
+
+- O modelo **descreve quais dados a empresa coleta, a relação entre diferentes conjuntos de dados e os métodos** que serão usados para armazenar e analisar esses dados;
+
+- De forma mais técnica, a Modelagem de Dados é o processo de criação de um **modelo conceitual, lógico e físico de dados**;
+
+    - O modelo conceitual define os conceitos e as relações entre os dados. É mais uma compreensão dos dados;
+
+    - O modelo lógico especifica como os dados serão armazenados e como as relações serão representadas em um banco de dados;
+
+    - O modelo físico descreve como os dados serão armazenados em um sistema de armazenamento específico.
+
+- **Observação:** O Power BI simplifica de forma significativa esse processo criando um modelo de dados básico, ele também evita que erros de relacionamentos ocorram se os dados não estiverem organizados corretamente, porém, ele não criará os relacionamentos entre os dados se os dados não estiverem corretamente conectados. É trabalho do analista averiguar isso.
+
+#### Como Aplicamos Modelagem de Dados em BI?
+
+- É válido lembrar que **BI não é ferramenta, mas sim uma Inteligência de Negócios**, que combina análise de negócios, mineração de dados, visualização de dados, ferramentas/infraestrutura de dados e práticas recomendadas para ajudar as organizações a tomar decisões impulsionadas por dados;
+
+- O **foco em BI é analisar o passado** compreendendo métricas, indicadores, padrões e relacionamentos. O objetivo maior é a **análise descritiva** do que aconteceu;
+
+- BI faz parte do universo da **Ciência de Dados**, mas a Data Science tem foco maior em **análise preditiva**, a fim de compreender o que pode acontecer;
+
+- A Modelagem de Dados é uma parte importante no processo de BI, ela ajuda a garantir que os dados sejam armazenados de forma organizada e consistente, o que facilita a recuperação e análise de dados. **Algumas das maneiras como ela pode ser usada em BI incluem:**
+
+    - **Criação de um Data Warehouse (DW):** A modelagem de Dados é usada para criar um DW, que é um repositório centralizado de dados de negócios que é usado para suportar a análise e tomada de decisão;
+
+    - **Design de Cubos Multidimensionais:** A modelagem é usada para projetar esses cubos, que são estruturas de dados que ajudam a agregar e analisar dados de várias fontes;
+
+    - **Criação de Modelos Estrela (Star Schema):** A modelagem de Dados Estrela é uma técnica comumente aplicada para projetar DWs, que ajuda a garantir a consistência e a facilidade de acesso aos dados;
+
+    - **Otimização de Consultas:** A modelagem também é utilizada para otimizar as consultas a um DW, garantindo que as consultas sejam executadas de forma eficiente;
+
+    - **Integração de Dados:** A modelagem permite integrar dados de várias fontes, garantindo a consistência e a qualidade dos dados;
+
+    - **Governança de Dados:** A modelagem também é importante para garantir a qualidade dos dados e para implementar medidas de governança de dados, como rastreamento de alterações e auditoria.
+
+#### Quais os Benefícios da Modelagem de Dados no Power BI?
+
+- O Power BI tem 3 painéis principais: o painel de relatórios, o painel de dados e o de modelagem de dados;
+
+- Alguns dos benefícios:
+
+    - **Importação de Dados:** O Power BI permite importar dados de uma variedade de fontes, como banco de dados, arquivos e serviços na nuvem. A modelagem é usada para preparar os dados importados, garantindo que eles estejam em um formato consistente e estruturado para análise;
+
+    - **Criação de Tabelas e Relações:** A modelagem é aplicada para criar tabelas e estabelecer relações entre elas, garantindo que os dados estejam organizados de forma lógica e coerente;
+
+    - **Medidas e Cálculos:** O Power BI permite criar medidas e cálculos personalizados como somas, médias e percentuais. A modelagem é aplicada para garantir que esses cálculos sejam aplicados de forma consistente e correta;
+
+    - **Filtros e Segmentação:** A modelagem é utilizada para criar filtros e segmentações para os relatórios, permitindo que os usuários explorem os dados de forma mais precisa e detalhada;
+
+    - **Publicação de Relatórios e Dashboards:** O Power BI permite publicar relatórios e dashboards baseados na modelagem, para que os usuários possam acessá-los e explorá-los facilmente.
+
+- **Observações:**
+
+    - Compreenda o que são relacionamentos de negócio, por exemplo: cada produto pode estar associado a mais de uma venda; e estabeleça o relacionamento no Power BI;
+
+    - Observe os relacionamentos entre os dados e considere desmembrar uma única planilha ou tabela em diferentes partes para construir o relacionamento adequado;
+
+    - Faça os ajustes e correções nos dados para estabelecer os relacionamentos.
+
+---
+
+## Laboratório Prático 2: Dashboard de Vendas, Custo e Margem de Lucro e KPI
+
+### Aulas - Carregando os Datasets, "Será que esse Gráfico está Correto?" e Removendo Duplicatas nos Dados
+
+- Nas bases fornecidas, localizadas na pasta `chapter3/datasets`, ao serem carregadas para a ferramenta, foram constatados alguns erros, como a ausência dos nomes das colunas. Para corrigir, foi necessário apenas aplicar o comando que define a primeira linha como cabeçalho;
+
+- O Power BI reconheceu automaticamente o relacionamento entre as tabelas `Clientes` e `Vendas`, mas não entre as demais, o que indica a existência de algum erro na modelagem (que não é responsabilidade da ferramenta fazer).
+
+---
+
+### Aulas - Modelagem de Dados e Verificando os Relacionamentos
+
+- Para corrigir o problema, foi necessário criar manualmente uma nova relação, já que ela não foi identificada automaticamente. No entanto, ao tentar estabelecer a relação entre as tabelas `Produtos` e `Vendas` por meio do campo `ID Produto`, com a cardinalidade `1:*`, a operação não foi concluída devido a inconsistências nos dados, embora a ferramenta não informe exatamente qual é o erro;
+
+- Diante disso, o professor acessou a seção **Transformar dados** e iniciou uma análise exploratória. Na tabela `Produtos`, foi possível observar a existência de IDs duplicados já nas duas primeiras linhas. Mas, **e se não fosse algo tão evidente? Como identificaríamos registros duplicados?**  
+
+    - Basta clicar com o botão direito sobre a coluna desejada e selecionar **Agrupar por**. Em seguida, realiza-se a contagem das ocorrências, o que permite verificar quantas vezes cada valor aparece. No caso da coluna `ID Produto`, o esperado seria que cada ID aparecesse apenas uma vez, o que não ocorreu.
+
+- **Como remover os dados duplicados?**  
+
+    - O professor utilizou o ícone de tabela que aparece ao lado da coluna de índice. Nesse menu, há diversas opções, entre elas **Remover duplicatas**, que foi aplicada à coluna para eliminar registros repetidos. O mesmo procedimento foi realizado na tabela `Pedidos`;
+    
+    - Além disso, ainda na tabela `Pedidos`, foi utilizada a opção **Transformar → Cortar**, acessada pelo botão direito sobre a coluna `ID Pedido`, a fim de remover espaços em branco extras presentes nos dados. Apesar do problema mesmo ser os dados duplicados, ele quis demonstrar outra forma de limpeza.
+
+- Após a limpeza dos dados, bastou utilizar a opção **"Detecção automática"**, e as novas relações foram identificadas corretamente pela ferramenta.
+
+---
+
+### Aulas - Relacionamentos e Cardinalidades
+
+- Os relacionamentos entre tabelas representam as **regras de negócio** que definem como os dados se conectam, determinando também a **cardinalidade** (`1:1`, `1:*`, `*:1`, `*:*`) de cada vínculo. Essas cardinalidades expressam o **nível de granularidade** das relações, indicando quantos registros de uma tabela podem se associar a registros de outra;
+
+- Por exemplo, “um pedido pode estar associado a várias vendas”. Nesse caso, a cardinalidade é `1:*`, partindo de `Pedidos` para `Vendas`, pois na tabela `Pedidos` cada `ID Pedido` aparece apenas uma vez, enquanto na tabela `Vendas` esse mesmo identificador pode se repetir em múltiplos registros;
+
+- No caso da tabela `Produtos`, que também possui um relacionamento `1:*` com a de `Vendas`, pode-se interpretar da seguinte forma: “um produto pode participar de uma ou mais vendas”. Se a leitura fosse feita a partir da tabela `Vendas`, então seria: “muitas vendas podem estar associadas a um único produto”;
+
+- Já a cardinalidade `1:1` representa um relacionamento **um para um**, em que **cada registro de uma tabela está vinculado a, no máximo, um registro da outra**. Esse tipo de relação é comum quando os dados foram separados por motivos de organização, desempenho ou segurança;
+  
+    - Por exemplo, em um sistema de clientes, pode haver uma tabela `Clientes` e outra `EnderecosDetalhados`, onde cada cliente possui exatamente um endereço cadastrado, e cada endereço pertence a apenas um cliente.
+
+- Em relação a `*:*`, que representa um relacionamento **muitos para muitos**, digamos que temos 2 tabelas: `Cidades` e `Vendas`, **daria para ter esse relacionamento de muitos para muitos?** Sim, pois muitas vendas são feitas em muitas cidades, uma mesma venda pode estar associada a mais de uma cidade. Isso causa alguns problemas, o ideal, quando identifica-se um caso de `*:*` é criar uma tabela intermediária entre essas outras duas e, assim, deixar a cardinalidade entre elas como `1:*`. No caso do exemplo seria uma tabela intermediária chamada `Estado`.
+
+---
+
+### Aulas - Power Query M Language x DAX
+
+- O **Power Query** utiliza a linguagem **M**. Assim, ao clicar em uma das etapas da seção **Transformar dados**, é possível visualizar o código correspondente às transformações realizadas, ou seja, ver internamente o que foi executado pela ferramenta.
+
+- Dominar a linguagem **M** permite **personalizar e automatizar** processos no Power Query, elevando o nível de uso da ferramenta para um patamar mais avançado.
+
+#### Diferença entre M e DAX
+
+- A linguagem **M** é usada na etapa de **pré-processamento dos dados**, ou seja, na **extração, transformação e carga (ETL)**. Com ela, você realiza tarefas como:
+    
+    - Limpar e transformar dados;
+    
+    - Combinar ou mesclar tabelas;
+    
+    - Criar colunas calculadas baseadas em regras fixas;
+    
+    - Ajustar o formato ou o tipo dos dados antes de carregá-los para o modelo.
+
+- Já a linguagem **DAX (Data Analysis Expressions)** é utilizada **depois que os dados já estão carregados no modelo**, para criar **cálculos dinâmicos e análises**. Com DAX, você pode:
+
+    - Criar **medidas** e **colunas calculadas**;
+
+    - Definir **agregações condicionais**;
+
+    - Trabalhar com **contextos de filtro** e **tempo (time intelligence)**, como comparar vendas entre períodos.
+
+#### Medidas
+
+- São funções semelhantes às utilizadas no Excel, criadas para realizar **cálculos e análises dinâmicas** dentro do modelo de dados. Elas são escritas em **DAX** e permitem calcular métricas específicas, como totais, médias, percentuais e outros indicadores que se atualizam automaticamente conforme os filtros e segmentações aplicados no relatório;
+
+- É necessário conhecer as **funções DAX**.
+
+---
+
+### Aula - Gráfico de Cascata e Primeira Questão do Lab 2
+
+- Para responder à pergunta **“Qual foi o total de valor de venda considerando cada modo de envio dos pedidos?”**, utilizou-se o **gráfico de cascata**, conforme indicado pelo próprio enunciado. Esse tipo de gráfico é particularmente útil quando se trabalha com **poucas categorias** em uma variável, pois facilita a visualização do **impacto de cada categoria sobre o total final**;
+
+- Como o objetivo era analisar o campo `Modo de Envio` dos `Pedidos`, esse campo foi inserido em **Categoria**, enquanto o campo `Total de Valor Venda` foi adicionado ao **Eixo Y**;
+
+- **Gráfico de Cascata:**  
+
+    - Esse tipo de gráfico mostra o **impacto incremental de cada categoria** em relação ao total. As barras representam aumentos ou diminuições no valor acumulado:
+
+    - **Aumentar (Increase):** indica um acréscimo em relação ao total anterior;
+
+    - **Diminuir (Decrease):** indica uma redução;  
+
+    - **Total:** mostra o valor acumulado final após todas as variações;
+
+    - No caso analisado, observa-se que cada modo de envio **aumenta progressivamente o total de vendas**, sem haver reduções. A **Classe Padrão** foi a que mais contribuiu, **acrescentando cerca de R$ 7,6 milhões** ao total de vendas, seguida pela **Segunda Classe** e pela **Primeira Classe**, até atingir o valor acumulado de aproximadamente **R$ 12,6 milhões**;
+
+    - **Observação:** As **categorias/classes** exibidas no gráfico de cascata não são criadas automaticamente pelo gráfico. Elas derivam de um **campo categórico do conjunto de dados** selecionado para o eixo do gráfico. No caso apresentado, o campo utilizado foi `Modo de envio`, cujos valores distintos originam as classes como *Classe Padrão*, *Segunda Classe*, *Primeira Classe* e *Entrega no mesmo dia*;
+    - O gráfico de cascata, portanto, **não define as categorias**, mas sim as utiliza para **demonstrar o impacto individual de cada uma sobre o total acumulado**, indicando visualmente quanto cada classe **aumenta ou diminui** o valor total.
+
+---
+
+### Aula - Gráfico de Treemap e Segunda Questão do Lab 2
+
