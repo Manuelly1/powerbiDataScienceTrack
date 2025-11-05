@@ -1,4 +1,4 @@
-# Módulo: Primeiros Passos com o Power BI
+# Curso: Microsoft Power BI para Business Intelligence e Ciência de Dados
 
 ## Conceitos Importantes de Dados
 
@@ -111,3 +111,5 @@
 --
 
 ## Unidade 3: Modelagem, Relacionamentos e DAX
+
+- 
