@@ -368,3 +368,27 @@
     3. Após criar a coluna, foi inserido um **gráfico de linhas**, utilizando a hierarquia completa do campo `Data Pedido` no `eixo X` e a nova coluna `MargemLucro` no `eixo Y`.Dessa forma, tornou-se possível visualizar o comportamento da margem de lucro ao longo do tempo.
 
 ---
+
+## Unidade 4: Power BI para Análise de Dados de Marketing
+
+- **O que é marketing?** A unidade começa esclarecendo esse conceito, definido como o processo de **planejar e executar a concepção, o preço, a promoção e a distribuição de ideias, bens e serviços** com o objetivo de criar **trocas que satisfaçam tanto os objetivos individuais quanto os organizacionais**. O marketing é responsável por **atrair e manter clientes**, envolvendo atividades como **pesquisa de mercado**, **análise de concorrência**, **definição de estratégias** e **planejamento de campanhas publicitárias**.
+
+### Principais KPIs de Marketing
+
+- Existem muitos indicadores de marketing que as empresas podem usar para medir o sucesso de suas estratégias e campanhas, como:
+
+    - **Taxa de conversação:** A proporção de visitantes do site que realizam uma ação desejada, como comprar um produto ou preencher um formulário de contato;
+
+    - **Taxa de retenção do cliente:** A proporção de clientes que compram de uma empresa novamente;
+
+    - **Custo por aquisição de cliente (CAC):** O custo total de adquirir um novo cliente, incluindo despesas com publicidade e marketing;
+
+    - **Retorno sobre investimento (ROI):** O lucro ou prejuízo obtido em relação ao investimento feito em uma campanha de marketing;
+
+    - **Conscientização da marca:** A medida da familiaridade e reconhecimento da marca entre o público-alvo;
+
+    - **Engajamento:** A medida da interação dos usuários com conteúdo, campanhas e canais de marketing;
+
+    - **Net Promoter Score (NPS):** Uma medida da lealdade dos clientes, baseada em sua disposição para recomendar uma empresa ou produto para outras pessoas;
+
+    - **Tráfego do website:** Número de visitas no website.
