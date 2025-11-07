@@ -281,3 +281,90 @@
 
 ### Aula - Gráfico de Treemap e Segunda Questão do Lab 2
 
+- O **gráfico de Treemap** é ideal para representar comparações entre categorias quando o número de grupos não é muito grande (em torno de 10 a 15);
+
+- Na segunda questão: **“Quais mercados tiveram o maior custo médio de envio dos produtos vendidos?”**, o procedimento foi o seguinte:  
+
+    1. Inseriu-se o visual de **Treemap** no relatório;  
+
+    2. Em **Categoria**, foi adicionado o campo `Mercado` da tabela **Clientes**;  
+
+    3. Em **Valores**, foi adicionado o campo `Custo de venda` da tabela **Vendas**.
+
+- Com essas configurações, o Power BI gera automaticamente um **Treemap** que permite visualizar, de forma hierárquica e proporcional, quais mercados apresentaram os maiores custos médios de envio dos produtos vendidos. Na formatação, adicionou-se rótulos de dados, para exbir os valores.
+
+---
+
+### Aula - Criando Indicador Chave de Performance (KPI) e Terceira Questão do Lab 2
+
+- A terceira questão propõe: **"A empresa tem como objetivo (meta) manter uma média de 350 para o valor de venda todos os meses. Mostre um indicador (KPI) com o valor médio de venda. A empresa ficou abaixo ou acima da meta no mês de Abril/2014?"**
+
+- O desenvolvimento foi realizado da seguinte forma:
+
+    1. Primeiramente, inseriu-se o visual de **Indicador (KPI)** no relatório;
+  
+    2. Como a medida solicitada é a **média do valor de vendas**, foi adicionado o campo `Valor Venda` da tabela **Vendas** na área de **Valores**;
+  
+    3. Em seguida, foi necessário definir uma **linha de meta** para comparar o desempenho com o objetivo proposto.  
+        
+        - No painel **Formatar visual**, acessou-se a seção **Eixo do medidor**;  
+    
+        - Definiu-se o valor **mínimo** como `0`, o **máximo** como `500`, e o **Destino (meta)** como `350`, conforme indicado na questão;  
+
+    4. Para que a análise fosse feita especificamente para **abril de 2014**, foi adicionada uma **Segmentação de dados**:  
+    
+        - Utilizou-se o campo `Data pedido` da tabela **Pedidos**;  
+    
+        - Selecionou-se a **hierarquia de data** (ano e mês) para permitir o filtro por períodos específicos;  
+
+    5. Após aplicar o filtro para **abril/2014**, observou-se que o valor médio de venda ficou **abaixo da meta**, indicando que a empresa **não atingiu o objetivo estabelecido** para aquele mês.
+
+---
+
+### Aula - Coluna Calculada para o Lucro e Quarta Questão do Lab 2
+
+- A quarta questão propõe: **"Considere que o lucro é equivalente a: valor venda - custo envio. Qual categoria de produto apresentou maior lucro médio?"**
+
+- O desenvolvimento foi realizado da seguinte forma:
+
+    1. Inicialmente, verificou-se que a tabela **Vendas** não possuía uma coluna chamada `Lucro`. Assim, foi necessário **criar uma nova coluna (calculada)** que representasse o lucro de cada venda.  
+    
+        - Para isso, utilizou-se a opção **Nova Coluna** no Power BI;  
+    
+        - Em seguida, foi adicionada a expressão: 
+
+        ```DAX
+        Lucro = Vendas[Valor Venda] - Vendas[Custo Envio]
+        ```
+        - Essa fórmula subtrai o custo de envio do valor de venda, resultando no lucro por transação individual.
+
+    2. Após a criação da coluna, inseriu-se um **gráfico de rosca** para visualizar qual categoria apresentou maior lucro médio.  
+
+        - No campo **Legenda**, adicionou-se `Categoria` (presente na tabela `Produtos`); 
+
+        - No campo **Valores**, adicionou-se a nova coluna `Lucro`;  
+
+        - O Power BI então calculou automaticamente a média dos lucros por categoria, permitindo identificar visualmente qual delas apresentou o melhor desempenho.
+
+- Dessa forma, o gráfico de rosca passou a representar de forma clara **a distribuição do lucro médio por categoria de produto**, conforme solicitado na questão.
+
+---
+
+### Aula - Calculando a Margem de Lucro Usando DAX e Quinta Questão do Lab 2
+
+- A questão proposta foi: **"Qual foi o comportamento da margem de lucro ao longo do tempo? Considere a margem de lucro como o lucro dividido pelo valor de venda."**
+
+- Na tabela `Vendas`, temos as colunas `Valor Venda` e `Lucro`, mas ainda não existe a coluna que representa a **margem de lucro**. Para criá-la, foi necessário adicionar uma **nova coluna calculada** seguindo os passos abaixo:
+
+    1. Selecionar a tabela `Vendas` e clicar em **Nova Coluna**;
+
+    2. Inserir a seguinte expressão DAX:
+
+   ```DAX
+        MargemLucro = ROUND(DIVIDE(Vendas[Lucro], Vendas[Valor Venda]) * 100, 2)
+    ```
+    - A função `ROUND` arredonda o valor para duas casas decimais.
+
+    3. Após criar a coluna, foi inserido um **gráfico de linhas**, utilizando a hierarquia completa do campo `Data Pedido` no `eixo X` e a nova coluna `MargemLucro` no `eixo Y`.Dessa forma, tornou-se possível visualizar o comportamento da margem de lucro ao longo do tempo.
+
+---
