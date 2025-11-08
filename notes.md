@@ -392,3 +392,35 @@
     - **Net Promoter Score (NPS):** Uma medida da lealdade dos clientes, baseada em sua disposição para recomendar uma empresa ou produto para outras pessoas;
 
     - **Tráfego do website:** Número de visitas no website.
+
+---
+
+### Mini-Projeto 1: Análise de Campanhas de Marketing
+
+- O **objetivo** é colocar o aluno em um cenário de negócio real, semelhante ao que será encontrado no mercado de trabalho;
+
+- Nesse ambiente, desenvolveremos muito mais do que a criação de gráficos: realizaremos análises, responderemos a perguntas de negócio, observaremos os dados sob diferentes perspectivas, corrigiremos inconsistências, calcularemos métricas e extrairemos insights para apoiar os tomadores de decisão;
+
+- **O mini-projeto foi dividido em 4 etapas/visões:**
+
+    1. **Visão do Cliente** (ex: "Qual a média salarial dos clientes?"; "E o grau de escolaridade?"; "Como estão divididos em termos de estado civil?"; "Os clientes têm criança em casa/adolescente?"...);
+
+    2. **Visão do Comportamento de Compra do Cliente** (ex: "Se o cliente é solteiro ou casado, isso influencia no padrão de compra?");
+
+    3. **Visão da Performance das Campanhas de Marketing** (ex: "A empresa fez 5 campanhas de marketing, qual delas obteve o maior retorno?"; "Considerando as campanhas de marketing, teve diferença se por acaso o cliente era casado ou solteiro?"; "Considerando as campanhas de marketing, quanto tempo foi necessário para que o cliente realmente fizesse a compra?");
+
+    4. **Visão dos Padrões de Compra no Ponto de Venda - País**, neste caso (ex: "Aonde o produto foi vendido?"; "Aonde está a empresa que vendeu o produto? Isso faz diferença?"; "Qual foi a performance dos pontos de venda?").
+
+- Para a elaboração deste projeto, foi disponibilizada uma base de dados de marketing, a qual foi carregada na ferramenta. Em seguida, iniciou-se o processo de **exploração dos dados**, isto é, o reconhecimento da base para compreender a tabela e identificar o que poderá ser analisado;
+
+    - O professor destacou que, nesse momento de exploração, um recurso de grande auxílio é o **dicionário de dados**, ou seja, um documento que descreve cada coluna de um determinado conjunto de dados;
+
+    - Mas quem é responsável por criar esse dicionário? Geralmente, quem gerou os dados, pois é quem possui essas informações. Contudo, no mundo real, nem sempre se tem a disponibilização/produção desse documento, então cabe ao analista compreender cada campo. Se não souber, procure o departamento de negócio e questione, ou busque na internet;
+
+    - O campo **"Dias desde a última compra"** possui um nome especial: **recência**, que indica o tempo decorrido desde a última aquisição;
+
+    - Os campos **"Compra na Campanha 1"**, **"Compra na Campanha 2"**, **"Compra na Campanha 3"**, **"Compra na Campanha 4"** e **"Compra na Campanha 5"** são colunas binárias que indicam se, a partir de cada disparo de campanha, houve ou não a realização de uma compra.
+
+- Como neste projeto foi solicitada a incrementação de 4 visões, aplicou-se o recurso de paginação, para que não fique poluído. Portanto, criou-se uma página para cada visão;
+
+- 
