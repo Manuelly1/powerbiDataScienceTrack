@@ -1,0 +1,9 @@
+Laboratório Mini-Projeto 1 - Dashboard de Análise de Campanhas de Marketing em Diferentes Visões
+
+1- Visão cliente;
+
+2- Visão comportamento;
+
+3- Visão performance;
+
+4- Visão dos padrões.  

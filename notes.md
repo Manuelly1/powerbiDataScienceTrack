@@ -421,6 +421,177 @@
 
     - Os campos **"Compra na Campanha 1"**, **"Compra na Campanha 2"**, **"Compra na Campanha 3"**, **"Compra na Campanha 4"** e **"Compra na Campanha 5"** são colunas binárias que indicam se, a partir de cada disparo de campanha, houve ou não a realização de uma compra.
 
-- Como neste projeto foi solicitada a incrementação de 4 visões, aplicou-se o recurso de paginação, para que não fique poluído. Portanto, criou-se uma página para cada visão;
+- Como neste projeto foi solicitada a incrementação de 4 visões, aplicou-se o recurso de paginação, para que não fique poluído. Portanto, criou-se uma página para cada visão.
 
-- 
+---
+
+#### Visão Cliente
+
+- Nesta visão, o professor iniciou a análise com a pergunta: **"Quantos clientes há neste conjunto de dados?"**  
+
+    - Como essa informação ainda não havia sido verificada, ele inseriu um **cartão** no Power BI e adicionou o campo `ID`, obtendo como resultado **2.000 clientes**.
+
+- Em seguida, questionou: **"Qual é a média salarial dos clientes?"**  
+  
+    - Para descobrir, adicionou outro **cartão** e selecionou o campo `Salário Anual`, resultando em uma **média salarial de R$ 52.290,00**.
+
+- Depois, ele buscou entender **em quais canais de compra os clientes mais adquiriram produtos**, perguntando: **"Os clientes compraram mais na loja física, pela web, via catálogo ou por meio de descontos?"**  
+
+    - Assim, foram criados cartões individuais para os campos:
+
+        - `Número de Compras na Loja`
+
+        - `Número de Compras na Web`
+
+        - `Número de Compras via Catálogo`
+
+        - `Número de Compras com Desconto`
+
+    - Ao comparar os valores, observou-se que **as compras na loja física apresentaram o maior volume (12.000)**, enquanto **as compras com desconto tiveram o menor número (4.665)**.
+
+- **Alguns dos insights obtidos:**
+
+    - Total de clientes: **2.000**;
+
+    - Média salarial - anual: **R$ 52.290,00**;
+
+    - Canal com maior número de compras: **Loja física (12.000)**;
+
+    - Canal com menor número de compras: **Compras com desconto (4.665)**.
+
+- Após realizar as análises iniciais, o professor comentou que gostaria de **conhecer melhor o perfil dos clientes** com base em seu **grau de escolaridade**. Para isso, ele adicionou um **gráfico de barras** no Power BI, configurando:
+
+    - **Eixo X:** `Escolaridade`;
+
+    - **Eixo Y:** `ID`.
+
+- Dessa forma, foi possível visualizar o **número de clientes em cada nível de escolaridade**;
+
+- Em seguida, o professor criou **outro gráfico de barras**, desta vez para analisar os clientes conforme o **estado civil**. Ele configurou:
+  
+    - **Eixo X:** `Estado Civil`;
+
+    - **Eixo Y:** `ID`.
+
+- Assim, tornou-se possível observar **quantos clientes pertencem a cada categoria de estado civil**;
+
+- Por fim, ele adicionou uma **segmentação de dados** utilizando o campo `País`, possibilitando **filtrar os gráficos de acordo com o país selecionado**, tornando a análise mais dinâmica e direcionada;
+
+- Após a criação de todos os **gráficos e cartões**, o professor aplicou uma **formatação geral** à página para melhorar a **apresentação visual e a leitura dos dados**. Foram ajustados elementos como **cores, tamanhos de fonte, alinhamento e títulos** dos visuais;
+
+- **Observação:** nos **cartões**, é possível **renomear o título** para um nome mais claro e legível, facilitando a compreensão das informações.
+
+---
+
+#### Visão Comportamento
+
+- Para esta nova etapa da análise, foi criada uma **nova página no relatório** denominada `Visão Comportamento`;
+
+- Nessa visão, o professor iniciou adicionando um **gráfico de dispersão**, utilizado para **análises bivariadas**, ou seja, aquelas que envolvem **duas variáveis**. Os campos selecionados foram:
+
+    - **Eixo X:** `Salário Anual` *(com a opção “Não resumir” habilitada)*;
+
+    - **Eixo Y:** `Gasto com Alimentos`  
+
+- Após a configuração, ele questionou: **"O que podemos interpretar a partir deste gráfico?"** A conclusão foi que **à medida que o salário anual aumenta, o gasto com alimentos também tende a crescer**;
+
+- Durante a observação do gráfico, notou-se a presença de **um ponto fora do padrão** (“desgarrado”), o que indicava um **outlier** na variável `Salário Anual`. Esses valores extremos podem **distorcer as análises e a visualização dos dados**. Diante disso, o professor explicou duas alternativas:
+
+    1. **Manter o outlier**, mas **ajustar a visualização**:  
+    
+    - No eixo X, ativar a opção **“Escala logarítmica”**, o que redistribui melhor os valores e suaviza o impacto do ponto fora da curva;
+
+  2. **Remover o outlier**:  
+    
+    - Acessar a guia **Transformar dados**;  
+    
+    - Selecionar o campo `Salário Anual`;  
+    
+    - Clicar na **setinha** ao lado do nome do campo e escolher **“Classificar em ordem decrescente”**, para que o salário mais alto apareça primeiro;  
+    
+    - Em seguida, ir em **“Remover linhas” → “Remover linhas superiores”** e remover **a primeira linha** (correspondente ao valor extremo).  
+
+- Após esse procedimento, o conjunto de dados fica **livre do outlier**, permitindo uma visualização mais limpa e precisa;
+
+- Além disso, ao examinar a base de dados, observou-se que existem **diversos tipos de gastos** registrados: `Gasto com Alimentos`, `Gasto com Brinquedos`, `Gasto com Eletrônicos`, `Gasto com Móveis`, `Gasto com Utilidades` e `Gasto com Vestuário`. Diante disso, o professor destacou que **não seria eficiente criar um gráfico de dispersão para cada tipo de gasto**;
+
+- Assim, foi proposta uma **abordagem mais prática de análise**: criar uma **medida personalizada** que representasse o **total de gastos por cliente**, somando todos esses campos. Como o conjunto de dados **não possuía uma coluna específica para o gasto total**, foi criada uma **Nova Medida** no Power BI com a seguinte fórmula DAX:
+
+```DAX
+    TotalGasto =
+        SUMX(
+            DadosMarketing,
+            DadosMarketing[Gasto com Alimentos] +
+            DadosMarketing[Gasto com Brinquedos] +
+            DadosMarketing[Gasto com Eletronicos] +
+            DadosMarketing[Gasto com Moveis] +
+            DadosMarketing[Gasto com Utilidades] +
+            DadosMarketing[Gasto com Vestuario]
+        )
+```
+
+- Após criar a medida `TotalGasto`, o professor substituiu o campo `Gasto com Alimentos` do eixo Y no gráfico de dispersão por `TotalGasto`;
+
+- Dessa forma, o gráfico passou a representar o gasto total de cada cliente em relação ao seu salário anual, fornecendo uma visão mais ampla e consolidada do comportamento de consumo;
+
+- Em seguida, o professor levantou a questão: **"Será que existe uma relação entre o gasto total e o número de filhos?"**. Embora a resposta pareça intuitiva, ele ressaltou a importância de **demonstrar essa relação com base nos dados**;
+
+- Ao observar a base, verificou-se a presença dos campos `Filhos em casa` e `Adolescentes em casa`, além da medida criada anteriormente, `TotalGasto`. Nesse ponto, surgiu a dúvida: **Qual seria o gráfico mais adequado para essa análise?**;
+
+- O professor explicou que o **gráfico de dispersão** não seria apropriado neste caso, pois ele é indicado para **variáveis numéricas contínuas**, aquelas que podem assumir uma grande variedade de valores dentro de um intervalo (como salário, altura, temperatura etc). Já os campos `Filhos em casa` e `Adolescentes em casa` são **variáveis numéricas discretas**, ou seja, representam **quantidades específicas** (0, 1, 2, 3) e não uma medida contínua. Assim, o gráfico de dispersão não seria eficaz para representar esses dados;
+
+- Diante disso, optou-se pelo **gráfico de barras**, configurado da seguinte forma:
+
+    - **Eixo X:** `Filhos em casa` (depois fez com `Adolescentes em casa`);
+
+    - **Eixo Y:** `TotalGasto`.
+
+- O gráfico resultante mostrou que **clientes sem filhos tendem a gastar significativamente mais**. Ao refletir sobre o motivo, o professor destacou que a **análise de contexto** é essencial: o **estado civil predominante entre os clientes é o de solteiro**, e a maioria deles **não possui filhos**. Dessa forma, **o maior gasto entre quem não tem filhos** reflete o **perfil predominante do público analisado**;
+
+- Em seguida, o professor propôs **cruzar informações de três variáveis diferentes** para obter uma análise mais detalhada do comportamento dos clientes. O gráfico mais adequado para esse tipo de visualização é a **árvore hierárquica**, que permite **analisar uma métrica principal** e **explicá-la a partir de diferentes dimensões**;
+
+- Nesse caso, a configuração foi feita da seguinte forma:
+
+    - **Campo a analisar:** `TotalGasto`;
+
+    - **Campos para explicar por:** `Escolaridade` e `Estado Civil`.
+
+- Após configurar, basta clicar no ícone **“+”** que aparece na visualização da árvore hierárquica para **expandir os níveis de detalhamento** e explorar as relações entre as variáveis;
+
+    - Por exemplo: ao expandir o campo `Estado Civil`, pode-se visualizar o grupo **Solteiro**, e ao aprofundar mais um nível, será exibido o **valor correspondente ao gasto total desse grupo por nível de escolaridade**, como identificar que **solteiros com curso superior** apresentam os **maiores valores de gasto**.
+
+- A análise revelou que o **perfil de cliente solteiro e com curso superior** foi o que **apresentou o maior gasto total**, sendo, portanto, o grupo que **mais adquiriu produtos da empresa**;
+
+- **Observação:** Enquanto na **Visão Cliente** as análises foram realizadas **com apenas uma variável por vez**, por exemplo, número de clientes, média salarial ou tipo de compra, na **Visão Comportamento** o foco passou a ser **a relação entre duas ou mais variáveis**, buscando compreender **como elas se comportam em conjunto** e **quais padrões ou correlações** podem ser identificados nos dados.
+
+---
+
+#### Visão da Performance das Campanhas
+
+- Para analisar a **performance das campanhas de marketing**, observou-se que a base de dados contém diversas **colunas binarizadas** que indicam se o cliente **realizou ou não uma compra** em cada campanha, como: `Compra na Campanha 1`, `Compra na Campanha 2`, `Compra na Campanha 3`, e assim por diante. Além disso, há o campo `Comprou`, que mostra **se o cliente adquiriu algum produto em pelo menos uma campanha**;
+
+- Para compreender a **efetividade geral das campanhas**, foi necessário **cruzar essas informações**. O primeiro passo foi verificar **quantas pessoas compraram e quantas não compraram**. Para isso, utilizou-se um **gráfico de pizza**, configurado da seguinte forma:
+
+    - **Legenda:** `Comprou`;
+
+    - **Valores:** `ID` (para representar a contagem de clientes)
+
+- O gráfico revelou que **16% dos clientes responderam às campanhas de marketing**, realizando ao menos uma compra. Como o campo `Comprou` representa uma **categoria** (e não uma medida numérica), o professor acessou a opção **Transformar dados** e alterou o **tipo de dado de `Comprou` para Texto**, garantindo que fosse tratado corretamente como uma **variável categórica**;
+
+- Em seguida, o professor levantou uma nova questão: **"Será que existe diferença na média salarial entre os clientes que compraram e os que não compraram durante as campanhas de marketing?"**
+
+- Para investigar essa hipótese, foi inserido um **gráfico de barras**, configurado da seguinte forma:
+
+    - **Eixo X:** `Comprou`;
+
+    - **Eixo Y:** `Salário Anual` (modificado para exibir a **média** em vez da soma).
+
+- O resultado mostrou que, na categoria **1** (clientes que compraram), a **média salarial é mais alta** do que na categoria **0** (clientes que não compraram). Essa diferença indica que **a renda média influencia o comportamento de compra** nas campanhas;
+
+- A partir desse insight, o professor destacou a importância dessa informação para a **equipe de marketing**: em campanhas futuras, será essencial aplicar **segmentações de clientes**, por exemplo, filtrar o público **por faixa salarial** ou por outros critérios relevantes, a fim de **personalizar as estratégias** e **aumentar a efetividade** das ações. Dessa forma:
+
+    - Clientes com **menor poder aquisitivo** podem receber **campanhas com foco em descontos**;
+    
+    - Já os clientes com **salário mais elevado** podem ser direcionados a **produtos de maior valor agregado**.
+
+- Posteriormente, para criação do outro gráfico, o professor partiu do seguinte questionamento: **"Será que o website da empresa ajudou a aumentar o número de vendas durante as campanhas de marketing?"**.
