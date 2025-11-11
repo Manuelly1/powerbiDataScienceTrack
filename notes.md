@@ -594,4 +594,81 @@
     
     - Já os clientes com **salário mais elevado** podem ser direcionados a **produtos de maior valor agregado**.
 
-- Posteriormente, para criação do outro gráfico, o professor partiu do seguinte questionamento: **"Será que o website da empresa ajudou a aumentar o número de vendas durante as campanhas de marketing?"**.
+- Posteriormente, o professor propôs uma nova reflexão:  
+  **"Será que o website da empresa contribuiu para o aumento das vendas durante as campanhas de marketing?"**;
+
+- Para responder a essa pergunta, ele utilizou a ferramenta e **criou uma tabela**, configurada da seguinte forma:
+  
+    - Primeiramente, adicionou a coluna **`Comprou`**, para identificar se o cliente realizou ou não uma compra;  
+
+    - Em seguida, incluiu a coluna **`Número de Visitas Website Mês`**, configurada para exibir a **soma** das visitas.
+
+- A partir da tabela, foi possível gerar **insights importantes**: observou-se que **mais de 8 mil clientes acessaram o site, mas não efetuaram nenhuma compra**, enquanto **cerca de 1.700 realizaram a compra após a visita**. Isso indica que, embora o número de visitas tenha sido alto, a **taxa de conversão em vendas foi baixa**, evidenciando a necessidade de **revisar estratégias de marketing digital e usabilidade do site**;
+
+- Ademais, o professor **converteu a visualização de tabela em uma matriz**, o que **organizou melhor as informações** e **facilitou a interpretação dos resultados**;
+
+- Na aula seguinte, ainda trabalhando com a **matriz**, o professor aprimorou a análise ao **adicionar novas dimensões de segmentação**. Inicialmente, ele inseriu o campo **`Escolaridade`** em **Colunas**, fazendo com que a ferramenta passasse a **exibir os dados de acordo com o nível de escolaridade dos clientes**;
+
+- Em seguida, acrescentou o campo **`Estado Civil`** em **Linhas**, criando assim uma **tabela cruzada**, pois passou a relacionar diferentes variáveis dentro da mesma visualização;
+
+- Por último, adicionou o campo **`País`** também em **Linhas**, permitindo uma **análise ainda mais detalhada**, já que agora era possível observar os dados **por país, estado civil e escolaridade** simultaneamente;
+
+- Os **valores exibidos** continuaram sendo representados pelo campo **`Número de Visitas Website Mês`** (soma). O professor ressaltou que é **preferível utilizar a matriz** em vez da tabela nesse tipo de caso, pois **a matriz permite navegação entre os níveis hierárquicos** e **facilita a exploração interativa dos dados**;
+
+- Na aula seguinte, o professor propôs uma nova análise: **"Será que o fato de ter filhos em casa influenciou na efetividade das campanhas de marketing?"**;
+
+- O objetivo era identificar:  
+
+    - Entre as pessoas **que têm filhos em casa**, quantas **compraram** e quantas **não compraram**;  
+
+    - E entre as que **não têm filhos**, quantas **compraram** e quantas **não compraram**.
+
+- Para realizar essa análise, foi utilizado um **gráfico de barras**. Inicialmente, configurou-se da seguinte forma:  
+
+    - **Eixo X:** `Filhos em casa`;  
+
+    - **Eixo Y:** `Comprou`.
+
+- No entanto, esse primeiro gráfico apenas **contava a ocorrência da variável `Comprou`**, sem oferecer o cruzamento desejado. Para corrigir isso, o professor **reorganizou os campos**:
+
+    - **Eixo X:** `Filhos em casa`;
+
+    - **Eixo Y:** contagem de `Filhos em casa`;
+
+    - **Legenda:** `Comprou` (por ser uma variável categórica).
+
+- Com essa configuração, o gráfico passou a exibir corretamente **quantas pessoas compraram ou não**, considerando se tinham ou não filhos em casa. Contudo, a presença dos valores **0** e **1** no campo `Comprou` dificultava a leitura dos resultados;
+
+- Para tornar o gráfico mais claro, o professor acessou **Transformar dados**, selecionou o campo **`Comprou`** e substituiu os valores:  
+
+    - **1 → “Sim”**;
+
+    - **0 → “Não”**.
+
+- Após essa modificação, a visualização ficou **muito mais legível**, permitindo compreender facilmente **a relação entre ter filhos e o comportamento de compra nas campanhas**.
+
+---
+
+#### Visão dos Padrões de Compra por Ponto de Venda
+
+- Para esta visão, foram utilizados dois gráficos. O primeiro é o **gráfico de colunas agrupadas e linha**, que requer pelo menos três campos: eixo X, eixo Y da coluna e eixo Y da linha.  
+
+- Nele, foram aplicados os seguintes campos: `País` no eixo X; no eixo Y da coluna, os campos relacionados aos gastos, como `Gasto com Alimentação`, `Gasto com Brinquedos`, entre outros, que são os valores exibidos no gráfico. Já no eixo Y da linha, foi adicionado o campo `ID` (contagem);
+
+- **O que foi possível concluir com esse gráfico?**  
+
+    - Ao observar a Espanha, nota-se que o maior gasto total é com eletrônicos. A linha indica que o país possui um total de **302 clientes**. Desse total, os clientes gastaram **94.282** com eletrônicos e **11.962** com utilidades, por exemplo. A mesma análise pode ser estendida aos demais países.
+
+- O outro gráfico utilizado foi o **gráfico de linhas**, no qual o eixo Y recebeu o campo `TotalGasto`, a legenda foi composta pelo campo `País` e o eixo X representou o `Ano` proveniente do campo `Data Cadastro`;
+
+- **O que foi possível analisar com esse?**  
+
+    - Esse gráfico permitiu observar a **evolução do total gasto ao longo do tempo**, com cada linha representando um país;
+
+    - Verifica-se que o comportamento entre os países é bastante semelhante: houve um **crescimento acentuado em 2020**, seguido por uma **queda em 2021** e uma **retomada do crescimento em 2022**. Algo que se deve, por exemplo, a pandemia que ocorreu nesse período.
+
+---
+
+
+
+
