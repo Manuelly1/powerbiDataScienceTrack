@@ -757,3 +757,57 @@
 
 ---
 
+#### Relatório: Principais Influenciadores de Vendas
+
+- Neste relatório, o professor inseriu **poucos elementos visuais**, mas suficientes para **responder perguntas estratégicas** sobre os fatores que influenciam o desempenho das vendas. Um dos questionamentos analisados foi: **“O que influencia o Valor de Venda a aumentar?”**; 
+
+- Ao aplicar essa análise, observou-se que **quando o segmento é corporativo**, a **média do `Valor Venda` aumenta** significativamente. A partir desse insight, conclui-se que a empresa pode **direcionar mais esforços a esse segmento**, investindo em:
+
+    - maior número de vendedores especializados;
+
+    - ampliação do portfólio de produtos voltados ao público corporativo;
+
+    - compreensão mais profunda das necessidades desse tipo de cliente.
+
+- Para criar esse tipo de visual, foi utilizado o ícone **Principais Influenciadores** no Power BI, um recurso que realiza uma **análise automática dos fatores** que impactam uma métrica específica. No caso deste relatório:
+
+    - O campo `Valor Venda` foi adicionado em **“Analisar”**;  
+
+    - Os campos `Segmento` e `Categoria` foram inseridos em **“Explicar por”**.  
+
+- Assim, o Power BI gerou automaticamente o **gráfico de principais influenciadores**, permitindo visualizar **quais variáveis contribuem para o aumento ou a redução** da média de vendas, de forma intuitiva e explicativa.
+
+---
+
+#### Relatório: Total de Venda por Categoria e Ponto de Venda (Gráfico de Faixas)
+
+- Neste relatório, o professor utilizou o **gráfico de faixas**, um tipo de visual voltado para **comparar variações de vendas entre categorias** dentro de um mesmo ponto de venda, por exemplo. Esse gráfico é útil para **identificar aumentos ou reduções nas vendas** de uma categoria para outra, mas requer **cuidado na interpretação**, pois pode ser de **difícil compreensão** para a audiência caso o analista não conduza a leitura de forma clara;
+
+- No gráfico foram adicionados os seguintes campos:  
+
+    - `Categoria` no **Eixo X**;  
+
+    - `Valor Venda` no **Eixo Y**;  
+
+    - `Loja` em **Legenda**.  
+
+- Ao interagir com o gráfico (por exemplo, passando o mouse sobre as faixas), é possível observar informações detalhadas.Exemplo: ao posicionar o cursor sobre o **primeiro e maior elemento**, o Power BI exibe:  
+
+    - **Categoria:** Eletrodomésticos;  
+
+    - **Loja:** SP8822;  
+
+    - **Total de Valor Venda:** 40.542,44.  
+
+- Ao mover o cursor dentro da mesma faixa e selecionar outro item, nota-se, por exemplo:  
+
+    - **Categoria:** Celulares;  
+
+    - **Loja:** SP8822;  
+
+    - **Total de Valor Venda:** 36.912,00.  
+
+- Ao clicar sobre a faixa (representada por tons de verde mais suave), a ferramenta mostra um **resumo completo** das categorias relacionadas àquela loja, incluindo a **diferença percentual ou absoluta entre os valores de venda**, o que permite visualizar **a queda ou o aumento de desempenho** entre as categorias no mesmo ponto de venda;
+
+- Como esse tipo de gráfico pode gerar dúvidas no público, o professor recomenda **acrescentar uma nota explicativa** no relatório, destacando um exemplo de sequência interpretada. Além disso, sugeriu **habilitar o controle deslizante (scroll)** para **facilitar a navegação** entre os itens, tornando a visualização das faixas, especialmente as que estão mais próximas, mais intuitiva e organizada.
+
