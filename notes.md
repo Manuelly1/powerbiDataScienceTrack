@@ -12,7 +12,7 @@
 
 - **Data Lake:** é um repositório que guarda dados brutos e não estruturados (textos, imagens, logs etc), geralmente usado antes de um processamento mais analítico;
 
-- **BI (Business Intelligence):** é o conjunto de ferramentas e práticas que transforma os dados do data warehouse em relatórios, dashboards e insights para o negócio.
+- **BI (Business Intelligence):** é um conceito aplicado a um conjunto de ferramentas e práticas que visa transformar os dados do data warehouse em relatórios, dashboards e insights valiosos para o negócio.
 
 ---
 
@@ -22,11 +22,11 @@
 
 ### Aula - Cartão de Métricas
 
-- O professor iniciou respondendo à primeira pergunta do roteiro: **“Qual o valor total vendido?”**, que corresponde a uma métrica numérica. Em outras palavras: “Considerando todas as vendas, qual foi o total vendido?”;
+- O professor iniciou respondendo à primeira pergunta do roteiro: **“Qual o valor total vendido?”**, que corresponde a uma métrica numérica. Em outras palavras: **“Considerando todas as vendas, qual foi o total vendido?**”;
 
-- No Power BI, ele inseriu um cartão visual e adicionou o campo `Total_Vendas`, que já continha o somatório dos valores. Dessa forma, foi possível responder já a primeira questão;
+- No Power BI, ele inseriu um **cartão visual** e adicionou o campo `Total_Vendas`, que já continha o somatório dos valores. Dessa forma, foi possível responder já a primeira questão;
 
-- **Observação:** Se o campo `Total_Vendas` não existisse pronto no `dataset`, seria preciso criar essa métrica manualmente dentro do Power BI usando DAX (Data Analysis Expressions);
+- **Observação:** Se o campo `Total_Vendas` não existisse pronto no `dataset`, seria preciso criar essa métrica manualmente dentro do Power BI usando DAX;
 
     - **Seria algo assim:**
 
@@ -46,7 +46,7 @@
 
 - O professor iniciou respondendo à segunda pergunta do roteiro: **“Quantas vendas foram realizadas por categoria de produto?”**. Ele escolheu o **gráfico de pizza**, pois, primeiramente, selecionou esse tipo de visual e, em seguida, adicionou o campo `Categoria` em `Legenda`. Depois, inseriu `ID_Pedido` em `Valores`, e o Power BI retornou automaticamente a contagem de `ID_Pedido` por `Categoria`, ou seja, já resolveu o problema, uma vez que fez a contagem do número de registros para cada `Categoria`;
 
-- **Observação:** Segundo o professor, como a base possui poucas categorias, o gráfico de pizza é uma boa opção para representar esse cenário.Caso houvesse mais de três categorias, o uso desse tipo de gráfico já não seria recomendado;
+- **Observação:** Segundo o professor, como a base possui poucas categorias, o gráfico de pizza é uma boa opção para representar esse cenário. Caso houvesse mais de três categorias, o uso desse tipo de gráfico já não seria recomendado.
 
 ---
 
@@ -699,8 +699,61 @@
 
 ### Mini-Projeto 2: Dashboard Comercial - Performance de Vendas
 
-- 
+- Antes de iniciar o projeto, o professor começou a unidade **explorando a base de dados fornecida**, a fim de se familiarizar com os campos disponíveis. Na coluna `Segmento`, por exemplo, ao clicar na seta de filtro, é possível visualizar os valores existentes: **Corporativo**, **Doméstico** e **Industrial**, que representam os três segmentos onde a empresa realiza suas vendas;
 
+- Há também a coluna `Vendedor`, que contém o nome de cada profissional, e o campo `ID-Vendedor`, que identifica cada um de forma única;
 
+- Em seguida, o professor abriu o **Power Query** (na opção **Transformar Dados**) para **verificar os tipos de dados** de cada coluna. Após a análise, constatou-se que todos estavam corretamente definidos;
 
+- **Observação:** basta haver **uma letra** em uma célula para que o Power BI **classifique automaticamente a coluna como texto**, o que ocorre, por exemplo, com colunas de **códigos**;
+
+- O próximo passo foi a **definição dos relatórios** que iriam compor o dashboard.  
+  
+  - Nesta parte, o professor indicou a criação de uma **página de índice**, que serviria como **página de navegação** para as demais páginas do dashboard, uma forma de tornar a navegação **mais fluida, clara e intuitiva**;
+
+  - Ele também ressaltou a importância de **não sobrecarregar** uma única página com muitos gráficos:  
+  
+  > “Tente usar no máximo quatro elementos por página. Dependendo da finalidade, em algumas páginas apenas um gráfico ou mapa é suficiente para garantir uma leitura mais clara.”
+
+- Para este dashboard, foram selecionados **quatro relatórios principais**:
+
+    1. **Narrativa inteligente**;
+
+    2. **Principais influenciadores de venda**;
+
+    3. **Faixas de vendas por categoria e ponto de venda**; 
+  
+    4. **Performance dos vendedores por região**.
+
+---
+
+#### Relatório: Narrativa Inteligente
+
+- Neste relatório, o professor iniciou explicando a construção do **gráfico de pizza**, que foi o primeiro elemento adicionado à página. Nele, foram utilizados os seguintes campos:
+
+    - `Segmento` em **Legenda** (por ser uma variável categórica);  
+
+    - `Valor Venda` em **Valores** (renomeado para `Total Valor Venda`).
+
+- Em seguida, foi inserido o **gráfico de funil**, configurado da seguinte forma:
+
+    - `Categoria` em **Categoria**;  
+
+    - `Valor Venda` em **Valores** (também renomeado para `Total Valor Venda`),
+  
+- Esse tipo de visualização é indicado **quando há poucas categorias**, o que se aplica ao caso, já que havia apenas quatro;
+
+- Outro elemento incluído foi o **gráfico de colunas clusterizado**, configurado com:
+
+    - `Fabricante` em **Eixo X**;  
+
+    - `Valor Venda` em **Eixo Y** (renomeado para `Total Valor Venda`);
+
+- O **gráfico de barras/colunas** é o mais indicado **quando se tem muitas categorias**, o que o torna ideal neste contexto, já que havia diversos fabricantes (como *Electrolux*, *Sony*, *LG*, *Samsung*, *Dell*, entre outros). Durante a **formatação**, foram **removidos os títulos dos eixos**, pois o **título do gráfico: “Total Valor Venda por Fabricante”** já deixa o conteúdo claro;
+
+- Por último, o professor apresentou um recurso bastante interessante do Power BI: a **Narrativa Inteligente**. Esse recurso, representado por um ícone específico na ferramenta, gera **um resumo automático** com base nos dados e visualizações presentes no relatório, destacando **os principais insights identificados**;
+
+- A **Narrativa Inteligente** é especialmente útil para **analistas**, pois permite **resgatar e interpretar rapidamente conclusões relevantes** a partir das informações exibidas. Além disso, trata-se de um recurso **interativo**, ou seja, caso o usuário selecione outro gráfico ou realize um filtro, o texto da narrativa **é automaticamente atualizado** para refletir o novo contexto dos dados.
+
+---
 
