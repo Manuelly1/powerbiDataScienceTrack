@@ -811,3 +811,35 @@
 
 - Como esse tipo de gráfico pode gerar dúvidas no público, o professor recomenda **acrescentar uma nota explicativa** no relatório, destacando um exemplo de sequência interpretada. Além disso, sugeriu **habilitar o controle deslizante (scroll)** para **facilitar a navegação** entre os itens, tornando a visualização das faixas, especialmente as que estão mais próximas, mais intuitiva e organizada.
 
+---
+
+#### Relatório: Performance dos Vendedores por Região
+
+- Para este relatório, foi utilizado um **mapa com filtros**. Semelhante ao relatório anterior, o professor optou por demonstrá-lo em apenas uma página, pois essa é a forma mais indicada de apresentar esses elementos, garantindo uma visualização mais limpa, objetiva e legível;
+
+- Foram aplicados os seguintes campos: 
+
+    - `Estado` em **localização**;
+    
+    - `Vendedor` em **legenda**;
+    
+    - `Valor Venda` em **tamanho da bolha** (posteriormente ajustado para `Total Valor Venda`).
+
+- Além disso, foi adicionado um filtro em `Total Valor Venda` maior que **30.000**, com o objetivo de destacar apenas os estados que apresentaram volumes de vendas mais elevados.
+
+---
+
+#### Criando Menu/Índice para os Relatórios
+
+- O professor recomendou a criação de um **índice (menu de navegação)** para facilitar o acesso entre as páginas dos relatórios, aproveitando a paginação de forma organizada e evitando a poluição visual da dashboard;
+
+- Para criar o índice: **Inserir → Botões → Navigator → Navigator de Página**;
+
+- A navegação entre as páginas ocorre utilizando **Ctrl + Clique**;
+
+- Após inserir o menu, basta realizar as **formatações desejadas**, ajustando cores, tamanhos e posições conforme o estilo do relatório.
+
+---
+
+## Unidade 6: Power BI para Análise de Dados de RH
+
