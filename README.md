@@ -13,6 +13,10 @@
 
 - `chapter5` → Contém o segundo mini-projeto desenvolvido nesta unidade, utilizando o conjunto de dados comercial (`commercial_dataset/commercial.xlsx`) e o roteiro (`lab_pratico_mini_projeto2.txt`);
 
+- `chapter6` → Contém o terceiro mini-projeto desenvolvido nesta unidade, utilizando o conjunto de dados de RH (`human_resources_dataset/DatasetRH.csv`) e o roteiro (`lab_pratico_mini_projeto3.txt`);
+
+- `amazon_test_solutions` → Exercícios feitos a partir de um teste técnico da Amazon (2025), que foi disponibilizado por um estudante no Linkedin;
+
 - `notes.md` → Descrição do conteúdo visto nas aulas e observações gerais.
 
 ---
