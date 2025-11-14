@@ -886,8 +886,8 @@
         Qtd_Masculino = CALCULATE(COUNTROWS(DatasetRH), DatasetRH[Genero] = "Masculino")
         Qtd_Feminino = CALCULATE(COUNTROWS(DatasetRH), DatasetRH[Genero] = "Feminino")
         Total_Funcionarios = COUNTROWS(DatasetRH)
-        Pct_Masculino = DIVIDE([Qtd_Masculino], [Total_Funcionarios], 0) * 100
-        Pct_Feminino = DIVIDE([Qtd_Feminino], [Total_Funcionarios], 0) * 100
+        Pct_Masculino = DIVIDE([Qtd_Masculino], [Total_Funcionarios], 0) 
+        Pct_Feminino = DIVIDE([Qtd_Feminino], [Total_Funcionarios], 0) 
 
     ```
 
@@ -897,7 +897,11 @@
 
     - Na quinta questão: **"Qual o total de funcionários por função?"**, utilizei um **gráfico de barras empilhadas**, configurando `Funcao` no eixo Y e `Total_Funcionarios` no eixo X;
 
-    - Para a sexta questão: **"Qual o percentual de funcionários disponíveis para fazer hora extra?"**, inseri um **gráfico de pizza**, colocando `Disponivel_Hora_Extra` como legenda e `Total_Funcionarios` em valores;
+    - Na sexta questão: **"Qual o percentual de funcionários disponíveis para fazer hora extra?"**, antes de inserir o gráfico, acessei **Transformar Dados**, localizei a coluna `Disponivel_Hora_Extra` e substituí os valores **S → Sim** e **N → Não**, uma padronização que já deveria ter sido realizada no segundo passo, já que manter apenas “S” e “N” não é tão legível. Em seguida, adicionei um **gráfico de rosca**, utilizando:
+
+        - **Legenda:** `Disponivel_Hora_Extra`;
+
+        - **Valores:** `Total_Funcionarios`.
 
     - Na sétima questão: **"Qual o nível de envolvimento dos funcionários no trabalho considerando 4 categorias: Ruim, Baixo, Médio e Alto?"**, acessei a aba **Transformar Dados** e criei uma **coluna condicional** chamada `Categoria_Indice_Envolvimento`, definindo:
 
@@ -911,7 +915,7 @@
 
     - Em seguida, voltei ao relatório e inseri um **gráfico de pizza**, utilizando `Categoria_Indice_Envolvimento` como legenda e `Id_Funcionario` (contagem) como valores;
 
-    - Por último, na questão 8 — **"Este item não deve estar no Dashboard, mas precisa ser calculado: Qual o total e o percentual de funcionários que devem receber promoção? Considere a coluna 'Anos Desde a Última Promoção' com a seguinte regra: se o funcionário tiver 5 anos ou mais desde a última promoção, deve ter a promoção considerada; caso contrário, a promoção não deve ser considerada agora."**, para respondê-la, criei uma **nova coluna** com a seguinte fórmula DAX:
+    - Por último, na questão 8: **"Este item não deve estar no Dashboard, mas precisa ser calculado: Qual o total e o percentual de funcionários que devem receber promoção? Considere a coluna 'Anos Desde a Última Promoção' com a seguinte regra: se o funcionário tiver 5 anos ou mais desde a última promoção, deve ter a promoção considerada; caso contrário, a promoção não deve ser considerada agora."**, para respondê-la, criei uma **nova coluna** com a seguinte fórmula DAX:
 
     ```dax
 
@@ -923,3 +927,58 @@
 
 ---
 
+#### Pontos Compartilhados pelo Professor na Unidade 6
+
+- O professor criou uma **tabela de medidas** para organizar melhor o projeto (uma prática muito utilizada no mercado de trabalho, pois facilita a localização e manutenção das medidas no relatório). Nessa tabela, foram adicionadas as seguintes medidas: `TotalMasculino`, `TotalFeminino`, `% Masculino`, `% Feminino`, `TotalFunc`, `SalarioMedio`, `TotalFuncPromover`, `TotalFuncNaoPromover`, `% Promover` e `% Nao Promover`;
+
+- Para criar essa tabela, ele acessou: **Inserir dados** → **Carregar**;
+
+- Depois, para inserir as medidas, ele selecionou a tabela criada e clicou em **Nova medida**;
+
+- Foram adicionadas as seguintes medidas à tabela:
+
+    ```dax
+
+        TotalFunc = COUNTROWS(DatasetRH)
+
+        TotalFeminino = CALCULATE([TotalFunc], DatasetRH[Genero] = "Feminino")
+
+        TotalMasculino = CALCULATE([TotalFunc], DatasetRH[Genero] = "Masculino")
+
+        % Feminino = DIVIDE([TotalFeminino], [TotalFunc], 0)
+
+        % Masculino = DIVIDE([TotalMasculino], [TotalFunc], 0)
+
+        SalarioMedio = AVERAGE(DatasetRH[Salario_Mensal])
+
+        TotalFuncPromover = CALCULATE([TotalFunc], DatasetRH[StatusPromo] = "Considerar Promoção")
+
+        TotalFuncNaoPromover = CALCULATE([TotalFunc], DatasetRH[StatusPromo] = "Não Considerar Promoção")
+
+        % Promover = DIVIDE([TotalFuncPromover], [TotalFunc], 0)
+
+        % Nao Promover = DIVIDE([TotalFuncNaoPromover], [TotalFunc], 0)
+
+    ```
+
+- A criação da tabela deixou as funções DAX muito mais organizadas e fáceis de compreender. Para seguir o fluxo do professor, criei uma nova página no relatório dedicada exclusivamente às medidas que ele desenvolveu;
+
+- Após isso, o professor criou uma **coluna condicional** (a qual também incluí na base). Em vez de criar uma medida para indicar quem deveria ser promovido, ele gerou a coluna `StatusPromo`, baseada em `Anos_Desde_Ultima_Promocao`:  
+
+    - Se o valor for **maior ou igual a 5**, então: **"Considerar Promoção"**;  
+
+    - Caso contrário: **"Não Considerar Promoção"**.  
+
+- Essa coluna serviu de base para as medidas `TotalFuncPromover` e `TotalFuncNaoPromover`;
+
+- Ele reforçou que criou mais medidas do que o necessário para o relatório atual, pois isso facilita análises futuras para o RH, evitando retrabalhos desnecessários;
+
+- Posteriormente, inseriu os gráficos solicitados no relatório utilizando essas medidas. Também criou uma nova coluna categorizando `Indice_Envolvimento_Trabalho`, assim como eu havia feito;
+
+- Para formatar as medidas percentuais, ele ensinou um macete: acesse a **Exibição de modelo**, selecione a medida (ex: `% Masculino`), role até as propriedades e altere o **Formato** para **Porcentagem**;
+
+- Na parte estética, ele adicionou caixas sobre cada visual para destacar os elementos e ajustou a transparência para melhorar a apresentação.
+
+---
+
+## Unidade 7: Power BI para Análise de Dados de Logística
