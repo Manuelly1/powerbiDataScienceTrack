@@ -1,9 +1,8 @@
-Questões - Excel e Power BI
+Questões - Excel, Power BI...
 
 1- What Excel functions do you use in analysis?
 
-    Nas minhas análises, costumo utilizar funções do Excel que ajudam a limpar, organizar e resumir dados. As principais que 
-utilizo são:
+    Nas minhas análises, costumo utilizar funções do Excel que ajudam a limpar, organizar e resumir dados. As principais que utilizo são:
 
     - IF, IFS, AND, OR – para criar lógicas condicionais;
 
@@ -21,18 +20,16 @@ utilizo são:
 
 2- Difference between Calculated Column and Measure in Power BI?
 
-    Calculated Column (Coluna Calculada): é calculada linha a linha no momento da carga dos dados. O resultado fica 
-    armazenado no modelo. Não muda com filtros ou segmentações. É usada quando você precisa de um valor fixo para compor 
-    a tabela (ex: categorias, chaves, indicadores fixos);
+    Calculated Column (Coluna Calculada): é calculada linha a linha no momento da carga dos dados. O resultado fica armazenado no modelo. Não muda com filtros ou segmentações. 
+É usada quando você precisa de um valor fixo para compor a tabela (ex: categorias, chaves, indicadores fixos);
 
-    Measure (Medida): é calculada dinamicamente e depende do visual e dos filtros. Muda automaticamente com filtros, 
-    slicers e interações do relatório. É ideal para agregações (SUM, AVERAGE, COUNT, CALCULATE…).
+    Measure (Medida): é calculada dinamicamente e depende do visual e dos filtros. Muda automaticamente com filtros, slicers e interações do relatório. É ideal para agregações 
+(SUM, AVERAGE, COUNT, CALCULATE…).
 
 3- What are slicers and filters in Power BI?
 
-    Slicers (Segmentações): são elementos visuais colocados diretamente na página do relatório para a filtragem de dados. 
-    Eles permitem que o usuário selecione valores e, dessa forma, alterar dinamicamente todos os visuais da página. 
-    Funcionam como “filtros interativos” fáceis de usar;
+    Slicers (Segmentações): são elementos visuais colocados diretamente na página do relatório para a filtragem de dados. Eles permitem que o usuário selecione valores e, 
+dessa forma, alterar dinamicamente todos os visuais da página. Funcionam como “filtros interativos” fáceis de usar;
 
     Filters (Filtros): são configurações aplicadas no painel de filtros do Power BI e podem atuar em diferentes níveis:
 
@@ -43,3 +40,79 @@ utilizo são:
         Filtro de relatório – afeta todas as páginas do relatório.
 
     Normalmente, esses filtros não aparecem como visual para o usuário, a menos que você permita.
+
+4- What metrics would you track for Amazon delivery performance?
+
+    Métricas essenciais para avaliar a performance de entrega da Amazon:
+
+        On-Time Delivery Rate (OTD) – Taxa de Entrega no Prazo: percentual de pedidos entregues dentro da janela prometida;
+
+        Late Delivery Rate – Taxa de Atrasos: quantidade de pedidos entregues após o prazo estimado, indicando possíveis falhas na operação, rota, capacidade ou previsão;
+
+        Delivery Time (Lead Time) – Tempo Total de Entrega: tempo entre a realização do pedido e a chegada ao cliente;
+
+        Order Defect Rate (ODR) – Taxa de Defeitos do Pedido: inclui reclamações, devoluções, produtos errados ou danificados;
+
+        Return Rate – Taxa de Devoluções: indica problemas relacionados a embalagem, expectativa vs. realidade ou descrição incorreta do produto;
+
+        Cost per Delivery – Custo por Entrega: mede a eficiência operacional considerando combustível, rota, motorista e logística reversa.
+
+5- How would you reduce cart abandonment on Amazon?
+
+    Primeiramente, eu faria uma análise detalhada das etapas do funil de checkout para identificar em quais pontos ocorre o abandono. A partir disso, aplicaria 
+testes A/B para validar hipóteses de melhoria. Além disso, utilizaria modelos de Machine Learning para prever usuários com maior probabilidade de abandonar o 
+carrinho e agir de forma proativa.
+
+    Algumas ações práticas seriam:
+
+        Simplificar o processo de checkout, reduzindo passos e campos desnecessários;
+
+        Aumentar a transparência dos custos, especialmente frete e impostos, evitando surpresas no final;
+
+        Melhorar velocidade e desempenho, reduzindo tempo de carregamento e erros;
+
+        Gerar senso de urgência, com mensagens como “Restam poucas unidades”;
+
+        Aplicar personalização, mostrando recomendações relevantes antes da finalização.
+
+    O uso de ML também permite prever clientes de alto risco de abandono com base em comportamento e histórico; acionar intervenções personalizadas em tempo real 
+(como cupons, avisos de frete grátis ou recomendações ajustadas); e segmentar usuários para entender quais perfis abandonam mais e por quê.
+
+6- How would you evaluate if a new feature increased sales?
+
+    Para avaliar se uma nova funcionalidade realmente aumentou as vendas, eu começaria aplicando um teste A/B bem controlado, dividindo os usuários em grupo de 
+controle (sem a feature) e grupo de tratamento (com a feature). Em seguida, acompanharia KPIs diretamente relacionados a conversão e receita, garantindo 
+significância estatística antes de tirar conclusões;
+
+    Os principais passos seriam:
+
+        Definir KPIs claros, como conversion rate, revenue per user (RPU), average order value (AOV) e add-to-cart rate;
+
+        Executar um teste A/B, garantindo amostras aleatórias, período suficiente e controle de variáveis externas;
+
+        Analisar significância estatística (p-value, intervalo de confiança, uplift percentual) para validar se o aumento não ocorreu por acaso;
+
+        Avaliar impacto em diferentes segmentos, como novos vs. recorrentes, mobile vs. desktop, clientes Prime vs. não Prime;
+
+        Monitorar métricas secundárias, como tempo na página, engajamento e abandono do funil, para entender o comportamento por trás dos números;
+
+        Verificar efeito a longo prazo, acompanhando vendas e comportamento mesmo após o término do experimento.
+
+    Assim, seria possível determinar de forma confiável se a nova funcionalidade teve impacto real nas vendas e se deve ou não ser adotada amplamente.
+
+7- Explain p-value in A/B testing.
+
+    O p-value é a probabilidade de observarmos a diferença entre as versões A e B (ou uma diferença ainda maior) caso a hipótese nula seja verdadeira, ou seja, 
+caso não exista diferença real entre as versões;
+
+    Um p-value baixo (geralmente < 0,05) indica que é muito improvável que a diferença observada tenha ocorrido apenas por acaso, o que sugere que o resultado é 
+estatisticamente significativo e podemos considerar rejeitar a hipótese nula.
+
+8- Tell me about a time you used data to solve a business problem.
+
+    Em um dos meus últimos projetos, trabalhei com uma base de dados de vendas de uma empresa fictícia e o objetivo era entender gargalos do departamento comercial;
+
+    Situação: A empresa não tinha visibilidade sobre o desempenho comercial, então desenvolvi um dashboard no Power BI mostrando performance por vendedor e região, principais 
+influenciadores de venda e faixas de venda por categoria e ponto de venda.
+
+9- Describe a time when you had to dive deep.
