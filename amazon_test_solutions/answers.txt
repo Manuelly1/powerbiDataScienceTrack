@@ -1,0 +1,45 @@
+Questões - Excel e Power BI
+
+1- What Excel functions do you use in analysis?
+
+    Nas minhas análises, costumo utilizar funções do Excel que ajudam a limpar, organizar e resumir dados. As principais que 
+utilizo são:
+
+    - IF, IFS, AND, OR – para criar lógicas condicionais;
+
+    - TEXT, CONCAT, LEFT, RIGHT, MID – para tratamento e formatação de textos;
+
+    - COUNT, COUNTA, COUNTIF, COUNTIFS – para contagens com critérios;
+
+    - SUM, SUMIF, SUMIFS – para somatórios condicionais;
+
+    - AVERAGE, AVERAGEIF – para médias segmentadas;
+
+    - UNIQUE, FILTER, SORT – para estruturar bases de forma dinâmica;
+
+    - YEAR, MONTH, DATE – para manipulação de datas.
+
+2- Difference between Calculated Column and Measure in Power BI?
+
+    Calculated Column (Coluna Calculada): é calculada linha a linha no momento da carga dos dados. O resultado fica 
+    armazenado no modelo. Não muda com filtros ou segmentações. É usada quando você precisa de um valor fixo para compor 
+    a tabela (ex: categorias, chaves, indicadores fixos);
+
+    Measure (Medida): é calculada dinamicamente e depende do visual e dos filtros. Muda automaticamente com filtros, 
+    slicers e interações do relatório. É ideal para agregações (SUM, AVERAGE, COUNT, CALCULATE…).
+
+3- What are slicers and filters in Power BI?
+
+    Slicers (Segmentações): são elementos visuais colocados diretamente na página do relatório para a filtragem de dados. 
+    Eles permitem que o usuário selecione valores e, dessa forma, alterar dinamicamente todos os visuais da página. 
+    Funcionam como “filtros interativos” fáceis de usar;
+
+    Filters (Filtros): são configurações aplicadas no painel de filtros do Power BI e podem atuar em diferentes níveis:
+
+        Filtro de visual – afeta apenas um gráfico;
+
+        Filtro de página – afeta todos os visuais da página;
+
+        Filtro de relatório – afeta todas as páginas do relatório.
+
+    Normalmente, esses filtros não aparecem como visual para o usuário, a menos que você permita.
