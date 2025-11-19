@@ -1068,3 +1068,67 @@
 ---
 
 ## Unidade 8: Power BI para Análise de Dados Financeiros
+
+- **Qual a função da área de finanças de uma empresa?** Essa área é responsável por gerenciar os recursos financeiros da organização e garantir que esses recursos sejam utilizados de forma eficiente e eficaz para alcançar os objetivos da empresa. Algumas das principais funções incluem: planejamento financeiro, controle financeiro, gerenciamento de riscos, tomada de decisões financeiras e relacionamento com investidores.
+
+### Principais KPIs de Finanças
+
+- Alguns dos principais KPIs da área de finanças:
+
+    - **Fluxo de caixa:** é uma medida do dinheiro que entra e sai da empresa em um determinado período de tempo. O fluxo de caixa positivo é um sinal de que a empresa está gerando receita suficiente para cobrir suas despesas;
+
+    - **Margem de lucro:** é a porcentagem de lucro que a empresa ganha em cada venda. Ela pode ser calculada dividindo o lucro líquido pela receita total;
+
+    - **Retorno sobre o investimento (ROI):** é uma medida do retorno que a empresa está obtendo de seus investimentos. O ROI pode ser calculado dividindo o lucro pelo investimento inicial;
+
+    - **Endividamento:** é a medida da quantidade de dívida que a empresa tem em relação ao seu patrimônio líquido. Ele pode ser calculado dividindo a dívida total pelo patrimônio líquido;
+
+    - **Faturamento:** é a receita total que a empresa gera em um determinado período de tempo;
+
+    - **Custo de aquisição de clientes (CAC):** é a quantidade de dinheiro que a empresa gasta para adquirir cada novo cliente. Ele pode ser calculado dividindo o custo total de marketing e vendas pelo número de novos clientes;
+
+    - **Prazo médio de pagamento (PMP):** é o tempo médio que a empresa leva para pagar seus fornecedores. Ele pode ser calculado dividindo o valor total das compras pelo valor total pago a fornecedores em um determinado período de tempo.
+
+---
+
+### Principais Despesas de uma Empresa
+
+- Algumas das principais despesas comuns à maioria das empresas são:
+
+    - **Custos de produção:** incluem os custos dos materiais, equipamentos, mão de obra e outros custos relacionados à produção de bens ou serviços;
+
+    - **Despesas administrativas:** incluem os custos relacionados à administração da empresa, como aluguel, serviços públicos, telefone, internet, material de escritório, salários e benefícios dos funcionários administrativos, dentre outros;
+
+    - **Despesas de venda e marketing:** incluem os custos relacionados à venda e promoção de produtos ou serviços, como publicidade, comissões de vendas, material promocional, eventos de marketing e outras despesas relacionadas;
+
+    - **Despesas financeiras:** incluem os custos relacionados ao financiamento da empresa, como juros de empréstimos, taxas bancárias, despesas de cartão de crédito, entre outros;
+
+    - **Impostos e taxas:** incluem os impostos, taxas e tributos que a empresa deve pagar, como imposto de renda, ICMS, ISS, contribuições previdenciárias e outras obrigações fiscais;
+
+    - **Despesas com tecnologia:** incluem os custos relacionados à tecnologia da informação, como software, hardware, serviços em nuvem, licenças, manutenção, suporte técnico, entre outros;
+
+    - **Despesas com pesquisa e desenvolvimento:** incluem os custos relacionados à pesquisa e desenvolvimento de novos produtos ou serviços, incluindo salários e benefícios de pesquisadores, equipamentos, materiais e outros custos relacionados.
+
+---
+
+### Principais Receitas de uma Empresa
+
+- Algumas das principais fontes de receita comuns à maioria das empresas são:
+
+    - **Vendas de produtos ou serviços:** a maioria das empresas obtém sua receita vendendo produtos ou serviços para seus clientes. A receita é gerada pelas vendas de produtos ou serviços, menos os custos associados à produção e vendas;
+
+    - **Investimentos:** muitas empresas investem parte do faturamento em investimentos e ativos financeiros que rendem juros e, portanto, os investimentos se tornam fontes de receita;
+
+    - **Publicidade:** empresas de mídia e plataformas de conteúdo podem gerar receita com publicidade, vendendo espaço publicitário para anunciantes;
+
+    - **Licenciamento:** empresas que detêm propriedade intelectual podem gerar receita por meio de acordos de licenciamento, permitindo que outras empresas usem seus ativos em troca de uma taxa;
+
+    - **Venda de ativos:** empresas podem gerar receita vendendo ativos, como propriedades, equipamentos ou outros recursos que não são mais necessários para suas operações;
+
+    - **Franquias:** empresas podem gerar receita com a venda de franquias para empreendedores que desejam abrir uma nova unidade de negócios usando o modelo de negócias e a marca da empresa;
+
+    - **Consultoria e serviços profissionais:** empresas de consultoria e serviços profissionais podem gerar receita por meio de taxas de consultoria e honorários de serviços prestados.
+
+---
+
+### Mini-Projeto 5: Dashboard de Análise Financeira
