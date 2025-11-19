@@ -17,6 +17,8 @@
 
 - `chapter7` → Contém o quarto mini-projeto desenvolvido nesta unidade, utilizando o conjunto de dados de logística (`dataset.xlsx`) e o roteiro (`lab_pratico_mini_projeto4.txt`);
 
+- `chapter8` → Contém o quinto mini-projeto desenvolvido nesta unidade, utilizando o conjunto de dados financeiros (`financial_dataset/financial.xlsx`) e o roteiro (`lab_pratico_mini_projeto5.txt`);
+
 - `amazon_test_solutions` → Exercícios feitos a partir de um teste técnico da Amazon (2025), que foi disponibilizado por um estudante no Linkedin;
 
 - `notes.md` → Descrição do conteúdo visto nas aulas e observações gerais.
