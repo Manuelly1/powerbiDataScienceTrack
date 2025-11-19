@@ -1,28 +1,46 @@
 # Power BI for Business Intelligence and Data Science
 
-- Este repositório foi criado para documentar minha jornada de aprendizado no curso  
-**"Microsoft Power BI para Business Intelligence e Ciência de Dados"** oferecido pela Data Science Academy.
+Este repositório foi criado para documentar minha jornada de aprendizado no curso  
+**"Microsoft Power BI para Business Intelligence e Ciência de Dados"**, oferecido pela Data Science Academy.
 
-## 📂 Estrutura do repositório
+## 📘 Estrutura dos Capítulos
 
-- `chapter2` → Contém o dashboard desenvolvido nesta unidade (`lab1.pbix`) e a base de dados utilizada (`dataset/dataset.csv`), além do roteiro com as questões trabalhadas no dashboard (`lab_pratico_1_roteiro.txt`);
+Os capítulos seguem uma estrutura padrão. Cada pasta contém:
 
-- `chapter3` → Contém o dashboard desenvolvido nesta unidade (`lab2.pbix`) e as bases de dados utilizadas (`datasets`), além do roteiro com as questões trabalhadas no dashboard (`lab_pratico_2_roteiro.txt`);
+- O dashboard (projeto da unidade);
 
-- `chapter4` → Contém o mini-projeto desenvolvido nesta unidade (`Mini-Projeto1.pbix`) e a base de dados utilizada (`marketing_dataset/marketing.csv`), além do roteiro com as questões trabalhadas no projeto (`lab_pratico_mini_projeto1.txt`);
+- Os datasets utilizados;
 
-- `chapter5` → Contém o segundo mini-projeto desenvolvido nesta unidade, utilizando o conjunto de dados comercial (`commercial_dataset/commercial.xlsx`) e o roteiro (`lab_pratico_mini_projeto2.txt`);
+- O roteiro com as questões do laboratório;
 
-- `chapter6` → Contém o terceiro mini-projeto desenvolvido nesta unidade, utilizando o conjunto de dados de RH (`human_resources_dataset/DatasetRH.csv`) e o roteiro (`lab_pratico_mini_projeto3.txt`);
-
-- `chapter7` → Contém o quarto mini-projeto desenvolvido nesta unidade, utilizando o conjunto de dados de logística (`dataset.xlsx`) e o roteiro (`lab_pratico_mini_projeto4.txt`);
-
-- `chapter8` → Contém o quinto mini-projeto desenvolvido nesta unidade, utilizando o conjunto de dados financeiros (`financial_dataset/financial.xlsx`) e o roteiro (`lab_pratico_mini_projeto5.txt`);
-
-- `amazon_test_solutions` → Exercícios feitos a partir de um teste técnico da Amazon (2025), que foi disponibilizado por um estudante no Linkedin;
-
-- `notes.md` → Descrição do conteúdo visto nas aulas e observações gerais.
+- Um arquivo **`overview.md`**, que apresenta o resumo conceitual da unidade.
 
 ---
 
-📌 **Observação:** A organização segue a mesma estrutura adotada no curso, com cada capítulo representando uma unidade prática de aprendizado.
+## 📂 Conteúdo das Pastas
+
+- **`chapter2`** → Dashboard da unidade (`lab1.pbix`), dataset (`dataset/dataset.csv`) e roteiro (`lab_pratico_1_roteiro.txt`);
+
+- **`chapter3`** → Dashboard da unidade (`lab2.pbix`), datasets (`datasets`) e roteiro (`lab_pratico_2_roteiro.txt`);
+
+- **`chapter4`** → Mini-projeto da unidade (`Mini-Projeto1.pbix`), dataset de marketing (`marketing_dataset/marketing.csv`) e roteiro (`lab_pratico_mini_projeto1.txt`);
+
+- **`chapter5`** → Segundo mini-projeto, utilizando o conjunto de dados comercial (`commercial_dataset/commercial.xlsx`) e o roteiro (`lab_pratico_mini_projeto2.txt`);
+
+- **`chapter6`** → Terceiro mini-projeto, utilizando o conjunto de dados de RH (`human_resources_dataset/DatasetRH.csv`) e o roteiro (`lab_pratico_mini_projeto3.txt`);
+
+- **`chapter7`** → Quarto mini-projeto, baseado no conjunto de dados de logística (`dataset.xlsx`) e o roteiro (`lab_pratico_mini_projeto4.txt`);
+
+- **`chapter8`** → Quinto mini-projeto, utilizando o conjunto de dados financeiro (`financial_dataset/financial.xlsx`) e o roteiro (`lab_pratico_mini_projeto5.txt`).
+
+---
+
+## 📁 Outras Pastas e Arquivos
+
+- **`amazon_test_solutions`** → Exercícios realizados a partir de um teste técnico da Amazon (2025), disponibilizado por um estudante no LinkedIn;
+
+- **`notes.md`** → Observações complementares sobre o conteúdo visto nas aulas.
+
+---
+
+📌 **Observação:** A organização segue a mesma estrutura adotada no curso, em que cada capítulo representa uma unidade prática de aprendizado.
