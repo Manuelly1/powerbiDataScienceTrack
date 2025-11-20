@@ -1,0 +1,6 @@
+Laboratório Prático 3 - Balanço Patrimonial com Visual de Matrix no Power BI
+
+- O objetivo deste laboratório é demonstrar o passo a passo de como representar um Balanço Patrimonial no Power BI, a partir da 
+exploração das funcionalidades do visual de Matrix;
+
+- Criar outras métricas e relatórios.
