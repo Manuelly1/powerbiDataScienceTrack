@@ -32,3 +32,33 @@
 
 ## Mini-Projeto 6 - Dashboard Analítico do Mercado de Ações com Narrativa Inteligente
 
+- Após baixar a base de dados e conectá-la à ferramenta, realizei a formatação da coluna `Data` para que a hierarquia de datas fosse exibida corretamente. Para isso, acessei **Transformar dados** e utilizei a opção **Alterar tipo com base na localidade**, pois o formato original da data estava incompatível;
+
+- O professor, antes de tudo, buscou demonstrar como **extrair dados reais para compor o nosso portfólio de projetos**. Inicialmente, ele acessou o site da NASDAQ → *Market Activity* → *Stocks* → digitou o nome de uma empresa → *Historical Quotes* → selecionou o período desejado e realizou o download dos dados;
+
+- Como o objetivo deste dashboard não era trabalhar em tempo real, foi utilizada a base (`stock_market/market.xlsx`) disponível no repositório. Após realizar as formatações necessárias, partiu-se para a primeira questão do roteiro: **"Qual o total de volume negociado de ações ao longo do tempo para as 5 empresas que estão sendo analisadas?"**.;
+
+    > O professor destacou que, ao se mencionar a expressão **“ao longo do tempo”**, o analista deve automaticamente associá-la à construção de uma linha do tempo. Assim, foi escolhido o **gráfico de área**, por ser mais indicado para representar totais, em comparação ao gráfico de linhas. Foram adicionados `Data` no eixo X e `Volume` no eixo Y. Porém, observou-se que as colunas não estavam sendo reconhecidas como numéricas após a formatação da data. Para corrigir isso, foi necessário ajustar o tipo de dado de cada coluna pelo ícone correspondente, da mesma forma que foi feito com a coluna de data.
+
+- Para o próximo item: **"Qual o valor médio de abertura (Open), mais alto (High), mais baixo (Low) e de fechamento (Close) das ações de todas as empresas para todos os meses do período de dados analisado (1 ano em nosso exemplo)? Mostre no formato de tabela"**, foi inserida uma **tabela**;
+
+    > O professor pontuou que o roteiro solicita o valor médio por mês, porém a base contém dados dos anos de 2022 e 2023. Caso fosse exibido apenas o mês isoladamente, o usuário não conseguiria identificar a qual ano ele se refere. Portanto, mesmo que a questão mencione somente o mês, neste contexto é mais adequado incluir também o ano. Dessa forma, nas colunas da tabela foram adicionados `Data` (Ano e Mês), seguidos dos campos `Open`, `High`, `Low`, `Close` e `Volume`, todos configurados para exibir a média. Por fim, foi adicionada uma segmentação de dados para permitir o filtro por empresa.
+
+- A terceira questão: **"Qual a variação da média do valor de fechamento (Close) das ações de todas as empresas ao longo do tempo, mês a mês?"** foi desenvolvida da seguinte forma: inicialmente, foi selecionado o **gráfico de área empilhado** e adicionado o campo `Data` (considerando apenas o mês) no eixo X e `Close` (média) no eixo Y. Além disso, como a análise deveria ser feita por empresa, o campo `Empresa` foi incluído na legenda. Dessa forma, o gráfico passou a exibir a média do valor de fechamento das ações de cada empresa mês a mês;
+
+- Contudo, o objetivo era visualizar a **variação da média**, e não apenas o valor médio em si. Portanto, foi necessário realizar um cálculo adicional. Para isso, utilizou-se o recurso de **Time Intelligence** (Inteligência de Dados Temporais), que é aplicado quando se trabalha com medidas que variam ao longo do tempo. Nesse caso, o valor de fechamento (Close) representa uma série temporal, pois é um dado que se modifica continuamente ao longo dos períodos;
+
+- Para criar essa variação, o professor acessou a parte superior do Power BI → **Medida rápida** → Cálculo → **Inteligência de dados temporais** → *Alteração de mês a mês*. Em seguida, configurou os parâmetros da seguinte forma:
+
+    - Valor base: `Close` (média);
+    
+    - Data: `Data`;
+    
+    - Número de períodos: 1 (para analisar a variação de um mês para o outro).
+
+- Após a criação da medida, o campo `Close` foi removido do eixo Y e substituído pela nova medida gerada, permitindo assim visualizar corretamente a variação da média do valor de fechamento das ações ao longo do tempo, mês a mês;
+
+- Para auxiliar o usuário na interpretação das informações, foi adicionado o elemento **Narrativa**, responsável por gerar uma narrativa inteligente, ou seja, um resumo automático que descreve e contextualiza os principais insights obtidos a partir dos gráficos presentes no dashboard;
+
+- Por último, foi incluída outra **segmentação de dados**, desta vez referente ao **mês**, permitindo ao usuário filtrar as informações exibidas e analisar o comportamento das ações de forma mais específica ao longo do tempo.
+
