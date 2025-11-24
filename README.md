@@ -33,8 +33,9 @@ Os capítulos seguem uma estrutura padrão. Cada pasta contém:
 
 - **`chapter8`** → Quinto mini-projeto, utilizando o conjunto de dados financeiro (`financial_dataset/financial.xlsx`) e o roteiro (`lab_pratico_mini_projeto5.txt`);
 
-- **`chapter9`** → Dashboard da unidade (`lab3.pbix`), dataset (`accounting_dataset/accounting_dataset.xlsx`) e roteiro (`lab_pratico_3_roteiro.txt`).
+- **`chapter9`** → Dashboard da unidade (`lab3.pbix`), dataset (`accounting_dataset/accounting_dataset.xlsx`) e roteiro (`lab_pratico_3_roteiro.txt`);
 
+- **`chapter10`** → Sexto mini-projeto, utilizando o conjunto de dados do mercado de ações (`stock_market/market.xlsx`) e o roteiro (`lab_pratico_mini_projeto6.txt`).
 
 ---
 
