@@ -60,7 +60,7 @@
 
 ---
 
-## Técnicas de Amostragem
+### Técnicas de Amostragem
 
 - São métodos usados para selecionar uma amostra representativa da população em um estudo ou pesquisa. As principais técnicas podem ser categorizadas em 2 grupos: **amostragem probabilística e amostragem não probabilística**;
 
@@ -93,4 +93,120 @@
 ---
 
 ## Dados Primários vs Dados Secundários
+
+- **Dados primários:** são informações coletadas diretamente pelo pesquisador ou sua equipe para responder a uma pergunta específica de pesquisa ou atender a um objetivo específico. Esses dados são coletados pela primeira vez e são originais, ou seja, não foram utilizados em pesquisas anteriores. Eles geralmente são coletados por meio de métodos como entrevistas, questionários, observações, experimentos ou outros meios diretos de coleta de informações;
+
+    - **Vantagens:** relevância direta para a questão de pesquisa, a possibilidade de personalização das perguntas e a capacidade de controlar a qualidade e a confiabilidade dos dados;
+
+    - **Desvantagens:** demora e custo elevado.
+
+- **Dados secundários:** são informações já coletadas e disponíveis, que foram obtidas ou geradas em pesquisas ou projetos anteriores, ou que são coletadas regularmente por organizações ou agências. Esses dados não são coletados especificamente para a pergunta de pesquisa em questão, mas podem ser aplicados ou reutilizados para responder a novas perguntas. Eles podem incluir relatórios de pesquisa, estudos acadêmicos, registros administrativos, dados de censo, informações financeiras e estatísticas governamentais.
+
+    - **Vantagens:** economia de tempo e recursos, existência de diversas fontes e diversidade de informações para quantificação de questões;
+
+    - **Desvantagens:** falta de controle, podem conter dados inadequados e desatualizados, fontes não confiáveis e dificuldade de reproduzir um estudo obtendo os mesmos resultados.
+
+---
+
+## Registros vs Variáveis
+
+- **Registros:** são as unidades individuais de informação em um conjunto de dados. Cada observação (registro) representa uma instância única de um objeto, pessoa, evento ou situação que foi medido ou registrado. Em um conjunto de dados, os registros são geralmente **organizados em linhas**;
+
+- **Variáveis:** são os atributos medidos ou registrados para cada observação. As variáveis descrevem as propriedades, qualidades ou quantidades que variam entre as observações. Em um conjunto de dados, as variáveis são geralmente **organizadas em colunas**.
+
+---
+
+### Tipos de Variáveis
+
+- Os dados podem conter variáveis:
     
+    - **Qualitativas:** utilizam termos descritivos para descrever algo de interesse, ex: cor dos olhos, estado civil, religião, gênero, grau de escolaridade etc. Dentro desta classificação, pode-se ter variáveis: **nominais** (não há uma ordem natural, ex: profissão, sexo, religião) e **ordinais** (possuem uma ordem natural, ex: escolaridade, classe social, fila);
+
+    - **Quantitativas:** representadas por valores numéricos que podem ser contados ou medidos, ex: número de crianças em uma sala de aula, peso do corpo humano, idade etc. Dentro desta classificação, pode-se ter variáveis: **discretas** (os possíveis valores são contáveis, ex: número de filhos, número de carros, número de acessos) e **contínuas** (podem ser observados quaisquer valores dentro de um intervalo, ex: altura, peso, salário);
+
+    - **Atenção:** um dado classificado como `Idade` pode ser quantitativo, ex: 10, 20, 90, 4, 5 anos. Porém, se esse dado for informado por "faixa etária", ele é qualitativo (ordinal), ex: 0 - 5 anos; 6 - 12 anos; 13 - 18 anos...
+
+---
+
+## Medidas de Posição
+
+- As medidas de posição, também conhecidas como **medidas de tendência central**, são valores que descrevem o centro ou a posição central de um conjunto de dados. As três mais comuns são:
+
+### Média
+
+- É a soma de todos os valores de um conjunto de dados dividida pelo número total de valores. É frequentemente usada para representar o valor "típico" de um conjunto de dados. Ela pode ser afetada por **valores extremos (outliers)** e pode **não ser a melhor representação do centro dos dados em tais casos**.
+
+### Mediana
+
+- É o valor que separa um conjunto de dados ordenado em duas metades iguais. Se o número total de valores no conjunto de dados é ímpar, a mediana é o valor do meio. Se o número total de valores no conjunto de dados é par, a mediana é a média dos dois valores centrais. A mediana é **menos sensível a outliers** e pode ser uma medida **mais representativa do centro dos dados quando a distribuição é assimétrica ou contém outliers**.
+
+### Moda
+
+- É o valor que ocorre com maior frequência em um conjunto de dados. Um conjunto de dados pode ter nenhuma moda, uma moda (unimodal) ou várias modas (multimodal). A moda pode ser **usada para dados numéricos ou categóricos** e é uma **medida útil da tendência central**, especialmente quando a média e a mediana não são aplicáveis ou não fornecem uma representação adequada do centro dos dados.
+
+---
+
+## Medidas de Dispersão
+
+- As medidas de dispersão são estatísticas que **quantificam a dispersão, a variabilidade ou a dispersão dos valores** em um conjunto de dados. Elas ajudam a entender o quão dispersos estão os valores em torno da medida central (como a média). As mais comuns:
+
+### Variância
+
+- É uma medida que indica o quanto os valores em um conjunto de dados variam em torno da média. Uma **variância maior** indica uma maior dispersão dos valores, enquanto uma **variância menor** sugere que os valores estão mais próximos da média. A variância é **calculada como a média dos quadrados das diferenças entre cada valor e a média do conjunto de dados**.
+
+### Desvio Padrão
+
+- É a **raiz quadrada da variância** e também mede a dispersão dos valores em um conjunto de dados. Ele é expresso na mesma unidade de medida dos valores originais, o que o torna mais fácil de interpretar em comparação com a variância. Um **desvio padrão maior** indica maior variabilidade dos valores, enquanto um **desvio padrão menor** sugere que os valores estão mais próximos da média. 
+
+### Coeficiente de Variação (CV)
+
+- Também conhecido como **coeficiente de variação relativa**, é uma medida estatística que expressa **a relação entre o desvio padrão e a média** de um conjunto de dados. Ele é **usado para comparar a variabilidade entre conjuntos de dados** com médias diferentes e unidades de medida distintas. O CV é comumente expresso como um percentual;
+
+- Ele é especialmente útil quando se deseja comparar a dispersão de 2 ou mais conjuntos de dados que possuem diferentes escalas ou unidades de medida. Ele permite que os pesquisadores determinem qual conjunto de dados tem maior variabilidade relativa, independentemente das unidades em que os dados são expressos;
+
+- **Fórmula:**
+
+        CV = (Desvio Padrão / Média) x 100
+
+- Um **CV menor** indica que os dados são menos dispersos em relação à média, enquanto um **CV maior** indica que os dados são mais dispersos.
+
+---
+
+## Medidas de Posição Relativa
+
+- As medidas de posição relativa são estatísticas que **descrevem a posição de um valor específico em relação a outros valores** em um conjunto de dados. As mais comuns:
+
+### Percentis
+
+- São medidas que **dividem um conjunto de dados ordenado em 100 partes iguais**. O percentil de um valor específico indica a **porcentagem de valores no conjunto de dados que são menores ou iguais a esse valor**. Por exemplo, um valor no percentil 25 (`P25`) indica que 25% dos valores no conjunto de dados são menores ou iguais a esse valor. Eles são **úteis para comparar a posição relativa de um valor dentro de diferentes conjuntos de dados e para entender a dispersão dos dados**.
+
+### Quartis
+
+- São semelhantes aos percentis, mas **dividem um conjunto de dados ordenado em 4 partes iguais**. Existem **3 quartis**: o primeiro quartil (`Q1`), o segundo quartil (`Q2`) e o terceiro quartil (`Q3`). `Q1` corresponde ao percentil 25 (`P25`), `Q2` corresponde à mediana (percentil 50 - `P50`) e `Q3` corresponde ao percentil 75 (`P75`). Os quartis ajudam a entender a **dispersão dos dados e a identificar a presença de outliers**.
+
+### Z-score
+
+- É uma medida que **expressa a posição relativa de um valor em relação à média e ao desvio padrão** de um conjunto de dados. Ele **indica quantos desvios padrão um valor específico está acima ou abaixo da média** do conjunto de dados. Um **z-score positivo** indica que o valor está acima da média, enquanto um **z-score negativo** indica que o valor está abaixo da média. Eles são úteis para **comparar a posição relativa de valores em diferentes conjuntos de dados e para identificar outliers**.
+
+---
+
+## Métodos Estatísticos para Análise de Dados
+
+- Os métodos mais comuns para análise de dados são:
+
+    - **Análise descritiva:** envolve a descrição e resumo dos dados por meio de medidas de tendência central (média, mediana, moda), medidas de dispersão (variância, desvio padrão, coeficiente de variação), e medidas de posição relativa (percentis, quartis, z-score). Essa análise fornece uma visão geral dos dados e ajuda a entender sua distribuição e características básicas;
+
+    - **Análise exploratória de dados (EDA):** é uma abordagem para analisar conjuntos de dados, geralmente com o objetivo de identificar padrões, tendências, outliers e relações entre variáveis. Essa análise envolve a criação de gráficos, como histogramas, gráficos de dispersão, gráficos de caixa e gráficos de barras, para visualizar os dados e gerar insights;
+
+    - **Testes de hipóteses:** são métodos estatísticos que envolvem a formulação de hipóteses nulas e alternativas sobre os parâmetros de uma população e o uso de dados amostrais para testar a validade dessas hipóteses;
+
+    - **Regressão:** é um método estatístico utilizado para modelar a relação entre uma variável dependente e uma ou mais variáveis independentes. A regressão linear é a forma mais simples de regressão e descreve a relação linear entre as variáveis;
+
+    - **Análise de variância (ANOVA):** é um método usado para comparar as médias de 3 ou mais grupos, determinando se existem diferenças significativas entre eles;
+
+    - **Análise de séries temporais:** envolve a análise de dados coletados ao longo do tempo para identificar padrões, tendências e ciclos. Essa análise pode incluir a decomposição da série temporal em componentes sazonais e de tendência, a aplicação de modelos autorregressivos e de médias móveis (ARIMA) e a previsão de valores futuros;
+
+    - **Análise de agrupamento (clusterização):** é um método de aprendizado não supervisionado que agrupa observações (registros) com base em suas características e semelhanças;
+
+    - **Análise de componentes principais (PCA):** é uma técnica de redução de dimensionalidade que transforma um conjunto de dados com muitas variáveis correlacionadas em um conjunto de dados com variáveis não correlacionadas chamadas de componentes principais.  
+
