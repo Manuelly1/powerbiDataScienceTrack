@@ -87,3 +87,24 @@ O cartão seria um bom complemento para apresentar o faturamento total geral, ma
     - Cliente;
 
     - Esses filtros permitem análises dinâmicas e específicas por período e perfil de consumo.
+
+### 4. Usando uma tabela Faturamento com as colunas: Data, Valor e Categoria, crie uma medida DAX que calcule o faturamento total apenas da categoria "Alimentos":
+
+```dax
+
+    Faturamento_Alimentos = CALCULATE(SUM(DadosFaturamento[Valor]), DadosFaturamento[Categoria] = "Alimentos")
+
+```
+
+### 5. Você tem duas tabelas: Clientes(id_cliente, nome) e Pedidos(id_pedido, id_cliente, total). Explique como configurar o relacionamento no Power BI e qual é o tipo de cardinalidade:
+
+- A relação é criada a partir do campo em comum entre as tabelas, neste caso, o campo em comum é `id_cliente`. Em `Clientes`, `id_cliente` é chave primária, então possui valores únicos. Em `Pedidos`, pode aparecer várias vezes como chave estrangeira, uma vez que pode representar os vários pedidos feitos pelo mesmo cliente;
+
+- Por isso, o Power BI cria uma relação de um-para-muitos (`1:*`), onde `Clientes` é o lado `1` e `Pedidos` é o lado `*`. A direção do filtro deve ser `Clientes → Pedidos`, para que ao selecionar um cliente, seus pedidos sejam filtrados corretamente.
+
+### 6. Você tem dados de vendas mensais. Qual visual você usaria para comparar rapidamente a evolução das vendas ao longo do ano? Justifique.
+
+- Eu utilizaria um **gráfico de linhas (ou de área)** porque esse tipo de visual é ideal para dados organizados ao longo de um período de tempo. Como as vendas são mensais, trata-se de uma série temporal, e gráficos de linha permitem identificar facilmente tendências, aumentos e quedas ao longo dos 12 meses. Além disso, esse tipo de visual mantém a continuidade entre os pontos, facilitando a análise da evolução das vendas durante o ano.
+
+
+

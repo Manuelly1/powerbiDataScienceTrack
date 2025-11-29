@@ -1,11 +1,11 @@
 Exercícios - Medidas de Posição e Dispersão no Power BI
 
 Use o dataset disponível ao final do capítulo com dados fictícios de pacientes e crie uma tabela de análise descritiva no 
-Power BI com a média, mediana e moda da idade, altura e peso dos pacientes. Além disso, responda:
+Power BI com a média (OK), mediana (OK) e moda (deu erro na do peso) da idade, altura e peso dos pacientes. Além disso, responda:
 
-1- Qual a moda do tipo sanguíneo?
+1- Qual a moda do tipo sanguíneo? OK
 
-2- Qual a moda do estado civil?
+2- Qual a moda do estado civil? OK
 
 Use o dataset disponível ao final do capítulo com dados fictícios de pacientes e crie uma tabela de análise descritiva no 
 Power BI com a média, variância e desvio padrão da idade, altura e peso dos pacientes. Além disso, calcule o coeficiente de 
