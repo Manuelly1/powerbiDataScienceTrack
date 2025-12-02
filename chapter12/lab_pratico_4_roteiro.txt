@@ -1,0 +1,7 @@
+Laboratório Prático 4 - Limpeza e Manipulação de Dados de Cadastro de Clientes no Power BI
+
+1- Identificação e tratamento de registros duplicados;
+
+2- Identificação e tratamento de valores ausentes;
+
+3- Identificação e tratamento de valores outliers.

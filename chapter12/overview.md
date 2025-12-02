@@ -111,3 +111,33 @@
 
 ## O Que é Feito na Limpeza e Manipulação de Dados?
 
+- A limpeza e manipulação de dados são etapas cruciais no processo de análise e modelagem de dados. Essas atividades envolvem a organização, transformação e remoção de erros ou inconsistências nos dados para garantir que eles estejam prontos para serem utilizados em análises, visualizações ou aplicação de modelos de aprendizado de máquina. Algumas das principais tarefas incluem:
+
+    - **Remoção de dados duplicados:** eliminar registros duplicados que podem distorcer a análise;
+
+    - **Tratamento de valores ausentes:** substituir, remover ou estimar valores ausentes nos dados, usando métodos como média, mediana, interpolação ou outros algoritmos;
+
+    - **Correção de erros de digitação e inconsistências:** identificar e corrigir erros de digitação, formatação e padronização dos dados;
+
+    - **Conversação de tipos de dados:** transformar variáveis em tipos de dados apropriados, como numérico, categórico ou textual;
+
+    - **Renomeação e reorganização de colunas:** ajustar os nomes das colunas para facilitar a compreensão e organizá-las de acordo com a necessidade da análise;
+
+    - **Filtragem e seleção de dados:** extrair subconjuntos específicos de dados com base em critérios pré-determinados, como faixas de valores ou categorias;
+
+    - **Discretização e binning:** converter variáveis contínuas em categorias ou agrupar dados em intervalos específicos para análise;
+
+    - **Normalização e padronização:** ajustar a escala dos valores numéricos para facilitar a comparação e melhorar o desempenho de modelos de aprendizado de máquina;
+
+    - **Transformação de variáveis:** criar novas variáveis a partir de outras existentes ou aplicar transformações matemáticas para simplificar análises ou melhorar a interpretação dos dados;
+
+    - **Detecção e tratamento de outliers:** identificar e tratar valores extremos que podem afetar a análise ou a modelagem;
+
+    - **Codificação de variáveis categóricas:** converter variáveis categóricas em formatos numéricos, como codificação one-hot ou ordinal, para serem utilizadas em modelos de aprendizado de máquina.
+
+---
+
+## Laboratório Prático 4 - Limpeza e Manipulação de Dados de Cadastro de Clientes no Power BI
+
+
+     
