@@ -139,5 +139,8 @@
 
 ## Laboratório Prático 4 - Limpeza e Manipulação de Dados de Cadastro de Clientes no Power BI
 
+- Primeiramente, o professor começou fazendo uma **análise exploratória** da base e evidenciando alguns problemas, como valores ausentes, registros duplicados e outliers;
 
-     
+- A presença do termo `null` em campos como `Idade` e `Peso` indica que não há dados em alguns daqueles registros. Valor ausente pode ser ocasionado por inúmeros fatores, como técnicas aplicadas pelo próprio analista, algum problema no carregamento da base no sistema... 
+
+- Posteriormente, para auxiliar ainda mais nessa análise, o professor buscou verificar a quantidade de registros da base, para isso adicionou uma tabela com o campo `ID_Cliente` (contagem), que retornou 502 registros. Porém, o professor alertou para outro possível problema: a presença de IDs duplicados, o que provocaria uma série de problemas, uma vez que um mesmo cliente poderia estar associado a mais de um ID etc. Portanto, ele adicionou o campo `ID_Cliente` na mesma tabela com a contagem distinta, que retornou apenas 496 IDs únicos, o que nos leva a crer que tem ID duplicado. 

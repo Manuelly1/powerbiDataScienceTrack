@@ -106,5 +106,52 @@ O cartão seria um bom complemento para apresentar o faturamento total geral, ma
 
 - Eu utilizaria um **gráfico de linhas (ou de área)** porque esse tipo de visual é ideal para dados organizados ao longo de um período de tempo. Como as vendas são mensais, trata-se de uma série temporal, e gráficos de linha permitem identificar facilmente tendências, aumentos e quedas ao longo dos 12 meses. Além disso, esse tipo de visual mantém a continuidade entre os pontos, facilitando a análise da evolução das vendas durante o ano.
 
+### 7. Com base em uma tabela `Vendas(qtd, preco)`, crie uma medida que calcule: Total de Vendas
 
+```dax
 
+    Total de Vendas = SUMX(Vendas, Vendas[qtd] * Vendas[preco])
+
+```
+
+### 8. Em um calendário já relacionado, crie uma medida que calcule: crescimento (%) mês a mês
+
+```dax
+
+    Crescimento Mês a Mês (%) =
+        VAR TotalAtual = [Total de Vendas]
+        VAR TotalMesAnterior = CALCULATE([Total de Vendas], DATEADD('Calendario'[Data], -1, MONTH))
+
+        RETURN DIVIDE(TotalAtual - TotalMesAnterior, TotalMesAnterior)
+
+```
+
+### 9. Explique como relacionar: as tabelas `Vendas` e `Produtos`
+
+- Cada produto possui um identificador único (ex: `Id_Produto`), portanto a tabela `Produtos` é o lado 1 da relação;
+
+- Na tabela `Vendas`, o mesmo produto pode aparecer várias vezes, logo ela é o lado muitos ( * );
+
+- A relação deve ser criada do campo Produtos[Id_Produto] → Vendas[Id_Produto].
+
+### 10. Como poderia fazer para apresentar os 5 produtos mais vendidos?
+
+- **Forma 1 – Pelo Power BI (mais simples):** selecionar o visual; ir em Filtros → Filtro por produto; escolher Top N e definir: Top 5 por: `Total de Vendas`;
+
+- **Forma 2 – Medida DAX:**
+
+```dax
+
+    Top 5 Produtos = TOPN(5, SUMMARIZE(Produtos, Produtos[Nome], "Total", [Total de Vendas]), [Total], DESC)
+
+```
+
+- **Forma 3 – Visual já filtrado por ranking:** criar ranking:
+
+```dax
+
+    Ranking Produtos = RANKX(ALL(Produtos[Nome]), [Total de Vendas], DESC)
+
+```
+
+- E usar esse ranking para mostrar apenas até 5 produtos.
