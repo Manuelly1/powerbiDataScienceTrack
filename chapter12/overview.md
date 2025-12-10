@@ -139,8 +139,20 @@
 
 ## Laboratório Prático 4 - Limpeza e Manipulação de Dados de Cadastro de Clientes no Power BI
 
-- Primeiramente, o professor começou fazendo uma **análise exploratória** da base e evidenciando alguns problemas, como valores ausentes, registros duplicados e outliers;
+### Análise Exploratória
 
-- A presença do termo `null` em campos como `Idade` e `Peso` indica que não há dados em alguns daqueles registros. Valor ausente pode ser ocasionado por inúmeros fatores, como técnicas aplicadas pelo próprio analista, algum problema no carregamento da base no sistema... 
+- Primeiramente, o professor iniciou realizando uma **análise exploratória** da base e evidenciando alguns problemas, como valores ausentes, registros duplicados e outliers;
 
-- Posteriormente, para auxiliar ainda mais nessa análise, o professor buscou verificar a quantidade de registros da base, para isso adicionou uma tabela com o campo `ID_Cliente` (contagem), que retornou 502 registros. Porém, o professor alertou para outro possível problema: a presença de IDs duplicados, o que provocaria uma série de problemas, uma vez que um mesmo cliente poderia estar associado a mais de um ID etc. Portanto, ele adicionou o campo `ID_Cliente` na mesma tabela com a contagem distinta, que retornou apenas 496 IDs únicos, o que nos leva a crer que tem ID duplicado. 
+- A presença do termo `null` em campos como `Idade` e `Peso` indica que não há dados em determinados registros. Valores ausentes podem ocorrer por diversos motivos, como técnicas aplicadas pelo próprio analista, falhas no carregamento da base no sistema, entre outros;
+
+- Posteriormente, para aprofundar a análise, o professor verificou a quantidade total de registros da base. Para isso, adicionou uma tabela com o campo `ID_Cliente` (contagem), que retornou 502 registros. Contudo, ele alertou sobre um possível problema: a presença de IDs duplicados, o que pode gerar inconsistências, já que um mesmo cliente poderia estar associado a mais de um ID. Assim, ele incluiu o campo `ID_Cliente` na mesma tabela, mas com contagem distinta, o que retornou apenas 496 IDs únicos, indicando que existem IDs duplicados;
+
+- Além disso, o professor demonstrou um macete para identificar valores `null` e duplicados no Power Query. Para encontrar valores ausentes, basta selecionar a área que lista os valores da coluna, onde o `null` aparece logo no início, caso exista. Já para localizar duplicados, ele selecionou uma coluna, clicou no tipo de dado da coluna e utilizou a opção **Agrupar por**, que retorna a contagem de cada registro; se algum `ID_Cliente` aparecer mais de uma vez, é porque está duplicado;
+
+- Em seguida, foi realizada a identificação de outliers. Para isso, o professor analisou um campo por vez, observando se existiam valores extremos. Ao selecionar o campo `Altura(cm)`, foi possível identificar valores como 20 cm e 278 cm, claramente atípicos. Esses valores impactam diversas operações estatísticas, como o cálculo da média. Para tratar esses outliers, cabe ao analista decidir (e justificar) se eles serão removidos, ajustados ou mantidos.
+
+---
+
+### Tratando Registros Duplicados
+
+- Para isso, basta ir em **Transformar dados -> remover linhas -> remover duplicatas**. Em seguida, ao ir no relatório novamente, observa-se que atualizou para 496 IDs únicos.

@@ -155,3 +155,71 @@ O cartão seria um bom complemento para apresentar o faturamento total geral, ma
 ```
 
 - E usar esse ranking para mostrar apenas até 5 produtos.
+
+### 11. Na tabela `Vendas`, com: `Data` e `Valor`, crie uma medida que calcule faturamento acumulado no ano (YTD)
+
+```dax
+
+    Faturamento Acumulado no Ano = TOTALYTD(SUM(Vendas[Valor]), Vendas[Data])
+
+```
+
+- Neste caso, fez-se necessário usar funções de time intelligence, como TOTALYTD, e também somar os valores.
+
+### 12. Na tabela `Pedidos`, calcule: número de clientes únicos que fizeram pedidos acima de 500 reais. A medida deve contar `id_cliente`, não linhas
+
+```dax
+
+    Número de Clientes que Fizeram Pedidos Acima de 500 =   
+        CALCULATE(
+            DISTINCTCOUNT(Pedidos[id_cliente]),
+            Pedidos[valor] > 500
+    )
+
+```
+
+### 13. Você recebe uma coluna de telefone com formatos misturados: `84 9999-1234`, `(84) 98765-4321` e `+55 84 98888-1212`. Explique como normalizar os números para o formato: `5584XXXXXXXX`. Use apenas recursos do Power Query (M Language), pode descrever os passos
+
+- Para normalizar números de telefone com formatos misturados no Power Query, eu seguiria estes passos:
+
+**1- Remover todos os caracteres não numéricos:**
+
+    - Seleciono a coluna de telefone;
+
+    - Uso Transformar → Extrair → Apenas Dígitos;
+
+    - Isso garante que qualquer formato vire apenas números, exemplo:
+
+        "84 9999-1234" → "8499991234";
+
+        "(84) 98765-4321" → "84987654321";
+
+        "+55 84 98888-1212" → "5584988881212".
+
+**2- Garantir que o telefone contenha o código do país (55):**
+
+    - Adiciono uma Coluna Personalizada com M:
+
+    ```dax
+
+        if Text.StartsWith([TelefoneLimpo], "55")
+        then [TelefoneLimpo]
+        else "55" & [TelefoneLimpo]
+    
+    ```
+
+**3- Padronizar para 5584XXXXXXXX:**
+
+    - Após garantir o 55, alguns números terão 10 dígitos após o DDD e outros 9;
+    
+    - Então adiciono outra coluna personalizada para colocar sempre o formato final:
+
+    ```dax
+
+        "55" &
+        Text.Middle([TelefoneLimpo], Text.Length([TelefoneLimpo]) - 10, 2) &
+        Text.End([TelefoneLimpo], 8)
+
+    ```
+
+- **De forma simplificada:** no Power Query, eu primeiro extraio apenas os dígitos da coluna; depois, adiciono uma coluna personalizada verificando se o número já começa com 55; se não começar, concateno "55". Por fim, uso as funções Text.Middle e Text.End para montar o formato final `5584XXXXXXXX`. Assim todos os telefones ficam padronizados independentemente do formato original.
