@@ -156,3 +156,41 @@
 ### Tratando Registros Duplicados
 
 - Para isso, basta ir em **Transformar dados -> remover linhas -> remover duplicatas**. Em seguida, ao ir no relatório novamente, observa-se que atualizou para 496 IDs únicos.
+
+---
+
+### Tratando Valores Ausentes (*null*)
+
+- O professor alertou que esse é um ponto mais complexo e que precisa ser corrigido rapidamente, pois impacta diretamente nas análises. A forma mais simples seria remover as linhas que possuem *null*, porém isso afetaria o resultado final, especialmente se a base contiver muitos valores ausentes;
+
+- Uma alternativa é aplicar a **interpolação**, ou seja, preencher o valor nulo com algum outro valor. Antes disso, ele adicionou uma nova tabela ao dashboard para obter um resumo estatístico da coluna `Idade`. Colocou essa coluna cinco vezes no campo *Colunas* para, em cada uma delas, exibir: valor mínimo, média, desvio padrão, valor máximo e mediana. Com base nesses valores, o professor explicou que uma opção seria substituir o valor ausente pela média. Contudo, antes de usar a média, o ideal seria aplicar um teste estatístico para verificar a distribuição da variável `Idade`. Infelizmente, o Power BI não possui testes estatísticos de forma nativa, mas eles podem ser construídos via DAX, embora isso dê bastante trabalho, pois seria necessário consultar a documentação do teste e reproduzir toda a matemática. Usando Python ou R, isso seria bem mais simples;
+
+- Para evitar esse esforço extra, o mais indicado é não usar a média, e sim a **mediana**. Porém, ao analisar o cliente com `id = 3`, um dos que possui valor *null*, observa-se que o peso dele é de apenas 44 kg, o que levanta a dúvida: "Será que realmente teria 40 anos?". O professor ressaltou que essa é exatamente a questão: ou você remove o registro inteiro ou o preenche com algum valor aproximado. Uma alternativa mais avançada seria criar um modelo de aprendizado de máquina capaz de aprender o padrão da variável `Idade` e prever um valor provável;
+
+- Tanto para `Idade` quanto para `Peso`, que também apresentava valores ausentes, foi aplicada a mediana. Para fazer isso no **Power Query**, basta selecionar a coluna `Idade`, clicar com o botão direito em **Substituir Valores** e definir `null -> 40`. O mesmo procedimento foi aplicado para a coluna `Peso`.
+
+---
+
+### Visualizando e Tratando Outliers
+
+- Antes de começar, o professor adicionou uma nova tabela e repetiu o mesmo processo realizado anteriormente com os campos `Idade` e `Peso`, porém agora para a variável `Altura`. Em seguida, foi feita uma interpretação inicial: o valor mínimo encontrado foi 146 cm (comum), enquanto o valor máximo foi 278 cm (incomum). Isso justificou uma pesquisa para verificar se esse valor poderia ser real. Ao pesquisar, constatou-se que a maior altura já registrada em um ser humano foi de 271 cm. Logo, o valor de 278 cm presente na base é um outlier (anomalia);
+
+- Diante disso, é necessário tomar uma decisão (e todas elas envolvem riscos). Uma possibilidade é não fazer nada, mas isso afetaria a média e outras análises. Outra alternativa é remover os registros que possuem esse valor extremo, adicionando uma observação ao relatório, como: “Foram removidos X registros, pois não foi possível validar se a altura era real (pode ter sido erro de medição ou digitação)”. Também existe a alternativa de substituir os outliers pela mediana;
+
+- Antes de qualquer ação, o professor destacou a importância de **visualizar** o outlier em um gráfico. O gráfico mais indicado seria o **boxplot**, pois mostra média, mediana, mínimo, máximo e quartis. Entretanto, o Power BI ainda não possui boxplot nativo. Ele existe apenas como visual R na galeria de gráficos, usando o pacote *ggplot2*. Como a ferramenta não oferece esse recurso prontamente, o professor criou uma série de medidas para auxiliar na visualização dos outliers por meio de gráficos. Foram criadas medidas de mediana, quartis e IQR (intervalo interquartil):
+
+```dax
+
+    MedianaAltura = MEDIAN(customers[Altura]) 
+    Q1Altura = PERCENTILE.INC(customers[Altura], 0.25) 
+    Q3Altura = PERCENTILE.INC(customers[Altura], 0.75) 
+    IQRAltura = [Q3Altura] - [Q1Altura] 
+    LimiteInferiorAltura = [Q1Altura] - 1.5 * [IQRAltura]   // Valores abaixo disso são outliers
+    LimiteSuperiorAltura = [Q3Altura] + 1.5 * [IQRAltura]   // Valores acima disso são outliers
+
+```
+
+- Em seguida, em uma nova página, juntamente com a tabela de resumo da variável `Altura`, adicionou-se um **gráfico de dispersão**, definindo o `ID_Cliente` (sem resumir) no eixo X e `Altura` (sem resumir) no eixo Y. Assim, já é possível visualizar alguns pontos distantes do centro, ou seja, os outliers. Depois, foram adicionadas **linhas de referência** com as medidas calculadas anteriormente para documentar e justificar a decisão de substituição dos outliers pela mediana. Para isso, basta ir até o **terceiro ícone** (a lupa, referente à aba de Análise), selecionar Linha constante no eixo Y → Adicionar linha → clicar no fx e escolher a medida da mediana (repetindo o processo para as outras medidas). Dessa forma, ao relatar a decisão, basta comentar que essa é uma forma amplamente aceita na estatística para identificação de outliers: **qualquer valor acima do limite superior ou abaixo do limite inferior é considerado outlier**;
+
+- Após visualizar, **foi possível identificar três pontos fora dos limites:** um deles era o de 204 cm. Nesse caso, cabe ao analista decidir se considera esse valor incomum ou não. No projeto, optou-se por manter esse registro, pois alturas nessa faixa são comuns em atletas. Portanto, apenas os outros dois valores (270 cm e 278 cm) foram substituídos. No Power Query, em `Altura` → Substituir Valores, substituiu-se 270 por 172 (mediana) e 278 por 172. Ao aplicar essas alterações, o gráfico foi atualizado automaticamente e os pontos deixaram de aparecer.
+
