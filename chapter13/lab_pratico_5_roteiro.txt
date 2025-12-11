@@ -1,0 +1,5 @@
+Laboratório Prático 5 - Engenharia de Atributos com Linguagem M no Power BI
+
+Neste Lab, o objetivo é demonstrar como a Linguagem M pode ser usada no Power BI para realizar uma das mais importantes tarefas em Ciência de 
+Dados: a Engenharia de Atributos. Serão diversas tarefas e etapas aplicadas aos dados criando novas variáveis, removendo variáveis desnecessárias, 
+aplicando transformações e correções. 

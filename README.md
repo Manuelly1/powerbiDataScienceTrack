@@ -39,7 +39,7 @@ Os capítulos seguem uma estrutura padrão. Cada pasta contém:
 
 - **`chapter11`** → Aborda estatística na Ciência de Dados (`overview.md`), utilizando o conjunto de dados de pacientes (`patient_dataset/patient.csv`) e o roteiro dos exercícios comentados na outra unidade (`exercicios.txt`);
 
-- **`chapter12`** → Contém o dashboard da unidade (`lab4.pbix`), o dataset (`customers_dataset/customers.csv`) e o roteiro (`lab_pratico_4_roteiro.txt`).
+- **`chapter12`** → Dashboard da unidade (`lab4.pbix`), dataset (`customers_dataset/customers.csv`) e roteiro (`lab_pratico_4_roteiro.txt`).
 
 ---
 
