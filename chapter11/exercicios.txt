@@ -7,6 +7,5 @@ Power BI com a média (OK), mediana (OK) e moda (deu erro na do peso) da idade, 
 
 2- Qual a moda do estado civil? OK
 
-Use o dataset disponível ao final do capítulo com dados fictícios de pacientes e crie uma tabela de análise descritiva no 
-Power BI com a média, variância e desvio padrão da idade, altura e peso dos pacientes. Além disso, calcule o coeficiente de 
-variação para as três variáveis.
+Use o dataset disponível ao final do capítulo com dados fictícios de pacientes e crie uma tabela de análise descritiva no Power BI com a média, 
+variância e desvio padrão da idade, altura e peso dos pacientes. Além disso, calcule o coeficiente de variação para as três variáveis.

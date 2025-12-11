@@ -35,7 +35,11 @@ Os capítulos seguem uma estrutura padrão. Cada pasta contém:
 
 - **`chapter9`** → Dashboard da unidade (`lab3.pbix`), dataset (`accounting_dataset/accounting_dataset.xlsx`) e roteiro (`lab_pratico_3_roteiro.txt`);
 
-- **`chapter10`** → Sexto mini-projeto, utilizando o conjunto de dados do mercado de ações (`stock_market/market.xlsx`) e o roteiro (`lab_pratico_mini_projeto6.txt`).
+- **`chapter10`** → Sexto mini-projeto, utilizando o conjunto de dados do mercado de ações (`stock_market/market.xlsx`) e o roteiro (`lab_pratico_mini_projeto6.txt`);
+
+- **`chapter11`** → Aborda estatística na Ciência de Dados (`overview.md`), utilizando o conjunto de dados de pacientes (`patient_dataset/patient.csv`) e o roteiro dos exercícios comentados na outra unidade (`exercicios.txt`);
+
+- **`chapter12`** → Contém o dashboard da unidade (`lab4.pbix`), o dataset (`customers_dataset/customers.csv`) e o roteiro (`lab_pratico_4_roteiro.txt`).
 
 ---
 
