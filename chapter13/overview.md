@@ -286,4 +286,120 @@
 
 ### Ajustando a Escala dos Dados com Transformação Logarítmica com Linguagem M
 
+- Para ilustrar esse procedimento, o professor utilizou o campo **`Limite de Crédito`**, destacando que essa coluna pode conter valores distribuídos em **escalas muito distintas**, por exemplo: unidades, dezenas, centenas ou milhares;
+
+- Diversos algoritmos de *Machine Learning* esperam receber as variáveis em **escalas semelhantes**, mas isso nem sempre ocorre naturalmente;
+
+- Quando os dados não estão na mesma escala, aplica-se uma **transformação matemática**, que é um processo típico de *engenharia de atributos*, para tornar a variável mais apropriada para modelagem;
+
+- Neste exemplo, foi aplicada uma **transformação logarítmica** ao campo `Limite de Crédito`. O script em Linguagem M fica assim:
+
+```m
+
+    let
+        Fonte = Csv.Document(File.Contents("C:\Users\Manuelly\Desktop\curso-data-science\cap13\customers_dataset\customers.csv"),[Delimiter=",", Columns=10, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+        #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+        #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"ID_Cliente", type text}, {"Idade", type text}, {"Peso", Int64.Type}, {"Altura", Int64.Type}, {"Estado Civil", type text}, {"Estado", type text}, {"Limite de Credito", Int64.Type}, {"Valor Desconto", Int64.Type}, {"Valor Compra", Int64.Type}, {"Tipo de Cliente", type text}}),
+
+        // substituindo valor
+        #"Valor Substituido"= Table.ReplaceValue(#"Tipo Alterado", "?", "45", Replacer.ReplaceText, {"Idade"}),
+
+        // removendo coluna
+        #"Coluna Removida" = Table.RemoveColumns(#"Valor Substituido", {"Estado Civil"}),
+
+        // adicionando coluna
+        #"Coluna Adicionada" = Table.AddColumn(#"Coluna Removida", "Valor Final", each [Valor Compra] - [Valor Desconto]),
+
+        // dividindo coluna
+        #"Dividir Coluna pela Posicao" = Table.SplitColumn(#"Coluna Adicionada", "ID_Cliente", Splitter.SplitTextByPositions({0,4}, false), {"ID_Cliente.1", "ID_Cliente.2"}),
+        #"Coluna Dividida" = Table.TransformColumnTypes(#"Dividir Coluna pela Posicao", {{"ID_Cliente.1", type text}, {"ID_Cliente.2", Int64.Type}}),
+
+        // ajustando nome de coluna
+        #"Colunas Renomeadas" = Table.RenameColumns(#"Coluna Dividida", {{"ID_Cliente.1", "Codigo"}, {"ID_Cliente.2", "ID"}}),
+
+        // coluna condicional
+        #"Coluna Condicional Adicionada" = Table.AddColumn(#"Colunas Renomeadas", "% Desconto Especial", each if [Tipo de Cliente] = "Bronze" then 5 else if [Tipo de Cliente] = "Prata" then 10 else if [Tipo de Cliente] = "Ouro" then 15 else if [Tipo de Cliente] = "Diamante" then 20 else 0),
+
+        // ajustando a escala de dados com transformação logarítmica
+        #"Logaritmo de Base 10 Calculado" = Table.TransformColumns(#"Coluna Condicional Adicionada", {{"Limite de Credito", Number.Log10, type number}})
+
+    in
+        #"Logaritmo de Base 10 Calculado"
+
+```
+
+---
+
+### Versão Final do Laboratório 5
+
+- Ao retornar ao Power Query, é possível observar que a coluna **`Idade`** ainda está configurada como **tipo texto**, portanto é necessário ajustá-la para **tipo numérico**;
+
+- Para realizar essa alteração corretamente, o professor modificou o script, ajustando o tipo da coluna conforme o adequado. O script ficou assim:
+
+```m
+
+    let
+        Fonte = Csv.Document(File.Contents("C:\Users\Manuelly\Desktop\curso-data-science\cap13\customers_dataset\customers.csv"),[Delimiter=",", Columns=10, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+        #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+        #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"ID_Cliente", type text}, {"Idade", type text}, {"Peso", Int64.Type}, {"Altura", Int64.Type}, {"Estado Civil", type text}, {"Estado", type text}, {"Limite de Credito", Int64.Type}, {"Valor Desconto", Int64.Type}, {"Valor Compra", Int64.Type}, {"Tipo de Cliente", type text}}),
+
+        // substituindo valor
+        #"Valor Substituido" = Table.ReplaceValue(#"Tipo Alterado", "?", "45", Replacer.ReplaceText, {"Idade"}),
+
+        // ajustando o tipo da variáveç
+        #"Tipo Ajustado" = Table.TransformColumnTypes(#"Valor Substituido", {{"Idade", Int64.Type}}),
+
+        // removendo coluna
+        #"Coluna Removida" = Table.RemoveColumns(#"Tipo Ajustado", {"Estado Civil"}),
+
+        // adicionando coluna
+        #"Coluna Adicionada" = Table.AddColumn(#"Coluna Removida", "Valor Final", each [Valor Compra] - [Valor Desconto]),
+
+        // dividindo coluna
+        #"Dividir Coluna pela Posicao" = Table.SplitColumn(#"Coluna Adicionada", "ID_Cliente", Splitter.SplitTextByPositions({0,4}, false), {"ID_Cliente.1", "ID_Cliente.2"}),
+        #"Coluna Dividida" = Table.TransformColumnTypes(#"Dividir Coluna pela Posicao", {{"ID_Cliente.1", type text}, {"ID_Cliente.2", Int64.Type}}),
+
+        // ajustando nome de coluna
+        #"Colunas Renomeadas" = Table.RenameColumns(#"Coluna Dividida", {{"ID_Cliente.1", "Codigo"}, {"ID_Cliente.2", "ID"}}),
+
+        // coluna condicional
+        #"Coluna Condicional Adicionada" = Table.AddColumn(#"Colunas Renomeadas", "% Desconto Especial", each if [Tipo de Cliente] = "Bronze" then 5 else if [Tipo de Cliente] = "Prata" then 10 else if [Tipo de Cliente] = "Ouro" then 15 else if [Tipo de Cliente] = "Diamante" then 20 else 0),
+
+        // ajustando a escala de dados com transformação logarítmica
+        #"Logaritmo de Base 10 Calculado" = Table.TransformColumns(#"Coluna Condicional Adicionada", {{"Limite de Credito", Number.Log10, type number}})
+
+    in
+        #"Logaritmo de Base 10 Calculado"
+
+```
+
+---
+
+## Quando Usar Expressão DAX e Quando Usar Linguagem M?
+
+- A **linguagem M** é usada principalmente para a etapa de extração, transformação e carga (ETL) dos dados no Power BI. Ela é usada para importar e manipular os dados no Power Query antes de carregá-los no modelo de dados. Ela é adequada para:
+
+    - **Limpar e transformar dados** (como remover linhas, colunas ou preencher valores ausentes);
+
+    - **Combinar dados de diferentes fontes** (como mesclar ou anexar consultas);
+
+    - **Converter tipos de dados e formatar dados** (como converter texto para número ou data);
+
+    - **Aplicar transformações condicionais e agregar dados**.
+
+- A **expressão DAX** é aplicada principalmente para a criação de medidas, colunas calculadas e tabelas calculadas no modelo de dados do Power BI. DAX é uma linguagem de fórmula que permite realizar cálculos avançados e análise de dados. A expressão DAX é adequada para:
+
+    - **Criar medidas dinâmicas que reagem a seleções e filtros aplicados no relatório** (como vendas totais, médias, taxas de crescimento etc);
+
+    - **Criar colunas calculadas que se baseiam em outras colunas do modelo de dados** (como colunas calculadas que combinam nome e sobrenome, por exemplo);
+
+    - **Definir tabelas calculadas com base em tabelas existentes ou medidas**;
+
+    - **Realizar análises de tempo** (como comparação ano a ano e análise de séries temporais);
+
+    - **Aplicar funções de contexto**, como funções de filtro, iteração e avaliação, para calcular valores em diferentes níveis de granularidade.
+
+- Dito isso, use a Linguagem M no Power Query para preparar e transformar os dados antes de carregá-los no modelo de dados, e use a Expressão DAX no modelo de dados para criar medidas, colunas calculadas e tabelas calculadas para análises avançadas e relatórios dinâmicos.
+
+
 
