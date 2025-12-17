@@ -1,0 +1,3 @@
+Laboratório 6 - Trabalhando com Power BI e BDs para Extração e Análise de Dados
+
+O objetivo desde laboratório é ensinar a cada aluno como configurar o Power BI para conectar em um banco de dados usando conexão ODBC. 
