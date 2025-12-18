@@ -223,3 +223,83 @@ O cartão seria um bom complemento para apresentar o faturamento total geral, ma
     ```
 
 - **De forma simplificada:** no Power Query, eu primeiro extraio apenas os dígitos da coluna; depois, adiciono uma coluna personalizada verificando se o número já começa com 55; se não começar, concateno "55". Por fim, uso as funções Text.Middle e Text.End para montar o formato final `5584XXXXXXXX`. Assim todos os telefones ficam padronizados independentemente do formato original.
+
+### 14. Explique como você modelaria e relacionaria as tabelas: `Vendas`, `Produtos`, `Clientes` e `Calendário`. Inclua: cardinalidade, direção do filtro e por que usar uma tabela calendário.
+
+- As tabelas `Produtos`, `Clientes` e `Calendário` devem ser modeladas como **tabelas dimensão**, pois cada uma possui um identificador único, como `id_produto`, `id_cliente` e `id_data`. Já a tabela `Vendas` atua como **tabela fato**, armazenando os registros transacionais. A relação entre as tabelas deve seguir o padrão:
+
+    - Produtos (1) → Vendas (*);
+
+    - Clientes (1) → Vendas (*);
+
+    - Calendário (1) → Vendas (*).
+
+- Ou seja, a **cardinalidade é `1:*` (um para muitos)**, pois cada produto, cliente ou data aparece uma única vez em sua respectiva dimensão. Na tabela de vendas, o mesmo produto, cliente ou data pode aparecer diversas vezes;
+
+- A **direção do filtro** deve ser **unidirecional**, partindo das tabelas dimensão (`Produtos`, `Clientes` e `Calendário`) para a tabela fato (`Vendas`). Esse padrão garante:
+
+    - Melhor performance do modelo;
+
+    - Menor risco de ambiguidade nos cálculos;
+
+    - Medidas DAX mais previsíveis e corretas.
+
+- A utilização de uma tabela `Calendário` é fundamental, pois ela permite:
+
+    - Análises temporais corretas (YTD, MTD, YoY, crescimento mensal);
+
+    - Criação de colunas derivadas como ano, mês, trimestre, semana, dia da semana;
+
+    - Uso adequado das funções de inteligência de tempo do DAX (TOTALYTD, SAMEPERIODLASTYEAR etc);
+
+    - Padronização das datas no modelo, evitando erros comuns quando se usa datas diretamente da tabela fato.
+
+### 15. O faturamento da empresa cresceu, mas o lucro caiu nos últimos 3 meses. Explique *3 hipóteses possíveis* e *quais métricas você analisaria no Power BI* para investigar o problema.
+
+- **Hipótese 1 — Queda na margem dos produtos vendidos (mix de produtos):** 
+
+    - O crescimento do faturamento pode estar vindo do aumento das vendas de produtos com margem menor, enquanto produtos mais lucrativos passaram a representar uma parcela menor das vendas. Assim, mesmo vendendo mais, a empresa lucra menos;
+    
+    - **Métricas a analisar no Power BI:**
+
+        - Margem bruta (lucro / faturamento); margem por produto; margem por categoria; faturamento por produto; quantidade vendida por produto.
+        
+    - **Visuais indicados:**
+
+        - Gráfico de barras: faturamento × lucro por produto;
+
+        - Gráfico de linhas: evolução da margem ao longo do tempo;
+
+        - Matriz: produto | faturamento | custo | lucro | margem.
+
+- **Hipótese 2 — Aumento dos custos operacionais ou de produção:** 
+
+    - Mesmo com aumento nas vendas, os custos (matéria-prima, logística, fornecedores, impostos ou custos operacionais) podem ter aumentado mais rápido que o faturamento, reduzindo o lucro;
+    
+    - **Métricas a analisar no Power BI:**
+
+        - Custo total; custo médio por produto; evolução dos custos ao longo do tempo; lucro operacional e lucro por produto.
+        
+    - **Visuais indicados:**
+
+        - Gráfico de linhas: custo × faturamento × lucro;
+
+        - Gráfico de barras empilhadas: composição dos custos;
+
+        - Tabela: produto | custo médio | lucro.
+
+- **Hipótese 3 — Aumento de descontos, promoções ou devoluções:** 
+
+    - O faturamento pode ter crescido devido ao aumento do volume de vendas impulsionado por promoções e descontos, porém isso reduz a margem de lucro. Além disso, um aumento nas devoluções ou cancelamentos impacta diretamente o lucro, mas nem sempre reduz o faturamento bruto;
+    
+    - **Métricas a analisar no Power BI:**
+
+        - Percentual médio de desconto; receita líquida vs receita bruta; taxa de devolução; lucro líquido e quantidade de vendas promocionais.
+        
+    - **Visuais indicados:**
+
+        - Gráfico de linhas: desconto médio ao longo do tempo;
+
+        - Gráfico de barras: vendas com desconto × sem desconto;
+
+        - KPI: taxa de devolução.
