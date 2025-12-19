@@ -41,8 +41,11 @@ Os capítulos seguem uma estrutura padrão. Cada pasta contém:
 
 - **`chapter12`** → Dashboard da unidade (`lab4.pbix`), dataset (`customers_dataset/customers.csv`) e roteiro (`lab_pratico_4_roteiro.txt`);
 
-- **`chapter13`** → Dashboard da unidade (`lab5.pbix`), dataset (`customers_dataset/customers.csv`) e roteiro (`lab_pratico_5_roteiro.txt`).
+- **`chapter13`** → Dashboard da unidade (`lab5.pbix`), dataset (`customers_dataset/customers.csv`) e roteiro (`lab_pratico_5_roteiro.txt`);
 
+- **`chapter14`** → Dataset (`dataset/db_dsa_cap14.db`), arquivo executável para demonstrar a conexão via ODBC (`DevartODBCSQLite.exe`) e roteiro (`lab_pratico_6_roteiro.txt`);
+
+- **`chapter15`** → Dataset (`dataset/db_dsa_cap15.db`) e descrição completa do conteúdo abordado na unidade (`overview.md`).
 
 ---
 
