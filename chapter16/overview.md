@@ -86,4 +86,32 @@
 
 ### Carregando os Dados
 
-- 
+- **Como esses dados podem ser obtidos?** Após a definição do problema de negócio, que pode partir da área de negócios, da equipe de TI ou de projetos, ou até mesmo do próprio analista/cientista de dados, que é convidado a compreender a demanda e auxiliar na formulação do problema, cabe ao analista buscar a matéria-prima do projeto. Esses dados podem ser obtidos, por exemplo, a partir de **bancos de dados internos da empresa**, planilhas ou sistemas de gestão de clientes (CRM/CLM), bem como de outros sistemas internos. Uma vez identificada a fonte, os dados são carregados e inicia-se o processo de análise;
+
+- Para o carregamento dos dados deste projeto, utilizou-se a **linguagem Python** no ambiente do **Jupyter Notebook**. Após a definição da linguagem, tornou-se necessário o uso de alguns pacotes, os quais já se encontram disponíveis após a instalação do **Anaconda**. Neste caso, foi utilizada a biblioteca **Pandas**, amplamente empregada para manipulação e análise de dados (frequentemente comparada ao Excel no contexto do Python), bem como a biblioteca **Scikit-learn (Sklearn)**, que é um dos principais frameworks de **Machine Learning** para a linguagem Python. Mais especificamente, utilizou-se o pacote `cluster`, com a função **KMeans**, responsável pelo algoritmo de aprendizado de máquina não supervisionado. Além disso, para possibilitar o treinamento adequado do modelo, foi necessário realizar o pré-processamento dos dados, utilizando o pacote `preprocessing` da Sklearn, que disponibiliza a função **StandardScaler**;
+
+- Uma dúvida recorrente é: *como sabemos quais pacotes devem ser utilizados?* A resposta está diretamente relacionada à definição do problema de negócio. A partir dela, o cientista ou analista de dados já consegue identificar a técnica a ser aplicada. Neste projeto, como o objetivo é o **agrupamento (segmentação)** de clientes, utiliza-se a técnica de **clusterização**, que, na nomenclatura de Machine Learning, corresponde ao algoritmo **KMeans**, um método de aprendizado **não supervisionado**;
+
+- Após a realização das importações necessárias, procedeu-se também ao carregamento da base de dados, conforme apresentado a seguir:
+
+```python
+
+    # Versão da Linguagem Python
+    from platform import python_version
+    print('Versão da Linguagem Python Usada Neste Jupyter Notebook:', python_version())
+
+    # Imports
+    import pandas as pd
+    from sklearn.cluster import KMeans
+    from sklearn.preprocessing import StandardScaler
+
+    # Carrega os dados
+    df_dsa = pd.read_csv('dataset/dados_clientes.csv')
+    type(df_dsa)
+
+    # Visualiza as 10 primeiras linhas
+    df_dsa.head(10)
+
+```
+
+---
