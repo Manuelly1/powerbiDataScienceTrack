@@ -208,8 +208,9 @@
 
 - Cada cliente é então atribuído ao cluster cujo centróide apresenta a menor distância. Após essa atribuição inicial, os centróides são recalculados com base na média dos pontos pertencentes a cada grupo. Esse processo de atribuição e atualização dos centróides se repete de forma iterativa até que não ocorram mais mudanças significativas nos agrupamentos, indicando a convergência do modelo;
 
-- Dessa forma, o K-Means consegue segmentar os clientes em grupos que apresentam características semelhantes entre si, garantindo maior coerência interna dentro de cada cluster e maior separação entre os diferentes grupos.
-**ATENÇÃO**: Para fazer a autenticação é necessário ter uma conta no Power BI Service, criada com e-mail de estudante ou corporativo. Caso você não tenha, apenas acompanhe as aulas e ao final mostraremos como abrir o relatório no Power BI  Desktop, que será fornecido ao final do capítulo.
+- Dessa forma, o K-Means consegue segmentar os clientes em grupos que apresentam características semelhantes entre si, garantindo maior coerência interna dentro de cada cluster e maior separação entre os diferentes grupos;
+
+- **ATENÇÃO**: Para fazer a autenticação é necessário ter uma conta no Power BI Service, criada com e-mail de estudante ou corporativo. Caso você não tenha, apenas acompanhe as aulas e ao final mostraremos como abrir o relatório no Power BI  Desktop, que será fornecido ao final do capítulo.
 
 ---
 
