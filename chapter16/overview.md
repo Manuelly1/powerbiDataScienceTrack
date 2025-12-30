@@ -213,3 +213,71 @@
 
 ---
 
+### Gerando Relatórios dos Segmentos de Clientes com Power BI no Jupyter Notebook
+
+- Antes de iniciar essa etapa, o professor ressaltou a necessidade de possuir uma conta no **Power BI Service**, criada obrigatoriamente com um e-mail institucional (de estudante ou corporativo), uma vez que e-mails pessoais não são aceitos. Essa conta permite o acesso gratuito à ferramenta por um período de 60 dias;
+
+- Em seguida, deu-se início ao procedimento no **Jupyter Notebook**. O primeiro passo foi a instalação do pacote `powerbiclient`, que possibilita a integração entre o Python e o Power BI, conforme apresentado abaixo:
+
+```python
+
+    # Instala o pacote  
+    !pip install -q powerbiclient
+
+```
+
+- O parâmetro `-q (quiet)` foi utilizado para que a instalação ocorresse de forma silenciosa, sem a exibição detalhada das mensagens de execução;
+
+- É importante destacar que o comando `pip` não é um comando da linguagem Python, mas sim um comando do sistema operacional. Por esse motivo, no ambiente do Jupyter Notebook, faz-se necessário o uso do caractere `!` no início do comando, indicando que ele deve ser executado no shell do sistema;
+
+- Após a instalação do pacote, foram importadas as funções necessárias para autenticação e geração dos relatórios no Power BI:
+
+```python
+
+    # Carrega as funções usadas para autenticar e gerar  relatórios
+    from powerbiclient import QuickVisualize, get_dataset_config, Report
+    from powerbiclient.authentication import DeviceCodeLoginAuthentication
+
+```
+
+- Neste projeto, foi utilizada a classe `QuickVisualize`, responsável por criar visualizações rápidas e automáticas, juntamente com a função `get_dataset_config`, que identifica o DataFrame a ser utilizado como base de dados. A classe `Report` foi importada para possíveis experimentações futuras com relatórios mais elaborados. Além disso, tornou-se necessária a autenticação no Power BI Service, realizada por meio da classe `DeviceCodeLoginAuthentication`, que permite a autenticação segura na plataforma em nuvem;
+
+- Para efetuar a autenticação, criou-se um objeto denominado `device_auth`, que recebe a função responsável pelo processo. Ao executar essa célula, o ambiente solicita que o usuário acesse um link informado no navegador e insira um código fornecido, concluindo assim a autenticação no Power BI Service;
+
+- Com a autenticação realizada, procedeu-se à geração do relatório utilizando o DataFrame previamente preparado e o objeto de autenticação criado, conforme apresentado a seguir:
+
+```python
+
+    # Define a autenticação no Power BI Service
+    device_auth = DeviceCodeLoginAuthentication()
+
+    # Cria o relatório no Power BI
+    relatorio_PBI = QuickVisualize(get_dataset_config(df_dsa), auth = device_auth)
+
+    # Renderiza (visualiza) o relatório
+    relatorio_PBI
+
+```
+
+- Após a execução das células, a visualização do relatório é gerada e renderizada diretamente no ambiente do Jupyter Notebook. Vale ressaltar que o Power BI cria as visualizações de forma automática, o que não garante, necessariamente, as melhores escolhas para a representação das informações. Dessa forma, ajustes manuais podem ser necessários em um cenário real.
+
+---
+
+### Publicando o Relatório do Power BI
+
+- No ambiente do **Power BI Service**, mais especificamente em **My workspace**, após clicar em `Save` no relatório gerado no Jupyter Notebook e atribuir um nome ao arquivo, o relatório passa a ser salvo na nuvem. Dessa forma, tanto o relatório quanto a respectiva fonte de dados ficam disponíveis no **My workspace**;
+
+- Ao acessar o relatório, observa-se que a visualização gerada automaticamente não se encontra, necessariamente, no formato mais adequado para apresentação à equipe de Marketing. Por esse motivo, torna-se necessária a edição do relatório no **Power BI Desktop**;
+
+- Para realizar essa edição, basta acessar o menu **File → Download this file**, realizar o download do arquivo e, em seguida, abri-lo no **Power BI Desktop**, onde é possível ajustar layouts, gráficos, filtros e demais elementos visuais, de modo a tornar o relatório mais claro, informativo e apropriado para entrega final.
+
+---
+
+### Editando o Relatório no Power BI Desktop
+
+- Nesta etapa, o trabalho passou a ser realizado localmente no **Power BI Desktop**. Inicialmente, o professor salvou o arquivo com um novo nome, `Lab7-Final`, com o objetivo de diferenciá-lo da versão original gerada no Jupyter Notebook, denominada `Lab7-JupyterNotebook`;
+
+- A partir desse ponto, o processo de edição ocorreu de forma semelhante às atividades desenvolvidas nas primeiras unidades da disciplina. Foram realizadas alterações em cada visualização, como a substituição de operações de soma por média, ajustes nos títulos dos gráficos, modificação dos tipos de visualização e refinamento da forma de apresentação dos dados, de modo a tornar o relatório mais claro, consistente e adequado para análise e tomada de decisão;
+
+- Com a conclusão dessas edições e ajustes visuais, o relatório foi considerado finalizado, estando pronto para publicação (disponível para usuários com conta vinculada a e-mail corporativo ou de estudante) e para entrega à equipe responsável. Após a publicação no **Power BI Service**, o compartilhamento é realizado por meio da opção **Share → Copy link**.
+
