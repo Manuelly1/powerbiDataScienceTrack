@@ -115,3 +115,101 @@
 ```
 
 ---
+
+### Análise Exploratória
+
+- Conforme orientado pelo professor, a primeira questão a ser levantada nesta etapa é: *“Os dados apresentam algum tipo de problema?”*. Para responder a essa pergunta, iniciou-se a **análise exploratória dos dados**, começando pela geração de um **resumo estatístico** de três variáveis de interesse: `idade`, `renda_anual` e `pontuacao_gastos`. Para isso, utilizou-se o método `describe`, que retorna uma tabela contendo estatísticas descritivas (essa etapa poderia ser feita no Power BI, conforme já visto em outra unidade);
+
+- Inicialmente, analisa-se o valor de `count`, que representa a quantidade de registros em cada coluna. Neste projeto, o número de linhas é o mesmo para as três variáveis, o que indica a ausência de valores nulos ou ausentes. Em seguida, são avaliadas as demais métricas estatísticas, como média, desvio padrão, valores mínimo e máximo, com o objetivo de verificar se os dados estão em conformidade ou se apresentam valores atípicos (**outliers**). No conjunto de dados analisado, não foram identificadas inconsistências ou valores fora do padrão esperado;
+
+- O resumo estatístico das variáveis selecionadas pode ser observado no trecho de código a seguir:
+
+```python
+
+    # Resumo estatístico
+    df_dsa[['idade', 'renda_anual', 'pontuacao_gastos']].describe()
+
+```
+
+---
+
+### Pré-Processamento dos Dados
+
+- Como não foram identificados problemas na etapa de análise exploratória, o próximo passo consiste no **pré-processamento dos dados**, que envolve a aplicação de técnicas necessárias para preparar os dados para a utilização do algoritmo de Machine Learning selecionado. Neste projeto, o algoritmo escolhido foi o **K-Means**, o qual possui como pré-requisito a utilização de dados padronizados;
+
+- A padronização é necessária porque o algoritmo K-Means é sensível à escala das variáveis, uma vez que utiliza medidas de distância para formar os agrupamentos. Dessa forma, variáveis em escalas diferentes poderiam influenciar de maneira desproporcional o resultado do modelo. Por esse motivo, torna-se fundamental que todas as variáveis de interesse estejam na mesma escala;
+
+- Para realizar esse procedimento, utilizou-se a classe `StandardScaler()` da biblioteca **Scikit-learn**, responsável por padronizar os dados de modo que apresentem média igual a zero e desvio padrão igual a um. Inicialmente, criou-se o padronizador e, em seguida, aplicou-se o método `fit_transform` apenas às variáveis de interesse (`idade`, `renda_anual` e `pontuacao_gastos`), resultando em um conjunto de dados pronto para a aplicação do algoritmo de clusterização;
+
+- O processo de padronização pode ser observado no trecho de código a seguir:
+
+```python
+
+    # Cria o padronizador dos dados
+    padronizador = StandardScaler()
+
+    # Aplica o padronizador somente nas colunas de interesse
+    dados_padronizados = padronizador.fit_transform(df_dsa[['idade', 'renda_anual', 'pontuacao_gastos']])
+
+    # Visualiza os dados padronizados
+    print(dados_padronizados)
+
+```
+
+- Essa etapa deve ser realizada em conformidade com os pré-requisitos do algoritmo selecionado para aplicação.
+
+---
+
+### Construção do Modelo de Machine Learning para Segmentação de Clientes
+
+- Conforme apresentado anteriormente, o algoritmo selecionado para a segmentação dos clientes foi o **K-Means**. Esse algoritmo possui alguns parâmetros que permitem controlar o seu comportamento durante o processo de aprendizado. Um dos principais parâmetros é o número de **clusters** (`k`), que indica ao algoritmo quantos grupos devem ser formados a partir dos dados;
+
+- No contexto do problema de negócio, foi solicitada a criação de **três grupos de clientes**, portanto definiu-se inicialmente `k = 3`. Entretanto, surge um questionamento importante: *três grupos são realmente suficientes para representar adequadamente a estrutura dos dados?*. Em cenários reais, recomenda-se realizar uma etapa prévia de validação para determinar o valor ideal de `k`, utilizando técnicas como o método do cotovelo (*elbow method*). Neste projeto específico, o valor de `k` foi previamente validado pelo professor. Contudo, no ambiente corporativo, cabe ao analista avaliar criticamente essa escolha e, se necessário, propor um valor diferente, devidamente justificado, mesmo que a demanda inicial indique outro número de grupos;
+
+- Com o valor de `k` definido, iniciou-se a construção do modelo por meio da criação do objeto responsável pela execução do algoritmo K-Means, conforme apresentado a seguir:
+
+```python
+
+    # Definimos o número de clusters (k)
+    k = 3
+
+    # Criamos o modelo K-means
+    kmeans = KMeans(n_clusters = k)
+
+```
+
+- Em seguida, o modelo foi treinado utilizando os **dados previamente padronizados**, etapa fundamental para que o algoritmo pudesse identificar padrões e similaridades entre os clientes:
+
+```python
+
+    # Treinamento do modelo com os dados padronizados
+    kmeans.fit(dados_padronizados)
+
+```
+
+- Após o treinamento, o modelo passou a possuir os agrupamentos definidos. Na sequência, os **rótulos dos clusters** gerados pelo algoritmo foram associados ao conjunto de dados original, criando-se uma nova variável denominada `cluster`, que indica a qual grupo cada cliente pertence. Por fim, os resultados foram visualizados e salvos em disco para posterior análise e geração de relatórios:
+
+```python
+
+    # Atribuímos os rótulos dos clusters aos clientes
+    df_dsa['cluster'] = kmeans.labels_
+
+    # Exibe o resultado (10 primeiras linhas)
+    df_dsa.head(10)
+
+    # Salvamos o resultado em disco
+    df_dsa.to_csv('dataset/segmentos.csv', index = False)
+
+```
+
+- Mas como o modelo chegou a esse resultado? Como os clusters foram definidos para cada cliente? Após o treinamento, os clientes passam a ser identificados por rótulos (0, 1 e 2), sendo que o objetivo do algoritmo é garantir a **maior similaridade possível entre os elementos de um mesmo grupo** e a **maior diferença entre grupos distintos**;
+
+- O algoritmo **K-Means** alcança esse resultado por meio de cálculos matemáticos baseados em medidas de distância. Inicialmente, o modelo define centróides (pontos centrais) para cada cluster. Em seguida, cada vetor de dados (ou seja, cada cliente representado pelas variáveis analisadas) tem sua distância calculada em relação a esses centróides, geralmente utilizando a **distância euclidiana**;
+
+- Cada cliente é então atribuído ao cluster cujo centróide apresenta a menor distância. Após essa atribuição inicial, os centróides são recalculados com base na média dos pontos pertencentes a cada grupo. Esse processo de atribuição e atualização dos centróides se repete de forma iterativa até que não ocorram mais mudanças significativas nos agrupamentos, indicando a convergência do modelo;
+
+- Dessa forma, o K-Means consegue segmentar os clientes em grupos que apresentam características semelhantes entre si, garantindo maior coerência interna dentro de cada cluster e maior separação entre os diferentes grupos.
+**ATENÇÃO**: Para fazer a autenticação é necessário ter uma conta no Power BI Service, criada com e-mail de estudante ou corporativo. Caso você não tenha, apenas acompanhe as aulas e ao final mostraremos como abrir o relatório no Power BI  Desktop, que será fornecido ao final do capítulo.
+
+---
+
