@@ -1,0 +1,13 @@
+Laboratório 8 - Detecção de Anomalias em Transações Financeiras com Linguagem R e Power BI
+
+Imagine que uma empresa da área financeira tenha dados históricos de clientes com duas transações financeiras (aqui chamadas de “transacao1” e 
+“transacao2”). Os gestores acreditam que algumas dessas transações possam ser fraudulentas e gostariam de identificar as eventuais anomalias. Os 
+gestores não fazem ideia do que seria uma anomalia e pediram sua ajuda para encontrar uma solução. De fato, eles não sabem se anomalias realmente 
+ocorreram.
+
+Usando dados fictícios usaremos Machine Learning para agrupar os dados de transações financeiras dos clientes e então detectar e definir as 
+anomalias (se existirem). O resultado deve ser entregue no formato visual através de gráficos no Power BI.
+
+
+
+
