@@ -33,3 +33,52 @@
     - **Monitoramento Ambiental:** Análise de dados meteorológicos e climáticos para identificar eventos extremos ou mudanças significativas nas condições ambientais. Monitoramento da qualidade do ar e da água para identificar poluição ou contaminação;
 
     - **Marketing e Vendas:** Análise de padrões de comportamento do consumidor para identificar segmentos de clientes incomuns ou oportunidades de mercado não exploradas. Identificação de atividades fraudulentas em campanhas publicitárias, como cliques falsos ou impressões.
+
+---
+
+## Visão Geral do Laboratório 8 – Detecção de Anomalias em Transações Financeiras com Linguagem R e Power BI
+
+- Inicialmente, após o download dos arquivos da unidade, o professor apresentou as bases de dados utilizadas no laboratório, começando pelo arquivo `dados_historicos.csv`. Esse arquivo contém duas colunas, `transacao1` e `transacao2`, em que cada linha representa um cliente que realizou duas transações em uma instituição financeira fictícia. Os gestores desconfiam que alguns clientes possam estar realizando transações consideradas fraudulentas e, por esse motivo, solicitaram o apoio do analista para investigar o cenário;
+
+- Diante desse contexto, surge o seguinte questionamento: **como o analista pode auxiliar na resolução desse tipo de problema?**. E, ainda, **como identificar transações que potencialmente caracterizam fraudes?**;
+
+- O ponto de partida consiste na busca por **anomalias (outliers)**, isto é, eventos que fogem do padrão observado no conjunto de dados. A partir da identificação dessas anomalias, os resultados são entregues aos gestores, possibilitando que a área de segurança da empresa realize uma investigação mais detalhada e avalie se tais registros correspondem, de fato, a fraudes ou tentativas suspeitas em transações financeiras;
+
+- É importante ressaltar que a presença de valores negativos nesse contexto financeiro não é, necessariamente, algo incomum. Além disso, uma análise manual da base de dados torna difícil a identificação de anomalias apenas “a olho nu”. Nesse sentido, destaca-se a importância da aplicação de técnicas de **Machine Learning**, que permitem varrer automaticamente o conjunto de dados e identificar registros que se desviam do padrão esperado. Com base nesses cálculos matemáticos, torna-se possível classificar e sinalizar potenciais anomalias;
+
+- O **Power BI** não é uma ferramenta voltada à construção de modelos de **Machine Learning**, razão pela qual ele não será utilizado nessa etapa de modelagem. Assim, optou-se pelo uso da **linguagem R** para a criação do modelo de detecção de anomalias. Após a construção do modelo, os resultados serão apresentados por meio de visualizações gráficas no Power BI;
+
+- Um dos gráficos que se deseja apresentar no relatório é o **boxplot**, o qual não é disponibilizado de forma nativa no Power BI. Para contornar essa limitação, será utilizada a funcionalidade **R Script Visual**, que permite a criação de gráficos personalizados diretamente em linguagem R dentro do ambiente do Power BI.
+
+---
+
+### Instalando R, RTools e RStudio no Windows
+
+- É importante destacar que esse processo também poderia ser realizado utilizando a linguagem Python. Porém, o professor optou por apresentar uma alternativa diferente. Conforme ressaltado em aula, as empresas buscam profissionais capazes de **resolver problemas**, e o conhecimento de um maior número de ferramentas contribui para que o analista se destaque no mercado de trabalho;
+
+- A linguagem **R** é uma linguagem estatística com características de linguagem de programação, amplamente utilizada em projetos de **Ciência de Dados**. Diferentemente do Python, que é uma linguagem de uso geral e possui bibliotecas voltadas à análise estatística, o R foi desenvolvido com um propósito específico: **realizar análises estatísticas**. Por esse motivo, trata-se de uma linguagem bastante poderosa e completa para esse tipo de aplicação;
+
+- Por se tratar de uma linguagem interpretada, é necessário instalar tanto o **interpretador da linguagem R** quanto um **ambiente de desenvolvimento integrado (IDE)**. Neste projeto, a IDE utilizada será o **RStudio**. Inicialmente, o professor apresentou o site oficial da linguagem R, disponível em `cran.r-project.org`, que funciona como repositório oficial. Ao acessar esse endereço, deve-se selecionar a opção **Download R for Windows**. Na interface seguinte, são apresentados diversos links, porém apenas dois são necessários: `base` e `RTools` (este último corresponde a um conjunto de ferramentas de compilação);
+
+- Ao clicar em `base`, o usuário é direcionado para uma nova interface que exibe a opção **Download R-4.5.2 for Windows**. Entretanto, essa versão não foi utilizada neste projeto por se tratar de uma versão mais recente, o que poderia gerar problemas de compatibilidade com outros pacotes. Assim, optou-se pelo caminho **Previous releases → R-4.2.3 → R-4.2.3-win.exe**. Essa versão foi escolhida por ser a versão estável imediatamente anterior à mais recente. O arquivo `.exe` corresponde ao interpretador da linguagem R;
+
+- Para a instalação do **RTools**, seguiu-se o caminho **RTools → RTools 4.2 → RTools42 installer**, versão compatível com o R-4.2.3. O RTools é necessário porque a linguagem R foi desenvolvida em **C**, e a instalação de determinados pacotes exige a compilação de código-fonte. Como a linguagem C é compilada, faz-se necessário um compilador, que é fornecido pelo RTools. Em sistemas **macOS** e **Linux**, essa etapa não é necessária, pois esses sistemas operacionais já incluem compiladores nativos;
+
+- Outra instalação essencial refere-se à IDE utilizada para o desenvolvimento dos scripts: o **RStudio**. Para isso, acessa-se o site `posit.co`, seleciona-se a opção **Download RStudio** e, em seguida, **RStudio Desktop (Download)**;
+
+- Após a realização do download dos três arquivos (**R**, **RTools** e **RStudio**), procede-se à instalação de cada um deles, seguindo as instruções padrão do instalador. Inicialmente, realiza-se a instalação do interpretador da linguagem R (`R-4.2.3-win.exe`); em seguida, efetua-se a instalação do **RTools**; e, por fim, conclui-se o processo com a instalação do **RStudio**.
+
+---
+
+### Customizando o RStudio
+
+- Inicialmente, o professor realizou a customização dos painéis do **RStudio**. Para isso, acessou o caminho **Tools → Global Options → Pane Layout**. Nessa etapa, foram selecionadas as opções `Console` e `Source` para o painel do lado esquerdo e, no painel do lado direito, as opções `Environment` e `Files`. Após realizar essas configurações, as alterações foram aplicadas;
+
+- Em seguida, foi realizada a configuração do diretório de trabalho padrão. Para isso, acessou-se o menu **Tools → Global Options → General**. No campo **Default working directory**, o valor padrão era `~`, que representa o diretório *home* da máquina. Contudo, esse caminho foi alterado para apontar diretamente para o diretório de trabalho do projeto, onde se encontram os arquivos do curso, mais especificamente a pasta `cap17`, que contém os arquivos utilizados neste laboratório. Para isso, utilizou-se a opção **Browse**, selecionou-se a pasta desejada e, em seguida, clicou-se em **Apply** e **OK**;
+
+- Após essas configurações, o RStudio foi fechado e aberto novamente para garantir que as alterações fossem reconhecidas corretamente. Caso haja dúvida se o diretório foi configurado de forma adequada, pode-se utilizar o comando `getwd()` para verificar o diretório de trabalho atual.
+
+---
+
+### Instalando Pacotes R para Detecção de Anomalias, Manipulação e Visualização de Dados
+
