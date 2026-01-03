@@ -304,7 +304,9 @@ O cartão seria um bom complemento para apresentar o faturamento total geral, ma
 
         - KPI: taxa de devolução.
 
-### 16. Escolha de gráfico. Você tem uma base de vendas com as seguintes colunas: `Data`, `Produto`, `Categoria`, `Região`e `Valor da Venda`. Objetivo do negócio: analisar a evolução do faturamento ao longo do tempo, comparando as regiões. Qual visual você escolheria no Power BI?
+### 16. Escolha de gráfico. Você tem uma base de vendas com as seguintes colunas: `Data`, `Produto`, `Categoria`, `Região`e `Valor da Venda`. Objetivo do negócio: analisar a evolução do faturamento ao longo do tempo, comparando as regiões. 
+
+#### Qual visual você escolheria no Power BI?
 
 - O visual escolhido seria um **gráfico de linhas**, pois é o melhor visual para acompanhar evolução ao longo do tempo e identificar tendências. Usaria a métrica: 
 
@@ -322,7 +324,9 @@ O cartão seria um bom complemento para apresentar o faturamento total geral, ma
 
     - Análise clara para tomada de decisão.
 
-### 17. Você tem uma base com: `Data`, `Vendedor`, `Região`, `Meta Mensal` e `Valor da Venda`. Objetivo do negócio: a diretoria quer acompanhar rapidamente se o faturamento mensal está acima ou abaixo da meta, sem precisar analisar gráficos complexos. Qual visual do Power BI é o mais adequado para isso? Qual métrica principal você criaria em DAX? Se a diretoria quiser um indicador visual de desempenho (ex: verde, amarelo, vermelho), o que você usaria?
+### 17. Você tem uma base com: `Data`, `Vendedor`, `Região`, `Meta Mensal` e `Valor da Venda`. Objetivo do negócio: a diretoria quer acompanhar rapidamente se o faturamento mensal está acima ou abaixo da meta, sem precisar analisar gráficos complexos. 
+
+#### Qual visual do Power BI é o mais adequado para isso? Qual métrica principal você criaria em DAX? Se a diretoria quiser um indicador visual de desempenho (ex: verde, amarelo, vermelho), o que você usaria?
 
 - Para este caso, o mais indicado seria o uso de cartão, uma vez que a diretoria quer algo que seja de rápido acompanhamento e sem precisar analisar gráficos complexos, o cartão permite essa entrega. A métrica principal é a de faturamento, mas também há outras 2 métricas importantes, que permitem verificar se o faturamento ficou acima ou abaixo da meta:
 
@@ -352,7 +356,9 @@ O cartão seria um bom complemento para apresentar o faturamento total geral, ma
 
 - Depois: aplicar formatação condicional ou usar o visual de KPI, que já suporta cores e metas. 
 
-### 18. Segmentação, comparação e erro comum. Você tem uma base com: `Data`, `Produto`, `Categoria`, `Região` e `Valor da Venda`. Objetivo do negócio: comparar o faturamento por categoria, permitindo que o gestor filtre por região e identifique rapidamente qual categoria vende mais. Qual é o visual mais adequado para mostrar essa comparação? Qual recurso do Power BI você usaria para permitir o filtro por região? O gestor seleciona uma região específica, mas o total geral do faturamento não muda. Cite uma possível causa e como resolver.
+### 18. Segmentação, comparação e erro comum. Você tem uma base com: `Data`, `Produto`, `Categoria`, `Região` e `Valor da Venda`. Objetivo do negócio: comparar o faturamento por categoria, permitindo que o gestor filtre por região e identifique rapidamente qual categoria vende mais. 
+
+#### Qual é o visual mais adequado para mostrar essa comparação? Qual recurso do Power BI você usaria para permitir o filtro por região? O gestor seleciona uma região específica, mas o total geral do faturamento não muda. Cite uma possível causa e como resolver.
 
 - Para este caso, o visual mais adequado é o de **gráfico de barras**, pois ele é o mais indicado para comparar valores entre categorias, uma vez que facilita a identificação visual de qual categoria apresenta maior ou menor faturamento;
 
@@ -384,7 +390,9 @@ O cartão seria um bom complemento para apresentar o faturamento total geral, ma
     
     - Conferir os relacionamentos entre as tabelas no modelo de dados.
 
-### 19. DAX, contexto e comparação. Você tem uma base com: `Data`, `Produto`, `Categoria`, `Região` e `Valor da Venda`. Objetivo do negócio: mostrar o faturamento por categoria, mas também exibir quanto cada categoria representa em relação ao faturamento total, independente dos filtros de categoria, respeitando apenas filtros de data e região. Qual visual é mais adequado para mostrar: o faturamento por categoria e sua representatividade (%)? Você já tem a medida: `Faturamento = SUM('Vendas'[Valor da Venda])`, como você criaria a medida `Percentual sobre o Total`, garantindo que: o filtro de `Categoria` seja ignorado e os filtros de `Data` e `Região` sejam respeitados? Situação: o percentual está aparecendo como 100% para todas as categorias. Qual é a causa mais provável?
+### 19. DAX, contexto e comparação. Você tem uma base com: `Data`, `Produto`, `Categoria`, `Região` e `Valor da Venda`. Objetivo do negócio: mostrar o faturamento por categoria, mas também exibir quanto cada categoria representa em relação ao faturamento total, independente dos filtros de categoria, respeitando apenas filtros de data e região. 
+
+#### Qual visual é mais adequado para mostrar: o faturamento por categoria e sua representatividade (%)? Você já tem a medida: `Faturamento = SUM('Vendas'[Valor da Venda])`, como você criaria a medida `Percentual sobre o Total`, garantindo que: o filtro de `Categoria` seja ignorado e os filtros de `Data` e `Região` sejam respeitados? Situação: o percentual está aparecendo como 100% para todas as categorias, qual é a causa mais provável?
 
 - O visual mais adequado é o **gráfico de barras**, pois ele permite comparar valores absolutos e percentuais com mais clareza, já o de pizza só é recomendado quando há poucas categorias, pois perde legibilidade com muitos segmentos;  
 
@@ -399,7 +407,7 @@ O cartão seria um bom complemento para apresentar o faturamento total geral, ma
 
 - `ALL('Vendas'[Categoria])` remove apenas o filtro de `Categoria`, enquanto os filtros de `Data` e `Região` continuam ativos no contexto;
 
-- **Percentual aparecendo como 100% para todas as categorias:** Causa mais provável:
+- **Percentual aparecendo como 100% para todas as categorias:** Possíveis causas:
 
     - O filtro de categoria não foi removido corretamente;
     
@@ -407,11 +415,26 @@ O cartão seria um bom complemento para apresentar o faturamento total geral, ma
 
     - Ou uso incorreto de `ALL('Vendas')`, que finda removendo todos os filtros, inclusive os que deveriam ser respeitados;
 
-    - Como evitar esse erro: remover apenas o filtro necessário (`Categoria`); manter os demais filtros (`Data` e `Região`) e usar `CALCULATE` corretamente.
+    - **Como evitar esse erro:** remover apenas o filtro necessário (`Categoria`); manter os demais filtros (`Data` e `Região`) e usar `CALCULATE` corretamente.
 
-### 20. Modelo de dados e relacionamento.
+### 20. Modelo de dados e relacionamento. Você tem duas tabelas: `Vendas`(`IdVenda`, `Data`, `IdProduto`, `Quantidade` e `Valor da Venda`) e `Produtos`(`IdProduto`, `Produto` e `Categoria`). Objetivo do negócio: criar um relatório que mostre faturamento por **Categoria** e permita filtrar por **Produto**.
 
+#### Qual deve ser o **tipo de relacionamento** entre `Vendas` e `Produtos`? Em qual **direção de filtro** o relacionamento deve ser configurado?Situação-problema: mesmo após criar o relacionamento, ao colocar **Categoria** em um gráfico e **Faturamento** como valor, o gráfico não exibe dados. Cite **uma causa possível** para isso.
 
+- O tipo de relacionamento é `1.*` (um para muitos). Justificativa: a tabela **Produtos** possui `IdProduto` único (chave primária), já a tabela **Vendas** pode conter várias linhas com o mesmo `IdProduto`. Logo, o relacionamento correto é **Produtos (1) → Vendas (N)**;
 
+- **Direção do filtro:** **Produtos → Vendas**, essa configuração permite agrupar faturamento por categoria e filtrar vendas por produto corretamente;
 
+- **Quanto à situação-problema:** possíveis causas:
 
+    - O relacionamento está **inativo**;
+
+    - O campo `IdProduto` possui **valores divergentes** entre as tabelas;
+
+    - O relacionamento foi criado com a **direção errada**;
+
+    - A cardinalidade foi configurada incorretamente;
+
+    - O campo utilizado no visual não pertence à tabela correta;
+
+    - **Como verificar:** conferir se o relacionamento está **ativo**; validar chaves primárias e estrangeiras; revisar cardinalidade e direção do filtro; conferir o modelo no **Gerenciador de Relacionamentos**.
