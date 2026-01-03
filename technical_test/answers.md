@@ -353,3 +353,65 @@ O cartão seria um bom complemento para apresentar o faturamento total geral, ma
 - Depois: aplicar formatação condicional ou usar o visual de KPI, que já suporta cores e metas. 
 
 ### 18. Segmentação, comparação e erro comum. Você tem uma base com: `Data`, `Produto`, `Categoria`, `Região` e `Valor da Venda`. Objetivo do negócio: comparar o faturamento por categoria, permitindo que o gestor filtre por região e identifique rapidamente qual categoria vende mais. Qual é o visual mais adequado para mostrar essa comparação? Qual recurso do Power BI você usaria para permitir o filtro por região? O gestor seleciona uma região específica, mas o total geral do faturamento não muda. Cite uma possível causa e como resolver.
+
+- Para este caso, o visual mais adequado é o de **gráfico de barras**, pois ele é o mais indicado para comparar valores entre categorias, uma vez que facilita a identificação visual de qual categoria apresenta maior ou menor faturamento;
+
+- **Configuração sugerida:**
+
+    - **Eixo:** Categoria;
+
+    - **Valores:** Faturamento;
+    
+    - **Legenda (opcional):** Região.
+
+- Recurso para filtrar por região: **segmentação de dados (Slicer)**, pois permite que o gestor aplique filtros de forma intuitiva e visual, sem necessidade de acessar o painel de filtros, sendo considerada boa prática em dashboards gerenciais;
+
+- **Por que o total não muda ao filtrar por região?** Há algumas possíveis causas:
+
+    - A segmentação de dados não está interagindo com o visual;
+    
+    - As interações entre visuais foram desativadas;
+    
+    - A medida utiliza funções que removem filtros (ex: `ALL()` ou `REMOVEFILTERS()`);
+    
+    - Problema de relacionamento entre as tabelas.
+
+- Como resolver:
+
+    - Utilizar a opção **Editar interações** e garantir que o slicer afete todos os visuais;
+    
+    - Revisar a medida DAX para garantir que não esteja removendo o contexto de filtro;
+    
+    - Conferir os relacionamentos entre as tabelas no modelo de dados.
+
+### 19. DAX, contexto e comparação. Você tem uma base com: `Data`, `Produto`, `Categoria`, `Região` e `Valor da Venda`. Objetivo do negócio: mostrar o faturamento por categoria, mas também exibir quanto cada categoria representa em relação ao faturamento total, independente dos filtros de categoria, respeitando apenas filtros de data e região. Qual visual é mais adequado para mostrar: o faturamento por categoria e sua representatividade (%)? Você já tem a medida: `Faturamento = SUM('Vendas'[Valor da Venda])`, como você criaria a medida `Percentual sobre o Total`, garantindo que: o filtro de `Categoria` seja ignorado e os filtros de `Data` e `Região` sejam respeitados? Situação: o percentual está aparecendo como 100% para todas as categorias. Qual é a causa mais provável?
+
+- O visual mais adequado é o **gráfico de barras**, pois ele permite comparar valores absolutos e percentuais com mais clareza, já o de pizza só é recomendado quando há poucas categorias, pois perde legibilidade com muitos segmentos;  
+
+- Medida `Percentual sobre o Total`: 
+
+```dax
+
+    Percentual sobre o Total =
+        DIVIDE([Faturamento], CALCULATE([Faturamento], ALL('Vendas'[Categoria])))
+
+```
+
+- `ALL('Vendas'[Categoria])` remove apenas o filtro de `Categoria`, enquanto os filtros de `Data` e `Região` continuam ativos no contexto;
+
+- **Percentual aparecendo como 100% para todas as categorias:** Causa mais provável:
+
+    - O filtro de categoria não foi removido corretamente;
+    
+    - Ou o denominador está sendo calculado no mesmo contexto da categoria (ex: `DIVIDE([Faturamento], [Faturamento])`);
+
+    - Ou uso incorreto de `ALL('Vendas')`, que finda removendo todos os filtros, inclusive os que deveriam ser respeitados;
+
+    - Como evitar esse erro: remover apenas o filtro necessário (`Categoria`); manter os demais filtros (`Data` e `Região`) e usar `CALCULATE` corretamente.
+
+### 20. Modelo de dados e relacionamento.
+
+
+
+
+
