@@ -82,3 +82,4 @@
 
 ### Instalando Pacotes R para Detecção de Anomalias, Manipulação e Visualização de Dados
 
+- 

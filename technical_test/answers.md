@@ -303,3 +303,53 @@ O cartão seria um bom complemento para apresentar o faturamento total geral, ma
         - Gráfico de barras: vendas com desconto × sem desconto;
 
         - KPI: taxa de devolução.
+
+### 16. Escolha de gráfico. Você tem uma base de vendas com as seguintes colunas: `Data`, `Produto`, `Categoria`, `Região`e `Valor da Venda`. Objetivo do negócio: analisar a evolução do faturamento ao longo do tempo, comparando as regiões. Qual visual você escolheria no Power BI?
+
+- O visual escolhido seria um **gráfico de linhas**, pois é o melhor visual para acompanhar evolução ao longo do tempo e identificar tendências. Usaria a métrica: 
+
+```dax
+
+    Faturamento = SUM('Vendas'[Valor da Venda])
+
+```
+
+- No eixo X: `Data` e no eixo Y: `Faturamento`, além disso, em legenda colocaria `Região`. Isso permite:
+
+    - Comparar regiões;
+
+    - Ver crescimento/queda ao longo do tempo;
+
+    - Análise clara para tomada de decisão.
+
+### 17. Você tem uma base com: `Data`, `Vendedor`, `Região`, `Meta Mensal` e `Valor da Venda`. Objetivo do negócio: a diretoria quer acompanhar rapidamente se o faturamento mensal está acima ou abaixo da meta, sem precisar analisar gráficos complexos. Qual visual do Power BI é o mais adequado para isso? Qual métrica principal você criaria em DAX? Se a diretoria quiser um indicador visual de desempenho (ex: verde, amarelo, vermelho), o que você usaria?
+
+- Para este caso, o mais indicado seria o uso de cartão, uma vez que a diretoria quer algo que seja de rápido acompanhamento e sem precisar analisar gráficos complexos, o cartão permite essa entrega. A métrica principal é a de faturamento, mas também há outras 2 métricas importantes, que permitem verificar se o faturamento ficou acima ou abaixo da meta:
+
+```dax
+
+    Faturamento = SUM('Vendas'[Valor da Venda])
+
+    Meta Total = SUM('Vendas'[Meta Mensal])
+
+    Atingimento da Meta (%) = DIVIDE([Faturamento], [Meta Total])
+
+```
+
+- Quanto ao indicador visual: pode-se usar KPI ou Formatação Condicional baseada em medida. Exemplo:
+
+```dax
+
+    Status Meta =
+        SWITCH(
+            TRUE(),
+            [Atingimento da Meta (%)] >= 1, "Acima da Meta",
+            [Atingimento da Meta (%)] >= 0.9, "Próximo da Meta",
+            "Abaixo da Meta"
+        )
+
+```
+
+- Depois: aplicar formatação condicional ou usar o visual de KPI, que já suporta cores e metas. 
+
+### 18. Segmentação, comparação e erro comum. Você tem uma base com: `Data`, `Produto`, `Categoria`, `Região` e `Valor da Venda`. Objetivo do negócio: comparar o faturamento por categoria, permitindo que o gestor filtre por região e identifique rapidamente qual categoria vende mais. Qual é o visual mais adequado para mostrar essa comparação? Qual recurso do Power BI você usaria para permitir o filtro por região? O gestor seleciona uma região específica, mas o total geral do faturamento não muda. Cite uma possível causa e como resolver.
