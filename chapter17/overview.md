@@ -94,4 +94,46 @@
 
 --- 
 
-### Carregando Dados Históricos com Linguagem R 
+### Carregando Dados Históricos com Linguagem R
+
+- Depois do carregamento dos pacotes, foi executada a linha de código responsável pelo carregamento da base de dados e, em seguida, a linha de visualização. Com isso, foi possível observar a base `dados_historicos_dsa`.
+
+---
+
+### Aprendizado Não Supervisionado para Detecção de Anomalias
+
+- Existem duas possibilidades em *Machine Learning*: trabalhar com aprendizado supervisionado ou não supervisionado. Contudo, para utilizar o aprendizado supervisionado, seria necessário acrescentar uma nova coluna à base de dados que indicasse se cada registro representava ou não uma fraude/anomalia. Para isso, ao analisar a base de dados históricos, um especialista deveria avaliar, por exemplo, se a primeira linha correspondeu a uma fraude ou a uma anomalia. Em seguida, o especialista indicaria “sim” ou “não”, preenchendo essa terceira coluna. Esse processo é conhecido como **etiquetagem** e é necessário quando se deseja utilizar aprendizado supervisionado. Esse procedimento pode ser automatizado, desde que o analista conheça a regra que define uma anomalia, ou seja, se alguém do time de negócio consegue responder à pergunta: *“O que define uma anomalia?”*. A partir dessa definição, a regra é incorporada ao algoritmo, criando-se a coluna de saída, tendo `transacao1` e `transacao2` como dados de entrada e a terceira coluna como dado de saída;
+
+- Para este projeto, o procedimento de etiquetagem não foi realizado. Dessa forma, aplicou-se o **aprendizado não supervisionado**. Nesse caso, os dados foram fornecidos ao algoritmo, que buscou identificar padrões existentes na base. A partir desses padrões, o algoritmo passou a identificar os registros que se encontravam fora do comportamento esperado. Para isso, os dados foram agrupados por meio de técnicas estatísticas, e aquilo que ficou fora do padrão foi considerado como uma possível anomalia, ficando a validação final sob responsabilidade do analista. Essa abordagem é indicada quando se dispõe apenas de dados de entrada e não há regras previamente definidas;
+
+- O algoritmo escolhido foi o **Isolation Forest**, disponibilizado no pacote `solitude`.
+
+---
+
+### Construindo o Modelo de Machine Learning para Detecção de Anomalias
+
+- Inicialmente, o professor pontuou que algumas etapas foram adiantadas, uma vez que os dados já estavam devidamente formatados. Dessa forma, não se fez necessária a limpeza e manipulação prévia da base de dados;
+
+- Para a **criação do modelo**, o procedimento seguiu o mesmo padrão das etapas anteriores: selecionou-se a linha de código e clicou-se em `Run`. O comando executado foi:
+
+```r
+
+    modelo_ml_dsa = isolationForest$new() 
+
+```
+
+- Esse comando chama o objeto `isolationForest` e o método `new`, responsável por instanciar o modelo, cujo resultado foi armazenado na variável `modelo_ml_dsa`;
+
+- Após a criação do modelo, realizou-se a etapa de **treinamento**. Para isso, foi executado o seguinte comando:
+
+```r
+
+    modelo_ml_dsa$fit(dados_historicos_dsa)
+
+```
+
+- Para o treinamento, foi chamado o método `fit`, indicando que o modelo seria ajustado utilizando os dados históricos previamente carregados. Durante esse processo, o algoritmo “varreu” a base de dados em busca de padrões de similaridade, formando grupos com características semelhantes. Dentro de cada grupo, foram calculadas as similaridades internas entre os pontos de dados. Em seguida, o algoritmo avaliou todos os registros e identificou como anomalias aqueles que se encontravam mais distantes do centro de seus respectivos grupos.
+
+---
+
+### Fazendo Previsões com o Modelo de Detecção de Anomalias
