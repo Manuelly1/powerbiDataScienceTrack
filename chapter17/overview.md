@@ -80,6 +80,18 @@
 
 ---
 
-### Instalando Pacotes R para Detecção de Anomalias, Manipulação e Visualização de Dados
+### Instalação de Pacotes R para Detecção de Anomalias, Manipulação e Visualização de Dados
 
-- 
+- Inicialmente, o professor orientou que cada aluno verificasse, no **Power BI**, se a versão da linguagem R estava corretamente instalada. Para isso, acessou-se o caminho **Arquivo → Opções e Configurações → Script R**. Após a confirmação da versão instalada, a ferramenta foi fechada e o foco passou a ser a construção do modelo de *Machine Learning* na ferramenta **RStudio**;
+
+- Como a configuração da pasta já havia sido realizada em uma etapa anterior, neste momento o professor acessou a opção **Files**, que abriu o painel de arquivos. Em seguida, foi selecionado o arquivo **`Lab8.R`**, que continha o script a ser trabalhado;
+
+- O **RStudio** não reconheceu corretamente algumas palavras. Para corrigir esse problema, seguiram-se os seguintes passos: **Tools → Global Options → Spelling**. Nessa tela, foram desmarcadas todas as opções relacionadas a **Ignore** e **Checking**, desativando, assim, as verificações ortográficas;
+
+- Para a instalação dos pacotes, o procedimento foi realizado de forma manual. Na linguagem R, esse processo precisou ser executado **linha por linha**. Ou seja, selecionou-se a linha de código desejada e clicou-se no botão **Run**, que executou o comando e exibiu o resultado. Esse procedimento foi repetido para cada pacote. Vale ressaltar que foi necessário ter **acesso à internet** para que a instalação fosse concluída com sucesso;
+
+- Após a instalação, fez-se necessário o **carregamento dos pacotes**. Para isso, foram selecionados todos os comandos que iniciavam com `library` e, em seguida, clicou-se em **Run**.
+
+--- 
+
+### Carregando Dados Históricos com Linguagem R 
