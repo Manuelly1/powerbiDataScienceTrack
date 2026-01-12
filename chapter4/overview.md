@@ -6,7 +6,7 @@
 
 - Existem muitos indicadores de marketing que as empresas podem usar para medir o sucesso de suas estratégias e campanhas, como:
 
-    - **Taxa de conversação:** A proporção de visitantes do site que realizam uma ação desejada, como comprar um produto ou preencher um formulário de contato;
+    - **Taxa de conversão:** A proporção de visitantes do site que realizam uma ação desejada, como comprar um produto ou preencher um formulário de contato;
 
     - **Taxa de retenção do cliente:** A proporção de clientes que compram de uma empresa novamente;
 
