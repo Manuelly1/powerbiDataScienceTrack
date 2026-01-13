@@ -165,4 +165,3 @@
 
 ---
 
-### Definindo o Score de Anomalia
