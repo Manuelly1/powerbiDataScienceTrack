@@ -221,7 +221,106 @@
 
 ### Aplicando o Modelo de Detecção de Anomalias a Novos Dados
 
+- O professor simulou os mesmos passos realizados anteriormente, agora aplicados a um novo conjunto de dados. Para isso, todo o procedimento foi novamente executado no **RStudio**, desde o carregamento dos dados até a geração do gráfico de visualização;
+
+- Ao analisar o resultado, observou-se que alguns registros considerados normais ficaram visualmente afastados do grupo principal. Com isso, o professor destacou que nenhum algoritmo é perfeito e que, mesmo apresentando bom desempenho, todo modelo de *Machine Learning* está sujeito a falhas, reforçando a importância da análise crítica dos resultados e do conhecimento de domínio na interpretação das anomalias identificadas.
+
+---
+
+### Analisando as Anomalias com Box Plot em Linguagem R
+
+- Inicialmente, o professor destacou que a coluna `anomaly_score` do novo conjunto de dados apresentava valores com muitas casas decimais. Como esse formato não é adequado para a apresentação dos resultados, foi necessário realizar um pré-processamento para melhorar a legibilidade das informações;
+
+- Para isso, foi aplicado um arredondamento dos valores da coluna `anomaly_score` para duas casas decimais, garantindo uma apresentação mais clara e adequada para análise e entrega dos resultados. O procedimento foi realizado conforme o script a seguir:
+
+```r
+
+    # Arredondando a coluna 'anomaly_score' para 2 casas decimais
+    previsoes_novos_dados <- previsoes_novos_dados %>%
+    mutate(anomaly_score = round(anomaly_score, 2))
+
+```
+
+- Em seguida, foi criada uma nova coluna denominada `status`, responsável por classificar cada registro como **anomalia** ou **normal**, com base no valor do `anomaly_score`;
+
+- Para isso, utilizou-se a função `ifelse`, que avalia a condição definida: quando o `anomaly_score` é maior que **0,62**, o registro é classificado como *anomalia*; caso contrário, é considerado *normal*. Esse procedimento permite transformar o *score* numérico em uma classificação categórica, facilitando a interpretação e a análise dos resultados. O script utilizado foi o seguinte:
+
+```r
+
+    # Criando uma nova coluna com base na condição
+    previsoes_novos_dados <- previsoes_novos_dados %>%
+    mutate(status = ifelse(anomaly_score > 0.62, "anomalia", "normal"))
+
+```
+
+- Posteriormente, criou-se o **box plot**:
+
+```r
+
+    # Criando o box plot
+    ggplot(previsoes_novos_dados, aes(x = status, y = anomaly_score, fill = status)) +
+    geom_boxplot() +
+    labs(title = "Box Plot de Anomalias e Normais",
+        x = "Status",
+        y = "Anomaly Score") +
+    theme_minimal() +
+    scale_fill_manual(values = c("anomalia" = "red", "normal" = "blue")) +
+    theme(legend.position = "none")
+
+    # Salva em disco
+    write.csv(previsoes_novos_dados, "previsoes_novos_dados.csv")
+
+```
+
+- Após a geração do box plot, foi possível observar que os registros classificados como normais apresentaram valores de *anomaly score* que se estendem até aproximadamente **0,62**, além de dois pontos discrepantes (*outliers*). Isso sugere que o ponto de corte adotado pode não ser o mais adequado para este conjunto de dados, indicando que um valor menor, como **0,60**, poderia ser mais apropriado. Em relação às anomalias, observou-se que a maioria dos registros apresentou *scores* em torno de **0,65**, o que reforça a separação entre comportamentos normais e anômalos. Com base nessa análise, o critério de filtragem poderia ser ajustado para melhorar a precisão da classificação;
+
+- Em seguida, os resultados foram salvos em disco, permitindo o armazenamento e o uso posterior dos dados processados;
+
+- Contudo, o projeto não pode ser entregue à empresa exatamente dessa forma. Dessa maneira, torna-se necessário reproduzir o box plot no **Power BI**, uma vez que a ferramenta não oferece esse tipo de visualização de forma nativa, exigindo adaptações ou abordagens alternativas para a apresentação dos resultados.
+
+---
+
+### Analisando as Anomalias com Box Plot no Power BI
+
+- No Power BI, o conjunto de dados `previsoes_novos_dados.csv` foi carregado. Todavia, já nesse momento surgiu um problema: a ferramenta não reconheceu corretamente os valores decimais da coluna `anomaly_score`. Para corrigir isso, durante o carregamento, o professor orientou a selecionar a opção **“Detecção de tipo de dados → Não detectar tipos de dados”**. Após essa correção, identificou-se um novo problema: o cabeçalho do arquivo não foi reconhecido. Para resolvê-lo, foi necessário acessar o **Power Query** e utilizar a opção **“Usar a primeira linha como cabeçalho”**. Contudo, ao realizar esse procedimento, a coluna `anomaly_score` voltou a apresentar o problema de tipagem. Nesse caso, bastou remover a etapa **“Tipo alterado”**, que foi criada automaticamente logo após **“Cabeçalhos promovidos”**;
+
+- Para facilitar a visualização inicial dos dados, o professor inseriu um gráfico de barras, utilizando `status` no eixo X e `anomaly_score` no eixo Y, o que resultou na contagem dos *scores* de anomalia por status. Entretanto, o objetivo principal era a construção de um **box plot**. Como esse tipo de gráfico não é disponibilizado de forma nativa no Power BI, o professor recomendou o uso da funcionalidade **Script R**, que permite inserir código em `ggplot2` e exibir o gráfico diretamente no relatório;
+
+- Antes de utilizar o Script R, foi necessário realizar um ajuste adicional nos dados. Durante a construção do box plot, são calculadas estatísticas descritivas sobre a coluna `anomaly_score` (enquanto `status` é uma variável categórica), o que exige que `anomaly_score` esteja no formato numérico. No **Power Query**, observou-se que essa coluna estava definida como tipo **ABC** (texto). Nesse formato, é possível apenas realizar contagens, mas não cálculos estatísticos, como média ou quartis;
+
+- Para corrigir isso, ao clicar no tipo de dado da coluna, selecionou-se a opção **“Usando a localidade”**, alterando o tipo para **“Número decimal”** e a localidade para **“Inglês (Estados Unidos)”**. Após aplicar as alterações, retornou-se ao relatório e selecionou-se a visualização **Script R**. Em seguida, os campos `status` e `anomaly_score` foram selecionados para compor o gráfico. Posteriormente, o script utilizado no RStudio foi copiado e colado no Script R do Power BI. Ao executar o código, surgiu um novo erro informando que o objeto `previsoes_novos_dados` não foi encontrado. Para solucionar esse problema, foi necessário substituir o nome do *data frame* pelo nome padrão utilizado pelo Power BI para scripts em R, que é `dataset`;
 
 
+```r
+
+    # O código a seguir para criar um dataframe e remover as linhas duplicadas sempre é executado e age como um preâmbulo para o script: 
+
+    # dataset <- data.frame(status, anomaly_score)
+    # dataset <- unique(dataset)
+
+    # Cole ou digite aqui seu código de script:
+
+    library(ggplot2)
+
+    # Criando o box plot
+    ggplot(dataset, aes(x = status, y = anomaly_score, fill = status)) +
+    geom_boxplot() +
+    labs(title = "Box Plot de Anomalias e Normais",
+        x = "Status",
+        y = "Anomaly Score") +
+    theme_minimal() +
+    scale_fill_manual(values = c("anomalia" = "red", "normal" = "blue")) +
+    theme(legend.position = "none")
 
 
+```
+
+### Conclusão
+
+- O professor adicionou outros elementos ao relatório para enriquecer a análise. Inicialmente, foi criado um novo gráfico de barras que apresentava a **média do anomaly_score por status**. Nesse gráfico, foi possível observar que a média dos registros classificados como anomalia foi de aproximadamente **0,65**, enquanto a média dos registros normais ficou em torno de **0,59**, confirmando as análises e interpretações realizadas anteriormente;
+
+- Em seguida, foi construído um gráfico de barras horizontal no qual o campo `anomaly_score` foi utilizado duas vezes: no eixo X, configurou-se a **contagem**, permitindo visualizar o total de registros por valor de *score* de anomalia. Esse gráfico reforçou novamente que o valor **0,59** foi o mais frequente entre os registros analisados;
+
+- Além disso, o professor incluiu dois **cartões** no relatório: um destinado a exibir o **maior anomaly_score**, utilizando a métrica de máximo, e outro para apresentar a **média do anomaly_score**.;
+
+- Por último, foi adicionado um **gráfico de pizza**, que mostrava a distribuição total de registros por `status`. Para isso, utilizou-se o campo `status` na legenda e o campo `id` como valor, configurado como contagem, permitindo visualizar de forma clara a proporção entre registros normais e anômalos.
