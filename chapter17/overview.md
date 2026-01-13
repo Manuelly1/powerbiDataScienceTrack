@@ -315,6 +315,8 @@
 
 ```
 
+---
+
 ### Conclusão
 
 - O professor adicionou outros elementos ao relatório para enriquecer a análise. Inicialmente, foi criado um novo gráfico de barras que apresentava a **média do anomaly_score por status**. Nesse gráfico, foi possível observar que a média dos registros classificados como anomalia foi de aproximadamente **0,65**, enquanto a média dos registros normais ficou em torno de **0,59**, confirmando as análises e interpretações realizadas anteriormente;

@@ -1,0 +1,5 @@
+Lab 9 - Engenharia de Produção com Power BI e IA - Prevendo a Produção Industrial ao Longo do Tempo
+
+Neste Lab o Power BI é usado para manipular e compreender os dados, explorando alguns conceitos de análise de séries temporais. Por fim, são 
+apresentados recursos de IA do Power BI para prever a média de unidades produzidas ao longo do tempo e detecção de anomalias. O Dashboard criado 
+ao final do Lab serve como ponto de partida para o dia a dia de Engenheiros de Produção.
