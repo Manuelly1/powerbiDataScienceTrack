@@ -137,3 +137,32 @@
 ---
 
 ### Fazendo Previsões com o Modelo de Detecção de Anomalias
+
+- Antes de iniciar, o professor pontuou que é comum surgirem alguns questionamentos, como: *“Como eu sei qual algoritmo usar?”*. Para responder a isso, ele destacou que a **experimentação** é fundamental. A escolha do algoritmo deve partir do conhecimento prévio que se tem sobre ele e da avaliação dos resultados obtidos. Em um projeto do dia a dia, o analista precisa, primeiramente, carregar os dados e, em seguida, realizar as etapas de checagem, análise exploratória, limpeza, pré-processamento e transformação. Somente após essas fases é feita a construção do modelo;
+
+- Para realizar a previsão, procedeu-se da seguinte forma: o conjunto de dados foi chamado, concatenado com as previsões geradas pelo modelo e, posteriormente, ordenado pelo *score* de anomalia. Em outras palavras, o que se está dizendo ao interpretador da linguagem R é: pegue os dados, gere as previsões a partir do modelo e, por fim, ordene os registros pelo *score* de anomalia em ordem decrescente. O resultado desse processo foi armazenado na variável `previsoes_historico`. O script ficou da seguinte forma:
+
+```r
+
+    # Faz as previsões com o modelo usando os dados históricos
+    previsoes_historico = dados_historicos_dsa %>%
+    modelo_ml_dsa$predict() %>%
+    arrange(desc(anomaly_score))
+
+```
+
+- Após a execução dessas linhas, foi executada outra etapa, a de visualização (`View`), que retornou uma tabela com as colunas `id`, `average_depth` (profundidade média) e `anomaly_score`. Esse *score* indica o quanto uma observação está fora do padrão: quanto **menor** o valor, mais dentro do padrão ela se encontra; quanto **maior**, maior a probabilidade de ser uma anomalia;
+
+- Posteriormente, foi gerado um *plot* de densidade para analisar a distribuição dos *scores* de anomalia. Nesse *plot*, utilizou-se o conjunto de dados, mais especificamente a coluna `anomaly_score`. Ao aplicar a função `plot` e executar essa linha, foi gerado um gráfico no qual:
+
+    - o **Eixo X** representa o *score* de anomalia, que varia aproximadamente de 0 até 0,75. Esse valor é produzido pelo algoritmo e, como mencionado anteriormente, quanto maior o *score*, maior a chance de o registro ser uma anomalia;
+
+    - o **Eixo Y** representa a densidade, ou seja, a frequência de ocorrência dos valores.
+
+- No gráfico gerado, foi possível observar que a maioria dos registros apresenta *scores* de anomalia abaixo de 0,60, o que indica que valores inferiores a esse limiar tendem a representar o comportamento padrão. Assim, valores acima de 0,60 podem indicar possíveis anomalias, funcionando como um indício de observações fora do padrão;
+
+- Surge, então, o seguinte questionamento: *“Como definir, de fato, o que é uma anomalia? O ponto de corte deve ser 0,60, 0,70, 0,45…?”*, o algoritmo não fornece explicitamente quais registros são anômalos; ele apenas atribui *scores*. Cabe ao cientista de dados definir o ponto de corte mais adequado, considerando o contexto do problema, a distribuição dos dados e o impacto de falsos positivos e falsos negativos.
+
+---
+
+### Definindo o Score de Anomalia
