@@ -165,3 +165,63 @@
 
 ---
 
+### Definindo o Score de Anomalia
+
+- Neste momento, cabe ao cientista de dados, como já mencionado anteriormente, definir a marca de corte. Para este cenário, o professor definiu o valor de **0,62**, uma vez que a grande maioria dos registros apresenta *scores* de anomalia até **0,60**. Assim, ele “esticou” ligeiramente esse limite para **0,62** e considerou como anomalias os registros acima desse valor;
+
+- O professor destacou que a escolha de outros pontos de corte, como **0,60**, **0,65** ou **0,70**, também estaria correta, pois, no fim das contas, trata-se de uma decisão baseada no conhecimento de negócio, no comportamento dos dados e na forma como se deseja entregar resultados da maneira mais precisa possível. O mais importante é sempre **justificar a escolha adotada**;
+
+- Por fim, o professor afirmou que optou por **0,62** justamente por ser um valor um pouco acima do padrão observado nos dados;
+
+- Para fazer isso, ele usou o seguinte script:
+
+
+```r
+
+    # Quanto maior o anomaly score maior a chance do registro ser uma anomalia
+    # Vamos definir como regra que anomaly score acima de 0.62 é uma anomalia
+    indices_historico = previsoes_historico[which(previsoes_historico$anomaly_score > 0.62)]
+
+    # Faz o filtro
+    anomalias_historico = dados_historicos_dsa[indices_historico$id, ]
+    normais_historico = dados_historicos_dsa[-indices_historico$id, ]
+
+```
+
+- O script acima utiliza o objeto `previsoes_historico` e aplica a função `which`, que permite realizar um filtro na linguagem R. Quando o valor de `anomaly_score` é **maior que 0.62**, esse registro é identificado e seu índice é armazenado para uso posterior;
+
+- Em seguida, no processo de filtragem, o conjunto `dados_historicos_dsa` é utilizado para separar os registros. Aqueles cujos índices correspondem aos valores identificados como anômalos são armazenados em `anomalias_historico`;
+
+- Já o objeto `normais_historico` contém todos os demais registros, ou seja, aqueles que não possuem índices classificados como anomalias. Isso é feito utilizando o sinal de negação `(-indices_historico$id)`, que indica a exclusão desses índices, permitindo separar claramente os registros anômalos dos registros considerados normais;
+
+- Posteriormente, o professor quis evidenciar isso em um gráfico:
+
+
+```r
+
+    # Gráfico
+    colors()
+    ggplot() + 
+    geom_point(data = normais_historico, 
+                mapping = aes(transacao1,transacao2), 
+                col = "skyblue3", 
+                alpha = 0.5) + 
+    geom_point(data = anomalias_historico,
+                mapping = aes(transacao1,transacao2), 
+                col = "red2", 
+                alpha = 0.8)
+
+```
+
+- Para a visualização dos resultados, foi utilizado o `ggplot` em conjunto com o `geom_point`, responsável pela criação de um gráfico de dispersão a partir dos grupos identificados pelo algoritmo de *Machine Learning*. Após a execução do gráfico, observou-se que os pontos em **azul** representam os registros classificados como normais, enquanto os pontos em **vermelho** indicam as anomalias. O algoritmo apresentou um bom desempenho ao conseguir identificar três grupos com padrões bem definidos nas transações financeiras, além de destacar os registros que fogem desses comportamentos. Entretanto, é importante ressaltar que nem toda anomalia identificada pode ser considerada uma fraude financeira; tais registros podem representar erros, variações atípicas ou situações que demandam uma análise mais aprofundada;
+
+- Em seguida, o professor detalhou o funcionamento do script utilizado para a geração do gráfico. A função `ggplot()`, combinada com o operador `+`, indica a adição de uma nova camada ao gráfico. O pacote `ggplot2` baseia-se no conceito da *gramática dos gráficos*, em que a visualização é construída de forma incremental, camada por camada. Cada camada pode ser personalizada conforme os objetivos da análise. De modo geral, um gráfico pode conter diversas camadas; neste caso, inicialmente foi adicionada a camada `geom_point`, responsável pelo gráfico de dispersão, na qual são definidos os dados de entrada, o mapeamento das variáveis, as cores e o parâmetro `alpha`, que controla a transparência dos pontos. Em seguida, foi adicionada uma segunda camada `geom_point` para destacar as anomalias, permitindo uma visualização clara da separação entre os registros normais e os registros anômalos.
+
+---
+
+### Aplicando o Modelo de Detecção de Anomalias a Novos Dados
+
+
+
+
+
