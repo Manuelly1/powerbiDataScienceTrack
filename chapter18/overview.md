@@ -92,4 +92,50 @@
 
 ---
 
-### Calculando as Estatísticas Média e Média Móvel no Power BI
+### Calculando as Estatísticas de Média e Média Móvel no Power BI
+
+- A partir do gráfico de barras adicionado anteriormente, no campo **Total Unidades Produzidas**, a operação foi alterada para **Média**, de modo que o visual passasse a exibir a média das unidades produzidas ao longo do tempo. Em seguida, o professor demonstrou como acrescentar uma linha que representasse a **média global**, isto é, a média geral de todo o conjunto de dados;
+
+    - Para isso, acessa-se o ícone da **lupa** no painel de formatação do visual e, na seção **Linha média**, clica-se em **Adicionar linha**. Após essa ação, é exibida no gráfico uma linha tracejada que representa a média geral dos dados.
+
+- Com essa linha média, tornou-se possível identificar em quais anos as vendas ficaram **acima** ou **abaixo** da média geral. Essa abordagem é conhecida como **média estática**, pois considera todo o conjunto de dados de forma fixa. Contudo, o professor destacou que também é possível calcular uma **média móvel**, um conceito amplamente utilizado na análise de **séries temporais**;
+
+- A média móvel funciona como uma espécie de **janela deslizante** aplicada sobre os dados ao longo do tempo. Essa janela se desloca pelos períodos, recalculando a média a cada novo intervalo analisado, permitindo observar tendências e variações de curto prazo conforme os dados evoluem;
+
+- Para implementar a média móvel no Power BI, utilizou-se o recurso de **Medida rápida**. Ao selecionar essa opção, escolhe-se o cálculo **Média móvel** e define-se:  
+
+    - em **Valor de base** (que é o valor que deseja calcular), o campo `Total Unidades Produzidas`;  
+  
+    - em **Data**, o campo `Período`, que contém a hierarquia completa de datas;  
+  
+    - em **Período**, a unidade de tempo **Meses**;  
+  
+    - em **Janela**, o valor correspondente a um **bimestre**, configurando os períodos antes e depois como `2`.
+
+- Após a criação da medida e sua adição ao gráfico, basta selecioná-la no painel direito do dashboard. Com isso, a **janela da média móvel** passa a ser exibida no gráfico, permitindo uma análise dinâmica do comportamento das unidades produzidas ao longo do tempo.
+
+---
+
+### Segmentação da Série Temporal
+
+- A base de dados permite a exploração de diferentes fatores que influenciam o comportamento da série temporal. Um desses fatores é o **turno**, que possibilita análises comparativas, como: *o turno da manhã apresenta melhor produção do que o turno da tarde?*. No gráfico de barras utilizado anteriormente, o campo `Turno` foi adicionado à **legenda**. Com isso, o Power BI realizou a segmentação da série temporal, dividindo-a em duas categorias: **manhã** e **tarde**, o que viabilizou uma análise mais detalhada e evidenciou que o turno da manhã apresentou maior produção. Essa segmentação permitiu observar a série temporal sob diferentes ângulos e perspectivas;
+
+- Em seguida, o professor explorou outra perspectiva de análise a partir do fator `Range Idade Funcionários`. Como não é possível utilizar duas legendas simultaneamente no mesmo visual, o campo `Turno` foi removido e substituído por esse novo atributo. Nesse cenário, como existem vários intervalos de idade, o gráfico passou a exibir **múltiplas linhas**, cada uma representando um range distinto, resultando na visualização de várias séries temporais no mesmo gráfico e ampliando as possibilidades de análise comparativa.
+
+---
+
+### O que são Estacionaridade, Tendência e Sazonalidade?
+
+- **Estacionaridade:** uma série temporal é dita estacionária se *suas propriedades estatísticas, como média, variância e autocorrelação, são constantes ao longo do tempo*. Isso significa que, independentemente do ponto específico do tempo que você selecionar, as características estatísticas da série temporal serão as mesmas. Esta é uma suposição importante em muitos modelos de séries temporais, porque *simplifica as previsões*. Entretanto, muitas séries temporais do mundo real não são estacionárias, mas podem ser *transformadas nesse tipo por meio de métodos como a diferenciação*;
+
+- **Tendência:** a tendência refere-se a um *padrão de longo prazo na série temporal que mostra uma direção geral*. Por exemplo, se as vendas de um produto estão consistentemente aumentando ao longo do tempo, diz-se que há uma tendência de alta. Por outro lado, se a temperatura de uma cidade está consistentemente diminuindo ao longo do tempo, há uma tendência de baixa. *A tendência pode ser linear (ou seja, a série aumenta ou diminui a uma taxa constante) ou não linear*;
+
+- **Sazonalidade:** a sazonalidade refere-se a *padrões que se repetem em intervalos fixos de tempo*. Por exemplo, as vendas de sorvete podem ser mais altas no verão e mais baixas no inverno todos os anos, o que é um exemplo de sazonalidade anual. Da mesma forma, a quantidade de tráfego da web pode ser mais alta durante a semana e mais baixa nos fins de semana, o que é um exemplo de sazonalidade semanal. *Ajustar a sazonalidade pode ser importante para fazer previsões precisas*, especialmente para negócios ou fenômenos que são fortemente influenciados por fatores sazonais;
+
+- **A identificação e o ajuste** da estacionaridade, tendência e sazonalidade podem ser *essenciais para a modelagem efetiva de séries temporais e para a realização de previsões precisas*.
+
+---
+
+### Previsões em Séries Temporais e Horizonte de Previsão no Power BI
+
+- 
