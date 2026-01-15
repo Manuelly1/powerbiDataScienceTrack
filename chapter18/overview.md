@@ -138,4 +138,28 @@
 
 ### Previsões em Séries Temporais e Horizonte de Previsão no Power BI
 
-- 
+- Nesta etapa, o professor voltou a utilizar a opção **Medida rápida** para apresentar a seção **Cálculos** e, dentro dela, o grupo **Inteligência de dados temporais** (*Time Intelligence*). Esse conjunto de funcionalidades reúne diversas operações voltadas à manipulação e análise de séries temporais, facilitando o trabalho do analista ao dispensar, em muitos casos, o uso de outras ferramentas, como Python ou R, para a aplicação dessas técnicas. Como ressaltado pelo professor, o domínio de séries temporais é essencial para quem pretende atuar como analista de dados;
+
+- Em seguida, foram apresentados dois recursos do Power BI baseados em **Inteligência Artificial**: um voltado para **previsões em séries temporais** e outro para **detecção de anomalias**;
+
+  - Para demonstrar o recurso de **previsão**, foi adicionado um novo gráfico de linhas ao relatório, utilizando `Período` no eixo **X** e `Total Unidades Produzidas` no eixo **Y**, agregados pela **média**. Nesse momento, o gráfico passou a representar a média de unidades produzidas ao longo dos dados históricos, abrangendo o período de 2018 a 2023. A partir disso, o professor levantou o questionamento: *seria possível prever a média de unidades produzidas para 2024 e 2025?* A resposta é sim, e essa é uma das aplicações da análise de séries temporais. No Power BI, essa funcionalidade é acessada selecionando o gráfico e, no painel de formatação (ícone da **lupa**, no lado direito), habilitando a opção **Previsão**. Ao ativá-la, o gráfico é automaticamente ajustado para exibir os valores previstos;
+
+  - Após isso, o professor demonstrou como **customizar a previsão**. Na opção **Unidades**, é possível definir o nível temporal da previsão, como ano, trimestre, mês, dia ou até segundos, desde que essas informações estejam presentes na base de dados. Para este projeto, foi selecionado o nível mais alto da hierarquia, **Ano**. Em seguida, configurou-se o **Comprimento da previsão**, que corresponde ao **horizonte de previsão**, ou seja, até onde os valores serão estimados no futuro. O valor padrão é de 10 anos, o que estenderia a previsão até 2033; entretanto, conforme destacado pelo professor, previsões muito longas tendem a ser menos confiáveis. Por esse motivo, o horizonte foi reduzido para **5 anos**. Além disso, utilizou-se a opção **Ignorar o último**, configurada com valor `1`, para desconsiderar o último ano da base (2023), o que pode ser útil quando os dados desse período estão incompletos.
+
+---
+
+### Detecção de Anomalias em Séries Temporais no Power BI
+
+- Em relação ao recurso de **detecção de anomalias**, o professor explicou que uma anomalia, nesse contexto, corresponde a um valor que se distancia significativamente da média ou que apresenta um comportamento muito discrepante em relação aos demais períodos, fugindo do padrão esperado. Essa funcionalidade também é acessada no painel da **lupa**, por meio da opção **Localizar anomalias**. Inicialmente, essa opção apareceu desativada, pois o Power BI permite o uso de apenas um recurso de IA por vez no mesmo visual. Assim, foi necessário desabilitar a previsão para ativar a detecção de anomalias, evidenciando que o Power BI ainda possui limitações para análises mais avançadas desse tipo;
+
+- Ao ativar a detecção de anomalias, o Power BI exibiu um **intervalo de confiança** em torno da série temporal. Com o aumento do nível de **Confidencialidade** (configurado acima de 90%), a ferramenta passou a identificar valores atípicos. Ao posicionar o cursor sobre um desses pontos, são exibidas quatro informações: `Média de Total Unidades Produzidas`, `Valor esperado`, `Valor mínimo esperado` e `Valor máximo esperado`. O professor também apresentou uma forma alternativa de acessar essa funcionalidade por meio do menu **Dados/Analisar → Localizar anomalias**.
+
+---
+
+### Conclusão
+
+- Para a conclusão do laboratório, o professor adicionou outros elementos ao relatório, como **duas segmentações de dados**: uma referente ao `Ano` e outra à `Faixa etária` (correspondente ao *range* de idade dos funcionários, renomeado para tornar a visualização mais clara e intuitiva). Esses filtros permitem ao usuário interagir com o relatório e analisar os dados sob diferentes recortes;
+
+- No centro do relatório, foi inserido um **gráfico de área**, que apresenta **múltiplas séries temporais**, resultantes da visualização da **média de unidades produzidas** segmentada por **ano, trimestre, mês** e **faixa etária dos funcionários**. Esse gráfico possibilita uma análise comparativa mais rica, evidenciando o comportamento da produção ao longo do tempo e entre diferentes grupos;
+
+- Além disso, foi mantido um **gráfico de linhas** dedicado à **detecção de anomalias** e adicionado outro **gráfico de linhas** voltado para **previsões em séries temporais**. Dessa forma, foi possível utilizar os dois recursos de **IA** disponibilizados pelo Power BI, porém de maneira **individualizada**.
