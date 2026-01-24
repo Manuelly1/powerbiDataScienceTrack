@@ -438,3 +438,14 @@ O cartão seria um bom complemento para apresentar o faturamento total geral, ma
     - O campo utilizado no visual não pertence à tabela correta;
 
     - **Como verificar:** conferir se o relacionamento está **ativo**; validar chaves primárias e estrangeiras; revisar cardinalidade e direção do filtro; conferir o modelo no **Gerenciador de Relacionamentos**.
+
+### 21. **Métricas essenciais**. Quais **3 KPIs principais** você colocaria em um dashboard executivo?
+
+1. **Taxa de Retenção de Cliente**, indica se a empresa está conseguindo **manter sua base de clientes ao longo do tempo**, refletindo a capacidade das estratégias e campanhas em gerar **relacionamentos sustentáveis**, e não apenas vendas pontuais. Decisão suportada: 
+definição de investimentos em campanhas de fidelização, melhoria da experiência do cliente e ações de retenção.
+
+2. **Atingimento de Meta (Faturamento ou Lucro)**, o qual permite ao executivo avaliar, de forma rápida e objetiva, se o desempenho atual está **alinhado aos objetivos estratégicos definidos para o período**, servindo como termômetro da performance do negócio. Decisão suportada: ajuste de metas, revisão de orçamento, realocação de recursos e definição de ações comerciais corretivas;
+
+3. **Taxa de Conversão de Vendas**, que mede a eficiência do processo comercial, indo além do volume de vendas e avaliando a qualidade do resultado gerado. Esse indicador responde à pergunta: *“De tudo que entrou no funil, quanto efetivamente se converteu em receita?”*. Decisão suportada: otimização de processos comerciais, revisão de estratégias de precificação e avaliação da performance dos diferentes canais de venda.
+Fórmula: Taxa de Conversão (%) = (Vendas realizadas / Oportunidades geradas) × 100.
+
